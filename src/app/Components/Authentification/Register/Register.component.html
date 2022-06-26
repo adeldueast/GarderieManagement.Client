@@ -1,0 +1,160 @@
+
+<div class="block p-6 rounded-lg shadow-lg bg-white max-w-md mx-auto mt-56">
+  <form (submit)="Register()">
+    
+    <div class="grid grid-cols-2 gap-4">
+     
+        <label
+        for="exampleInput123"
+        class="form-label inline-block mb-2 text-gray-700"
+        >First name</label
+      >
+ 
+      
+        <label
+        for="exampleInput124"
+        class="form-label inline-block mb-2 text-gray-700"
+        >Last name</label
+      >
+     
+     
+    </div>
+
+
+    <div class="grid grid-cols-2 gap-4">
+      <div class="form-group mb-6">
+        <!-- FIRSTNAME INPUT -->
+        <input type="text"  name="firstname" [(ngModel)]="register_request.firstname" class="form-control
+          block
+          w-full
+          px-3
+          py-1.5
+          text-base
+          font-normal
+          text-gray-700
+          bg-white bg-clip-padding
+          border border-solid border-gray-300
+          rounded
+          transition
+          ease-in-out
+          m-0
+          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput123"
+          aria-describedby="emailHelp123" placeholder="First name">
+      </div>
+      <div class="form-group mb-6">
+        <!-- LASTNAME INPUT -->
+        <input type="text" 
+        name="lastname"
+        [(ngModel)]="register_request.lastname"
+        class="form-control
+          block
+          w-full
+          px-3
+          py-1.5
+          text-base
+          font-normal
+          text-gray-700
+          bg-white bg-clip-padding
+          border border-solid border-gray-300
+          rounded
+          transition
+          ease-in-out
+          m-0
+          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput124"
+          aria-describedby="emailHelp124" placeholder="Last name">
+      </div>
+    </div>
+
+
+
+    <div class="form-group mb-6">
+      <label
+      for="exampleInput125"
+      class="form-label inline-block mb-2 text-gray-700"
+      >Email address</label
+    >
+        <!-- EMAIL INPUT -->
+
+    
+      <input type="email" name="email"  [(ngModel)]="register_request.email" class="form-control block
+        w-full
+        px-3
+        py-1.5
+        text-base
+        font-normal
+        text-gray-700
+        bg-white bg-clip-padding
+        border border-solid border-gray-300
+        rounded
+        transition
+        ease-in-out
+        m-0
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput125"
+        placeholder="Email address">
+    </div>
+    <div class="form-group mb-6">
+      <label
+      for="exampleInput126"
+      class="form-label inline-block mb-2 text-gray-700"
+      >Password</label
+    >
+        <!-- PASSWORD INPUT -->
+
+      <input type="password" name="password" [(ngModel)]="register_request.password" class="form-control block
+        w-full
+        px-3
+        py-1.5
+        text-base
+        font-normal
+        text-gray-700
+        bg-white bg-clip-padding
+        border border-solid border-gray-300
+        rounded
+        transition
+        ease-in-out
+        m-0
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput126"
+        placeholder="Password">
+    </div>
+ 
+    <button type="submit" class="
+      w-full
+      px-6
+      py-2.5
+      bg-blue-600
+      text-white
+      font-medium
+      text-xs
+      leading-tight
+      uppercase
+      rounded
+      shadow-md
+      hover:bg-blue-700 hover:shadow-lg
+      focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
+      active:bg-blue-800 active:shadow-lg
+      transition
+      duration-150
+      ease-in-out">Sign up</button>
+   <a routerLink="/login">
+    <button class="
+    mt-2
+    w-full
+    px-6
+    py-2.5
+    bg-blue-600
+    text-white
+    font-medium
+    text-xs
+    leading-tight
+    uppercase
+    rounded
+    shadow-md
+    hover:bg-blue-700 hover:shadow-lg
+    focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
+    active:bg-blue-800 active:shadow-lg
+    transition
+    duration-150
+    ease-in-out">Back</button>
+   </a>
+  </form>
+</div>
