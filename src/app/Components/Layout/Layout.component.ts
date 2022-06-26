@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Auth2Service } from 'src/app/shared/services/Auth2.service';
+import { AuthService } from 'src/app/shared/services/Auth.service';
 
 
 
@@ -12,10 +12,10 @@ import { Auth2Service } from 'src/app/shared/services/Auth2.service';
 export class LayoutComponent implements OnInit {
 
 
-  constructor(private authService2 : Auth2Service) {}
+  constructor(private AuthService : AuthService) {}
 
   ngOnInit(): void {
-    this.authService2.isUserInRole('caca');
+ 
   }
 
 

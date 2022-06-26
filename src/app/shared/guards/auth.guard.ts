@@ -6,19 +6,15 @@ import {
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
+
 import { Observable } from 'rxjs';
-import { AuthService } from '../services/Auth.service';
-
-
+import { AuthService as AuthService } from '../services/Auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(
-    private router: Router,
-    private authenticationService: AuthService
-  ) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -28,16 +24,17 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    const currentUser = this.authenticationService.isLoggedIn();
-    
-    if (currentUser) {
-      // logged in so return true
-      console.log('YOU ARE LOGGED IN');
+
+
+    console.log('GUARD ❤️‍🔥❤️‍🔥❤️‍🔥❤️‍🔥 GUARD');
+    //If Authenticated , authorize
+    if (this.authService.isUserAuthenticated()) {
+      console.log('😁 you can go !');
       return true;
     }
 
-    // not logged in so redirect to login page with the return url
-    console.log('YOU ARE LOGGED OUT');
+     //If NOT Authenticated , redirect to /login
+    console.log('😡 oops NO !');
     this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
     return false;
   }

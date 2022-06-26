@@ -5,22 +5,22 @@ import { LoginComponent } from './Components/Authentification/Login/Login.compon
 import { PageNotFoundComponent } from './Components/PageNotFound/PageNotFound.component';
 import { RegisterComponent } from './Components/Authentification/Register/Register.component';
 import { AuthGuard } from './shared/guards/auth.guard';
-import { Auth2Guard } from './shared/guards/auth2.guard';
+import { SidebarComponent } from './Components/Sidebar/Sidebar.component';
 
 const routes: Routes = [
- 
-
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'home', component: LayoutComponent , canActivate:[Auth2Guard] },
+  { path: 'home', component: LayoutComponent, canActivate: [AuthGuard] },
+
+  { path: 'sidebar', component: SidebarComponent, canActivate: [AuthGuard] },
 
 
-  { path: '',   redirectTo: '/home', pathMatch: 'full' }, // redirect to login
-  { path: '**', component: PageNotFoundComponent }, 
+  { path: '', redirectTo: '/home', pathMatch: 'full' }, // redirect to home
+  { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes),],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
