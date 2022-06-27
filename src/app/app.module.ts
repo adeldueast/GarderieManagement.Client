@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 
 import { LayoutComponent } from './Components/Layout/Layout.component';
 import { SidebarComponent } from './Components/Sidebar/Sidebar.component';
-import { SidebarItemComponent } from './Components/Sidebar-Item/Sidebar-Item.component';
+
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -31,7 +31,6 @@ import { JwtModule } from '@auth0/angular-jwt';
     LoginComponent,
     LayoutComponent,
     SidebarComponent,
-    SidebarItemComponent,
   ],
 
   imports: [
@@ -39,6 +38,8 @@ import { JwtModule } from '@auth0/angular-jwt';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    MatIconModule,
+    MatDividerModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

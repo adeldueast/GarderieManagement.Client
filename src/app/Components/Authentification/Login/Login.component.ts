@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from 'src/app/shared/services/Auth.service';
+import { AuthService } from 'src/app/shared/services/http/Auth.service';
 
 
 @Component({
@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
         const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
         this.router.navigate([returnUrl]);
       },
-      error: (err) => [console.log(err),alert(err)],
+      error: (err) => [console.log(err.error.errors),alert(err.error.errors)],
       complete: () => console.log('login completed'),
     });
   }

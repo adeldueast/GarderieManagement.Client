@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/shared/services/Auth.service';
+import { AuthService } from 'src/app/shared/services/http/Auth.service';
 
 @Component({
   selector: 'app-Register',

@@ -8,7 +8,7 @@ import {
 } from '@angular/router';
 
 import { Observable } from 'rxjs';
-import { AuthService as AuthService } from '../services/Auth.service';
+import { AuthService as AuthService } from '../services/http/Auth.service';
 
 @Injectable({
   providedIn: 'root',
