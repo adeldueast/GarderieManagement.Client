@@ -8,7 +8,7 @@ import {
 } from '@angular/router';
 
 import { Observable } from 'rxjs';
-import { AuthService as AuthService } from '../services/http/Auth.service';
+import { AuthService as AuthService } from '../services/http/auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -24,17 +24,20 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-
-
-    console.log('GUARD ❤️‍🔥❤️‍🔥❤️‍🔥❤️‍🔥 GUARD');
-    //If Authenticated , authorize
-    if (this.authService.isUserAuthenticated()) {
-      console.log('😁 you can go !');
+      
+    const isUserAuthenticated = this.authService.isUserAuthenticated();
+    if (isUserAuthenticated) {
+      //If Authenticated , authorize
+      // console.log('😁 you can go !');
       return true;
     }
 
-     //If NOT Authenticated , redirect to /login
-    console.log('😡 oops NO !');
+    //If NOT Authenticated , redirect to /login
+  
+    if(state.url = '/'){
+      this.router.navigate(['/login'],{});
+      return false
+    }
     this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
     return false;
   }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/shared/services/http/Auth.service';
+import { AuthService } from 'src/app/shared/services/http/auth.service';
+
+
 
 @Component({
   selector: 'app-Sidebar',
@@ -8,8 +10,9 @@ import { AuthService } from 'src/app/shared/services/http/Auth.service';
   styleUrls: ['./Sidebar.component.css'],
 })
 export class SidebarComponent implements OnInit {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(public authService: AuthService, private router: Router) {}
 
+  
   ngOnInit() {}
 
   logout() {

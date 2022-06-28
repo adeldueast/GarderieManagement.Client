@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from 'src/app/shared/services/http/Auth.service';
-
+import { AuthService } from 'src/app/shared/services/http/auth.service';
 
 @Component({
   selector: 'app-Login',
@@ -14,10 +13,8 @@ export class LoginComponent implements OnInit {
     password: undefined,
   };
 
-  
   constructor(
     public authService: AuthService,
-
     private route: ActivatedRoute,
     private router: Router
   ) {
@@ -29,30 +26,23 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {}
 
-  // Login() {
-  //   this.authService.login(this.login_request).subscribe({
-  //     next: (res) => {
-      
-  //       // get return url from route parameters or default to '/'
-  //       const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-  //       this.router.navigate([returnUrl]);
-  //     },
-  //     error: (err) => alert(err.error.errors),
-  //     complete: () => console.log('login completed'),
-  //   });
-  // }
 
   Login() {
-    this.authService.loginUser("Account/Login",this.login_request).subscribe({
+    this.authService.loginUser('Account/Login', this.login_request).subscribe({
       next: (res) => {
-        
-        localStorage.setItem("token", res.data.accessToken);
-        this.authService.sendAuthStateChangeNotification(true);
-        const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-        this.router.navigate([returnUrl]);
+        this.onSuccessLogin(res);
       },
-      error: (err) => [console.log(err.error.errors),alert(err.error.errors)],
+      error: (err) => [console.log(err.error.errors), alert(err.error.errors)],
       complete: () => console.log('login completed'),
     });
+  }
+
+  onSuccessLogin(res: any) {
+    const token = res.data.accessToken;
+    localStorage.setItem('token', token);
+    this.authService.UpdateCurrentUserInfo(token);
+    this.authService.sendAuthStateChangeNotification(true);
+    const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.router.navigate([returnUrl]);
   }
 }

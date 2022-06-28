@@ -1,11 +1,11 @@
 <div class="w-100 h-full shadow-md bg-white px-1 rounded ">
 
-  
+
   <!-- Header profile -->
   <div class="flex flex-col items-center">
     <img class="avatar mat-elevation-z8" src="https://source.unsplash.com/c_GmwfHBDzk/200x200"/>
-    <h4 class="name">Zahia Charaiou</h4>
-    <p class="designation">Educatrice</p>
+    <h4 class="name">{{authService.user_info.email}}</h4>
+    <p class="designation">{{authService.user_info.roles.join(",")}}</p>
   </div>
 
 
@@ -16,7 +16,7 @@
 
         <!-- Childrens -->
       <li class="relative">
-        <a routerLink="/home/children" class="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="dark">
+        <a routerLink="children" class="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="dark">
             <mat-icon class="w-3 h-3 mr-3" aria-hidden="true" aria-label="Example home icon">child_care</mat-icon>
             <span>Childrens</span>
         </a>
@@ -24,7 +24,7 @@
 
         <!-- Groups -->
       <li class="relative">
-        <a routerLink="/home/groups" class="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="dark">
+        <a routerLink="groups" class="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="dark">
             <mat-icon class="w-3 h-3 mr-3" aria-hidden="true" aria-label="Example home icon">diversity_3</mat-icon>
             <span>Groups</span>
         </a>
@@ -32,7 +32,7 @@
 
         <!-- Classrooms -->
       <li class="relative">
-        <a routerLink="/home/classrooms" class="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="dark">
+        <a routerLink="classrooms" class="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="dark">
             <mat-icon class="w-3 h-3 mr-3" aria-hidden="true" aria-label="Example home icon">meeting_room</mat-icon>
             <span>Classrooms</span>
         </a>
@@ -40,7 +40,7 @@
 
         <!-- Staff -->
       <li class="relative">
-        <a  routerLink="/home/staff" class="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="dark">
+        <a  routerLink="staff" class="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="dark">
             <mat-icon class="w-3 h-3 mr-3" aria-hidden="true" aria-label="Example home icon">badge</mat-icon>
             <span>Staff</span>
         </a>
@@ -49,14 +49,18 @@
         <!-- Events -->
       <mat-divider ></mat-divider>
       <li class="relative">
-        <a class="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="dark">
+        <a 
+      
+        class="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="dark">
             <mat-icon class="w-3 h-3 mr-3" aria-hidden="true" aria-label="Example home icon">calendar_month</mat-icon>
             <span>Events</span>
         </a>
       </li>
 
       <li class="relative">
-        <a class="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="dark">
+        <a 
+       
+        class="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="dark">
             <mat-icon class="w-3 h-3 mr-3" aria-hidden="true" aria-label="Example home icon">chat</mat-icon>
             <span>Messages</span>
         </a>
@@ -70,6 +74,8 @@
             <span>Logout</span>
         </a>
       </li>
+
+   
 
     </ul>
 

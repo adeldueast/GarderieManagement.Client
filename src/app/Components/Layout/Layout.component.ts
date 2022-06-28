@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AuthService } from 'src/app/shared/services/http/Auth.service';
-
+import { AuthService } from 'src/app/shared/services/http/auth.service';
 
 
 @Component({
@@ -12,8 +11,10 @@ import { AuthService } from 'src/app/shared/services/http/Auth.service';
 export class LayoutComponent implements OnInit {
 
 
-  constructor(private AuthService : AuthService) {}
+  constructor(private authService : AuthService) {}
+   
 
+  
   ngOnInit(): void {
  
   }

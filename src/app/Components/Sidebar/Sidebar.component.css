@@ -3,6 +3,10 @@ mat-divider {
   margin-bottom: 16px;
   background-color: rgba(255, 255, 255, 0.5);
 }
+mat-divider:first-child{
+
+  margin-top: 0;
+}
 
 .avatar {
   margin-top: 16px;
@@ -12,12 +16,11 @@ mat-divider {
 }
 
 .name {
-  margin-top: 8px;
+  margin-top: 13px;
   font-weight: normal;
 }
 
 .designation {
-  margin-top: 2px;
-  font-size: 0.7rem;
-  color: lightgrey;
+  font-size: 0.85rem;
+  color: grey;
 }

@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import { FormsModule } from '@angular/forms';
+import { JwtModule } from '@auth0/angular-jwt';
+
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './Components/Authentification/Register/Register.component';
 import { LoginComponent } from './Components/Authentification/Login/Login.component';
-import { FormsModule } from '@angular/forms';
-
 import { LayoutComponent } from './Components/Layout/Layout.component';
 import { SidebarComponent } from './Components/Sidebar/Sidebar.component';
 
@@ -17,20 +18,28 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent } from './Components/modal/modal.component';
+import { ChildrenComponent } from './Components/childrens/children/children.component';
+
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
 }
 
-import { JwtModule } from '@auth0/angular-jwt';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    LayoutComponent,
     SidebarComponent,
+    LayoutComponent,
+    // 
+    ModalComponent, 
+    //
+    ChildrenComponent
   ],
 
   imports: [
@@ -47,6 +56,9 @@ import { JwtModule } from '@auth0/angular-jwt';
         disallowedRoutes: [],
       },
     }),
+    NgbModule,
+    
+    
   ],
   providers: [],
   bootstrap: [AppComponent],
