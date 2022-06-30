@@ -1,0 +1,99 @@
+<div class="w-full h-full">
+  <!--bg-purple-300  -->
+  <header class="p-2 flex flex-col justify-center items-center gap-3">
+    <!--bg-green-400  -->
+    <img [src]="child_info.image" class="w-40 rounded-full" alt="" />
+    <p class="text-5xl">{{ child_info.nom }}</p>
+  </header>
+
+  <mat-tab-group mat-stretch-tabs>
+    
+
+    <!-- CALENDAR -->
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="example-tab-icon">calendar_month</mat-icon>
+        Calendar
+      </ng-template>
+
+    </mat-tab>
+
+
+    <!-- INFORMATION -->
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="example-tab-icon">folder_shared</mat-icon>
+        Information
+      </ng-template>
+    
+      <!-- FORM -->
+     <form [formGroup]="updateForm" (ngSubmit)="onSubmit()" class=" example-form w-[70%] mx-auto mt-4 p-8 ">  <!-- bg-red-400 -->
+        <div *ngIf="updateForm.disabled" class="example-button-container flex  justify-between w-full">
+          <h1>Information</h1>
+          <button (click)="toggleEdit()" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+        <!-- Name -->
+        <mat-form-field class="w-100" appearance="standard">
+          <mat-label>Nom</mat-label>
+          <input
+            formControlName="nom"
+            type="email"
+            matInput
+            placeholder="Ex. pat@example.com"
+          />
+        </mat-form-field>
+        <!-- BirthDate -->
+        <mat-form-field class="w-full mb-1" appearance="standard">
+          <mat-label>Date of birth</mat-label>
+          <input
+            formControlName="birthdate"
+            matInput
+            [matDatepicker]="picker"
+          />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <!-- Group -->
+        <mat-form-field class="w-100" appearance="standard">
+          <mat-label>Group</mat-label>
+          <input formControlName="group" type="email" matInput />
+        </mat-form-field>
+
+     
+       <div class="flex gap-2">
+        <button  *ngIf="updateForm.enabled" mat-raised-button color="primary"  type="submit" >Update</button>
+        <button (click)="toggleEdit()"  *ngIf="updateForm.enabled" mat-raised-button  color="accent" >Cancel</button>
+       </div>
+     
+      </form>
+    </mat-tab>
+
+
+    <!-- GUARDIANS -->
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="example-tab-icon">escalator_warning</mat-icon>
+        Guardians
+      </ng-template>
+      <div class=" example-form w-[70%] mx-auto mt-4 p-8 " ><!--  bg-red-400 -->
+
+        <div *ngIf="updateForm.disabled" class="example-button-container flex  items-center justify-between w-full">
+          <h1>Guardians</h1>
+          <button (click)="openDialog()" mat-raised-button color="primary" aria-label="Example icon button with a delete icon">
+           Add guardian 
+           <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </div>
+    </mat-tab>
+
+
+  </mat-tab-group>
+</div>

@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
       next: (res) => {
         this.onSuccessLogin(res);
       },
-      error: (err) => [console.log(err.error.errors), alert(err.error.errors)],
+      error: (err) => [console.error(err.error.errors), alert(err.error.errors)],
       complete: () => console.log('login completed'),
     });
   }

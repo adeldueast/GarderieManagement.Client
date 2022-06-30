@@ -23,7 +23,7 @@ export class AuthService {
     private envUrl: EnvironmentUrlService,
     private jwtHelper: JwtHelperService
   ) {
-    console.log('😡😡😡 Auth.service constructor 😡😡😡');
+   // console.log('😡😡😡 Auth.service constructor 😡😡😡');
     const token = localStorage.getItem('token');
     this.UpdateCurrentUserInfo(token);
   }
@@ -54,6 +54,8 @@ export class AuthService {
   UpdateCurrentUserInfo(token: string | null) {
     if (token) {
       const decodedToken = this.jwtHelper.decodeToken(token!);
+    //  console.log(decodedToken);
+      
       this.user_info.uid = decodedToken.Id;
       this.user_info.email = decodedToken.email;
       this.user_info.first_name = decodedToken.firstname;
@@ -66,7 +68,7 @@ export class AuthService {
       this.user_info.last_name = undefined;
       this.user_info.roles = [];
     }
-    console.log('UpdatingCurrentUserInfo().. ', this.user_info);
+   // console.log('UpdatingCurrentUserInfo().. ', this.user_info);
   }
 
   public isUserAuthenticated = (): boolean => {

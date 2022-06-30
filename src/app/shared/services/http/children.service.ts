@@ -18,6 +18,25 @@ export class ChildrenService {
     );
   }
 
+  updateChild(route: string, createChild_request: any) {
+    return this.http.post<any>(
+      this.createCompleteRoute(route, this.envUrl.urlAddress),
+      createChild_request
+    );
+  }
+
+  getChildren(route: string) {
+    return this.http.get<any>(
+      this.createCompleteRoute(route, this.envUrl.urlAddress)
+    );
+  }
+  
+  getChild(route: string) {
+    return this.http.get<any>(
+      this.createCompleteRoute(route, this.envUrl.urlAddress)
+    );
+  }
+
   private createCompleteRoute = (route: string, envAddress: string) => {
     const url = `${envAddress}/${route}`;
     return url;

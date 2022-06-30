@@ -1,10 +1,50 @@
+<button mat-raised-button (click)="openDialog()" class="mb-3">Create child</button>
 
-<div  class="flex space-x-2 justify-center">
-    <button 
-    (click)="openModal()"
-    type="button" class="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Create Child +</button>
-  </div>
+<!-- Filter inputfield -->
+<mat-form-field appearance="standard">
+  <mat-label>Filter</mat-label>
+  <input
+    matInput
+    (keyup)="applyFilter($event)"
+    placeholder="Ex. Zoe Laplante"
+    #input
+  />
+</mat-form-field>
 
-  <app-modal #modal [modalConfig]="modalConfig" >
-    <!--  body of the modal  -->
-  </app-modal>
+<table id="abc" mat-table [dataSource]="dataSource" class="mat-elevation-z10">
+  
+  <!-- Id Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>Id</th>
+    <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="nom">
+    <th mat-header-cell *matHeaderCellDef>Name</th>
+
+    <td mat-cell *matCellDef="let element" class="flex items-center gap-3 py-2">
+        <!-- <img  class="w-16" src="../../../../assets/images/child_default.jpg" alt="image"> -->
+        <img  class="w-12 rounded-full" [src]="element.image" alt="image">
+
+        {{ element.nom }}
+
+    </td>
+   
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row 
+  *matRowDef="let row; columns: displayedColumns" 
+  [routerLink]="['/children', row.id]"
+  ></tr>
+
+  <!-- Row shown when there is no matching data. -->
+  <tr class="mat-row" *matNoDataRow>
+    <td class="mat-cell" colspan="4">
+      No data matching the filter  " {{ input.value }} "
+    </td>
+  </tr>
+</table>
+
+

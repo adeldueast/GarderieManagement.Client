@@ -1,0 +1,57 @@
+<!-- HEADER -->
+<h2 mat-dialog-title>Add a guardian for  Childs'name</h2>
+
+
+
+
+
+
+<!-- BODY -->
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="form"  >
+ 
+  
+
+      <mat-form-field class="example-full-width w-full" >
+        <mat-label>Guardian's name</mat-label>
+        <input type="text"
+               placeholder="Start enderting guardian's name"
+               aria-label="Number"
+               matInput
+               [formControl]="myControl"
+               [matAutocomplete]="auto">
+               
+        <mat-autocomplete #auto="matAutocomplete" 
+        [displayWith]="displayFn"
+        (optionSelected)="OnGuardianSelected($event.option)">
+          <mat-option *ngFor="let guardian of filteredOptions | async"  [value]="guardian">
+            {{guardian.name}} 
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+
+ 
+  </form>
+</mat-dialog-content>
+
+
+
+
+
+
+
+
+<!-- FOOTER -->
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button
+  type="button"
+  mat-button
+  class="btn-primary"
+  [mat-dialog-close]="form"
+  cdkFocusInitial
+>
+  Create
+</button>
+</mat-dialog-actions>

@@ -11,7 +11,7 @@ export class AppComponent implements OnInit {
   isAuthenticated?: boolean;
   constructor(private authService: AuthService, private router: Router) {
    
-    console.log('AppComponent constructor');
+    // console.log('AppComponent constructor');
     
   }
   ngOnInit(): void {
