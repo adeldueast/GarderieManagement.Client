@@ -1,57 +1,84 @@
 <!-- HEADER -->
-<h2 mat-dialog-title>Add a guardian for  Childs'name</h2>
-
-
-
-
-
+<h2 mat-dialog-title>Add guardian for {{ this.data.enfantName }}</h2>
 
 <!-- BODY -->
 <mat-dialog-content class="mat-typography">
-  <form [formGroup]="form"  >
- 
+  <form [formGroup]="form" 
+  id="ngForm"
   
-
+  (ngSubmit)="onSubmit()"
+  >
+    <!-- SEARCH FIELD -->
+    <div [hidden]="showForm">
       <mat-form-field class="example-full-width w-full" >
         <mat-label>Guardian's name</mat-label>
-        <input type="text"
-               placeholder="Start enderting guardian's name"
-               aria-label="Number"
-               matInput
-               [formControl]="myControl"
-               [matAutocomplete]="auto">
-               
-        <mat-autocomplete #auto="matAutocomplete" 
-        [displayWith]="displayFn"
-        (optionSelected)="OnGuardianSelected($event.option)">
-          <mat-option *ngFor="let guardian of filteredOptions | async"  [value]="guardian">
-            {{guardian.name}} 
+        <input
+          type="text"
+          placeholder="Start enderting guardian's name"
+          aria-label="Number"
+          matInput
+          [formControl]="myControl"
+          [matAutocomplete]="auto"
+        />
+
+        <mat-autocomplete
+          #auto="matAutocomplete"
+          [displayWith]="displayFn"
+          (optionSelected)="OnGuardianSelected($event.option)"
+        >
+          <mat-option
+            *ngFor="let guardian of filteredGuardians | async"
+            [value]="guardian"
+          >
+            {{ guardians && guardian.name ? guardian.name : guardian }}
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
+    </div>
 
+    <!-- CREATE GUARDIAN FORM  -->
+    <div [hidden]="!showForm">
+      <div class="grid grid-cols-2 gap-2">
+        <mat-form-field  [appearance]="!!isCreatingGuardian ? 'outline': 'standard' ">
+          <mat-label>First name</mat-label>
+          <input
+            formControlName="firstName"
+            matInput
+            placeholder="First name"
+          />
+        </mat-form-field>
 
- 
+        <mat-form-field  [appearance]="!!isCreatingGuardian ? 'outline': 'standard' "> 
+          <mat-label>Last name</mat-label>
+          <input formControlName="lastName" matInput placeholder="Last name" />
+        </mat-form-field>
+      </div>
+
+      <mat-form-field class="w-full"  [appearance]="!!isCreatingGuardian ? 'outline': 'standard' ">
+        <mat-label>Email</mat-label>
+        <input formControlName="email" matInput placeholder="Email" />
+      </mat-form-field>
+
+      <mat-form-field class="w-full"  [appearance]="!!isCreatingGuardian ? 'outline': 'standard' ">
+        <mat-label>Relation</mat-label>
+        <input formControlName="relation" matInput placeholder="Relation" />
+      </mat-form-field>
+    </div>
   </form>
 </mat-dialog-content>
-
-
-
-
-
-
-
 
 <!-- FOOTER -->
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
   <button
-  type="button"
-  mat-button
-  class="btn-primary"
-  [mat-dialog-close]="form"
-  cdkFocusInitial
->
-  Create
-</button>
+    type="submit"
+    mat-button
+    class="btn-primary"
+    [mat-dialog-close]="form"
+    cdkFocusInitial
+    form="ngForm"
+    *ngIf="showForm"
+  >
+   {{isCreatingGuardian ?'Create':'Assign'}}
+  </button>
 </mat-dialog-actions>

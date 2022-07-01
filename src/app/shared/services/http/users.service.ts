@@ -24,6 +24,12 @@ export class UsersService {
     );
   }
 
+  assignGuardian(route:string,guardian_request:any){
+    return this.http.post<any>(
+      this.createCompleteRoute(route, this.envUrl.urlAddress),
+      guardian_request
+    );
+  }
 
   private createCompleteRoute = (route: string, envAddress: string) => {
     const url = `${envAddress}/${route}`;

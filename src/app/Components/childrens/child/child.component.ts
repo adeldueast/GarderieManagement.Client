@@ -76,9 +76,14 @@ export class ChildComponent implements OnInit {
       : this.updateForm.enable();
 
   openDialog() {
-    const dialogRef = this.dialog.open(ModalGuardianCreateComponent);
+    const dialogRef = this.dialog.open(ModalGuardianCreateComponent,{
+      data: {
+        enfantId: this.child_info.id,
+        enfantName: this.child_info.nom,
+      }
+    });
     dialogRef.beforeClosed().subscribe((result) => {
-      console.log(result);
+     // console.log(result);
     });
   }
 }

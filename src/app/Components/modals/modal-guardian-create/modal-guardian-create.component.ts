@@ -1,48 +1,60 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Observable, startWith, map } from 'rxjs';
 import { AuthService } from 'src/app/shared/services/http/auth.service';
 import { UsersService } from 'src/app/shared/services/http/users.service';
-
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 @Component({
   selector: 'app-modal-guardian-create',
   templateUrl: './modal-guardian-create.component.html',
   styleUrls: ['./modal-guardian-create.component.css'],
 })
 export class ModalGuardianCreateComponent implements OnInit {
-  form: FormGroup = new FormGroup({
-    firstName: new FormControl({ name: '' }),
-    lastName: new FormControl({ name: '' }),
-    Email: new FormControl({ name: '' }),
-    name: new FormControl({ name: '' }),
-  });
+  form!: FormGroup;
+  showForm: boolean = false;
+  isCreatingGuardian: boolean = false;
+  selectedUser?: any;
 
   //SearchControl where we filter guardian by Name
   myControl = new FormControl('');
+
   //List of all guardians *needs to be fetched*
   guardians: any[] = [];
-  //A subscription to filter on value changes of the above control 
-  filteredOptions?: Observable<any[]>;
 
-  constructor(private usersService: UsersService) {}
+  //A subscription to filter on value changes of the above control
+  filteredGuardians?: Observable<any[]>;
+
+  constructor(
+    private usersService: UsersService,
+    // data is just some data passed from child component to this modal (children && childName)
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {
+    //console.log(this.data);
+    
+    //Instanciate the form and set enfantId to data.EnfantId
+    this.form = new FormGroup({
+      firstName: new FormControl(),
+      lastName: new FormControl(),
+      email: new FormControl(),
+      relation: new FormControl(),
+      enfantId: new FormControl(this.data.enfantId),
+    });
+  }
 
   ngOnInit() {
-
-    //Fetches all guardian
+    //Fetches all guardian and fill up => this.guardians: any[]
     this.getAllGuardians();
 
-    this.filteredOptions = this.myControl.valueChanges.pipe(
+    //updates the select list based on the filter value entered
+    this.filteredGuardians = this.myControl.valueChanges.pipe(
       startWith(''),
       // only filter if they input-search is at least 3 letters, other wise returns empty array
       map((value) => {
-     
-        
         if (value.length > 2) {
-          
           const name =
             typeof value === 'string'
               ? value
-              : `${value?.firstname} ${value?.lastname}`
+              : `${value?.firstname} ${value?.lastname}`;
           return name ? this._filter(name as string) : this.guardians.slice();
         }
         return [];
@@ -51,27 +63,24 @@ export class ModalGuardianCreateComponent implements OnInit {
   }
 
   private _filter(name: string): string[] {
-  
-
     const filterValue = name.toLowerCase();
-
-    return this.guardians.filter((guardian) =>
-    guardian.name.toLowerCase().includes(filterValue)
+    const filteredUsers = this.guardians.filter((guardian) =>
+      guardian.name.toLowerCase().includes(filterValue)
     );
 
-    // if (filteredUsers.length > 0) {
-    //   //existing guardians
-    //   return filteredUsers;
-    // }
-    // //create new guardian
-    // return ['Create a new guardian'];
-  }
-  
-  displayFn(guardian: any): string {
-    return guardian && guardian.name ? guardian.name : '';
+    if (filteredUsers.length > 0) {
+      //return filtered existing guardians options
+      return filteredUsers;
+    }
+    //return create new guardian option
+    return ['Create a new guardian'];
   }
 
-  getAllGuardians = () => {
+  public displayFn = (guardian: any) => {
+    return guardian && guardian.name ? guardian.name : guardian;
+  };
+
+  private getAllGuardians = () => {
     this.usersService.getAllGuardians(`User/tutors`).subscribe({
       next: (res) => {
         res.data.forEach((g: any) => {
@@ -81,8 +90,6 @@ export class ModalGuardianCreateComponent implements OnInit {
             email: g.email,
           };
           this.guardians.push(guardian);
-          //console.log(this.options);
-          
         });
       },
       error: (err) => [
@@ -94,21 +101,88 @@ export class ModalGuardianCreateComponent implements OnInit {
     });
   };
 
-  OnGuardianSelected = (event: any) => {
-    //get the whole object of selected option
-    console.log(event.value);
-    const selectedUser = event.value;
+  public OnGuardianSelected = (event: any) => {
+    //OnOptionSelected , get the whole object of selected option
+    this.selectedUser = event.value;
+  
+    
+    //either a guardian object was selected or 'Create a new guardian option'
+    this.showForm = true;
+    if (typeof this.selectedUser === 'string') {
+      //We are creating a new guardian for currente child, so enable the form
+      return (this.isCreatingGuardian = true), this.form.enable();
+    }
+
+    //We assigning existing guardian for furrent child, so disable the form to display its info except for the relation
+    this.isCreatingGuardian = false;
+    for (var control in this.form.controls) {
+      if (control != 'relation') {
+        this.form.controls[control].disable();
+      } else {
+        this.form.controls[control].enable();
+      }
+    }
+
+    //display the selected guardian's information on the form
+    const first = this.selectedUser.name.split(' ')[0];
+    const last = this.selectedUser.name.split(' ')[1];
+    this.form.patchValue({
+      firstName: first,
+      lastName: last,
+      email: this.selectedUser.email,
+      enfantId: this.data.enfantId,
+    });
+
+    return;
   };
 
-  createGuardianForChild() {
+  public onSubmit = () => {
+    const formValue = this.form.value;
+  
+    //console.log(formValue);
+
+    if (this.showForm && this.isCreatingGuardian) {
+      return this.createGuardianForChild(formValue);
+    }
+
+    return this.AssignGuardianToChild(formValue);
+  };
+
+  // firstName: new FormControl(),
+  // lastName: new FormControl(),
+  // email: new FormControl(),
+  // relation: new FormControl(),
+  // enfantId: new FormControl(this.data.enfantId),
+
+  private createGuardianForChild = (formValue:any) => {
     this.usersService
       .createGuardian('Account/InviteTutor', {
-        firstname: 'Alex',
-        lastname: 'Belanger',
-        Email: 'alex.belanger@hotmail.com',
-        relation: 'Pere',
-        enfantId: 3,
+        firstName: formValue.firstName,
+        lastName : formValue.lastName,
+        email: formValue.email,
+        relation: formValue.relation,
+        enfantId: this.data.enfantId,
       })
-      .subscribe((res) => console.log(res));
-  }
+      
+      .subscribe({
+        next: (res) => [console.log('res', res), alert( res.data.message)],
+        error: (err) =>[ console.error(err),alert(err.error.errors)],
+        complete: () => console.log('Created guardian and assigned to child completed'),
+      });
+  };
+
+  private AssignGuardianToChild = (formValue:any) => {
+    this.usersService
+      .assignGuardian('Enfant/AssignTutorToEnfant', {
+        tutorId: this.selectedUser.id,
+        enfantId: this.data.enfantId,
+        relation: formValue.relation,
+
+      })
+      .subscribe({
+        next: (res) => [console.log('res', res), alert( res.data.message)],
+        error: (err) =>[ console.error(err) ,alert(err.error.errors)],
+        complete: () => console.log('Assigned guardian to child completed'),
+      });
+  };
 }
