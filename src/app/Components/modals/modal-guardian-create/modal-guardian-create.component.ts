@@ -10,18 +10,19 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./modal-guardian-create.component.css'],
 })
 export class ModalGuardianCreateComponent implements OnInit {
+
   form!: FormGroup;
   showForm: boolean = false;
   isCreatingGuardian: boolean = false;
   selectedUser?: any;
 
-  //SearchControl where we filter guardian by Name
-  myControl = new FormControl('');
-
   //List of all guardians *needs to be fetched*
   guardians: any[] = [];
 
-  //A subscription to filter on value changes of the above control
+  //SearchControl where we filter guardian by Name
+  myControl = new FormControl('');
+
+  //A subscription to filter changes of the above control
   filteredGuardians?: Observable<any[]>;
 
   constructor(
@@ -60,20 +61,6 @@ export class ModalGuardianCreateComponent implements OnInit {
         return [];
       })
     );
-  }
-
-  private _filter(name: string): string[] {
-    const filterValue = name.toLowerCase();
-    const filteredUsers = this.guardians.filter((guardian) =>
-      guardian.name.toLowerCase().includes(filterValue)
-    );
-
-    if (filteredUsers.length > 0) {
-      //return filtered existing guardians options
-      return filteredUsers;
-    }
-    //return create new guardian option
-    return ['Create a new guardian'];
   }
 
   public displayFn = (guardian: any) => {
@@ -137,9 +124,10 @@ export class ModalGuardianCreateComponent implements OnInit {
   };
 
   public onSubmit = () => {
+
+    
     const formValue = this.form.value;
   
-    //console.log(formValue);
 
     if (this.showForm && this.isCreatingGuardian) {
       return this.createGuardianForChild(formValue);
@@ -147,12 +135,6 @@ export class ModalGuardianCreateComponent implements OnInit {
 
     return this.AssignGuardianToChild(formValue);
   };
-
-  // firstName: new FormControl(),
-  // lastName: new FormControl(),
-  // email: new FormControl(),
-  // relation: new FormControl(),
-  // enfantId: new FormControl(this.data.enfantId),
 
   private createGuardianForChild = (formValue:any) => {
     this.usersService
@@ -185,4 +167,18 @@ export class ModalGuardianCreateComponent implements OnInit {
         complete: () => console.log('Assigned guardian to child completed'),
       });
   };
+
+  private _filter(name: string): string[] {
+    const filterValue = name.toLowerCase();
+    const filteredUsers = this.guardians.filter((guardian) =>
+      guardian.name.toLowerCase().includes(filterValue)
+    );
+
+    if (filteredUsers.length > 0) {
+      //return filtered existing guardians options
+      return filteredUsers;
+    }
+    //return create new guardian option
+    return ['Create a new guardian'];
+  }
 }
