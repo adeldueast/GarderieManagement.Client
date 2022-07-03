@@ -7,7 +7,7 @@ import { UsersService } from 'src/app/shared/services/http/users.service';
   selector: 'app-child-guardians-tab',
   templateUrl: './child-guardians-tab.component.html',
   styleUrls: ['./child-guardians-tab.component.css'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class ChildGuardiansTabComponent implements OnInit {
   typesOfShoes: string[] = [
@@ -25,14 +25,11 @@ export class ChildGuardiansTabComponent implements OnInit {
   childsGuardians: any[] = [];
 
   @Input() child_info!: any;
-  constructor(public dialog: MatDialog, private usersService: UsersService) {
-    
-  }
+  constructor(public dialog: MatDialog, private usersService: UsersService) {}
 
   ngOnInit() {
     this.getAllGuardians();
-    this.getAllChildsGuardians()
-
+    this.getAllChildsGuardians();
   }
 
   private getAllGuardians = () => {
@@ -57,30 +54,30 @@ export class ChildGuardiansTabComponent implements OnInit {
   };
 
   private getAllChildsGuardians = () => {
-    this.usersService.getAllChildsGuardians(`User/ChildsTutors?enfantId=${this.child_info.id}`).subscribe({
-      next: (res) => {
-        console.log(res);
-        
-        res.data.forEach((g: any) => {
-          let guardian = {
-            id: g.applicationUser.id,
-            name: `${g.applicationUser.firstName} ${g.applicationUser.lastName}`,
-            email: g.applicationUser.email,
-            relation : g.relation
-            
-          };
-          this.childsGuardians.push(guardian);
-          console.log(this.childsGuardians);
-          
-        });
-      },
-      error: (err) => [
-        console.error(err),
-        //console.error(err.error.errors),
-        alert(JSON.stringify(err.error.errors)),
-      ],
-      complete: () => console.log("getting only child's guardians completed"),
-    });
+    this.usersService
+      .getAllChildsGuardians(`User/ChildsTutors?enfantId=${this.child_info.id}`)
+      .subscribe({
+        next: (res) => {
+          // console.log(res);
+
+          res.data.forEach((g: any) => {
+            let guardian = {
+              id: g.applicationUser.id,
+              name: `${g.applicationUser.firstName} ${g.applicationUser.lastName}`,
+              email: g.applicationUser.email,
+              relation: g.relation,
+            };
+            this.childsGuardians.push(guardian);
+            //   console.log(this.childsGuardians);
+          });
+        },
+        error: (err) => [
+          console.error(err),
+          //console.error(err.error.errors),
+          alert(JSON.stringify(err.error.errors)),
+        ],
+        complete: () => console.log("getting only child's guardians completed"),
+      });
   };
 
   openDialog() {

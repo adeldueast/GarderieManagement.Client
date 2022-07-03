@@ -24,7 +24,7 @@
       </ng-template>
 
       <!-- INFORMATION CONTENT -->
-      <app-child-information-tab
+      <app-child-information-tab *ngIf="child_info.nom"
         [child_info]="child_info"
       ></app-child-information-tab>
     </mat-tab>

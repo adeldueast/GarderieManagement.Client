@@ -2,26 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ChildrenService } from 'src/app/shared/services/http/children.service';
 
-
 @Component({
   selector: 'app-child',
   templateUrl: './child.component.html',
   styleUrls: ['./child.component.css'],
 })
 export class ChildComponent implements OnInit {
-
   //Todo: using a service would be better instead of having multiples instance of child_info in each tabs
-  child_info = {
-    id: undefined,
-    nom: undefined,
-    image: undefined,
-    birthdate: undefined,
-    group: undefined,
-  };
+  child_info: any = {};
 
   constructor(
     private childrenService: ChildrenService,
-    private route: ActivatedRoute,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -29,6 +21,7 @@ export class ChildComponent implements OnInit {
       this.child_info.id = params['id'];
     });
     this.getChild();
+   // console.log(this.child_info);
   }
 
   getChild = () => {
