@@ -17,6 +17,13 @@ export class UsersService {
     );
   }
 
+  getAllChildsGuardians(route:string){
+    return this.http.get<any>(
+      this.createCompleteRoute(route, this.envUrl.urlAddress)
+    );
+  }
+
+
   createGuardian(route:string,guardian_request:any){
     return this.http.post<any>(
       this.createCompleteRoute(route, this.envUrl.urlAddress),

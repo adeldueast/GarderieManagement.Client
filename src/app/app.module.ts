@@ -38,6 +38,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ChildInformationTabComponent } from './Components/childrens/child/tabs/child-information-tab/child-information-tab.component';
 import { ChildCalendarTabComponent } from './Components/childrens/child/tabs/child-calendar-tab/child-calendar-tab.component';
 import { ChildGuardiansTabComponent } from './Components/childrens/child/tabs/child-guardians-tab/child-guardians-tab.component';
+import {MatListModule} from '@angular/material/list';
+
 export function tokenGetter() {
   return localStorage.getItem('access_token');
 }
@@ -54,6 +56,7 @@ const Material_Modules = [
   MatTableModule,
   MatTabsModule,
   MatAutocompleteModule,
+  MatListModule
 ];
 
 @NgModule({

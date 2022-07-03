@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Observable, startWith, map } from 'rxjs';
-import { AuthService } from 'src/app/shared/services/http/auth.service';
+
 import { UsersService } from 'src/app/shared/services/http/users.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 @Component({
@@ -16,9 +16,9 @@ export class ModalGuardianCreateComponent implements OnInit {
   isCreatingGuardian: boolean = false;
   selectedUser?: any;
 
-  //List of all guardians *needs to be fetched*
+  //List of all guardians *needs to be passed from the Guardians-Tab*
   guardians: any[] = [];
-
+  
   //SearchControl where we filter guardian by Name
   myControl = new FormControl('');
 
@@ -44,7 +44,7 @@ export class ModalGuardianCreateComponent implements OnInit {
 
   ngOnInit() {
     //Fetches all guardian and fill up => this.guardians: any[]
-    this.getAllGuardians();
+    this.guardians = this.data.guardians;
 
     //updates the select list based on the filter value entered
     this.filteredGuardians = this.myControl.valueChanges.pipe(
@@ -67,26 +67,7 @@ export class ModalGuardianCreateComponent implements OnInit {
     return guardian && guardian.name ? guardian.name : guardian;
   };
 
-  private getAllGuardians = () => {
-    this.usersService.getAllGuardians(`User/tutors`).subscribe({
-      next: (res) => {
-        res.data.forEach((g: any) => {
-          let guardian = {
-            id: g.id,
-            name: `${g.firstName} ${g.lastName}`,
-            email: g.email,
-          };
-          this.guardians.push(guardian);
-        });
-      },
-      error: (err) => [
-        console.error(err),
-        //console.error(err.error.errors),
-        alert(JSON.stringify(err.error.errors)),
-      ],
-      complete: () => console.log('getting all guardians completed'),
-    });
-  };
+
 
   public OnGuardianSelected = (event: any) => {
     //OnOptionSelected , get the whole object of selected option

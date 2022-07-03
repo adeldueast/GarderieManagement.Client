@@ -1,9 +1,8 @@
-
 <div class="example-form w-[70%] mx-auto mt-4 p-8">
   <!--  bg-red-400 -->
   <!-- GUARDIANS CONTENT -->
   <div
-    class="example-button-container flex items-center justify-between w-full"
+    class="example-button-container"
   >
     <h1>Guardians</h1>
     <button
@@ -14,7 +13,13 @@
     >
       Add guardian
       <mat-icon>add</mat-icon>
-      
     </button>
   </div>
+
+  <mat-list role="list" class="mt-[50px]">
+    <mat-list-item *ngFor="let guardian of childsGuardians">
+      {{ guardian.name }}
+      <mat-icon>home</mat-icon>
+    </mat-list-item>
+  </mat-list>
 </div>
