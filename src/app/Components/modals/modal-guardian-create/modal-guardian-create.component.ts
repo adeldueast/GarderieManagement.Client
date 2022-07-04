@@ -10,7 +10,6 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./modal-guardian-create.component.css'],
 })
 export class ModalGuardianCreateComponent implements OnInit {
-
   form!: FormGroup;
   showForm: boolean = false;
   isCreatingGuardian: boolean = false;
@@ -18,7 +17,7 @@ export class ModalGuardianCreateComponent implements OnInit {
 
   //List of all guardians *needs to be passed from the Guardians-Tab*
   guardians: any[] = [];
-  
+
   //SearchControl where we filter guardian by Name
   myControl = new FormControl('');
 
@@ -31,12 +30,18 @@ export class ModalGuardianCreateComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     //console.log(this.data);
-    
+
     //Instanciate the form and set enfantId to data.EnfantId
     this.form = new FormGroup({
       firstName: new FormControl(),
       lastName: new FormControl(),
       email: new FormControl(),
+
+      //new props
+      emergencyContact: new FormControl(true),
+      authorizePickup: new FormControl(true),
+
+
       relation: new FormControl(),
       enfantId: new FormControl(this.data.enfantId),
     });
@@ -67,13 +72,10 @@ export class ModalGuardianCreateComponent implements OnInit {
     return guardian && guardian.name ? guardian.name : guardian;
   };
 
-
-
   public OnGuardianSelected = (event: any) => {
     //OnOptionSelected , get the whole object of selected option
     this.selectedUser = event.value;
-  
-    
+
     //either a guardian object was selected or 'Create a new guardian option'
     this.showForm = true;
     if (typeof this.selectedUser === 'string') {
@@ -99,17 +101,17 @@ export class ModalGuardianCreateComponent implements OnInit {
       lastName: last,
       email: this.selectedUser.email,
       enfantId: this.data.enfantId,
+      
     });
 
     return;
   };
 
   public onSubmit = () => {
-
-    
     const formValue = this.form.value;
-  
 
+    console.log(formValue);
+   
     if (this.showForm && this.isCreatingGuardian) {
       return this.createGuardianForChild(formValue);
     }
@@ -117,34 +119,36 @@ export class ModalGuardianCreateComponent implements OnInit {
     return this.AssignGuardianToChild(formValue);
   };
 
-  private createGuardianForChild = (formValue:any) => {
+  private createGuardianForChild = (formValue: any) => {
     this.usersService
       .createGuardian('Account/InviteTutor', {
         firstName: formValue.firstName,
-        lastName : formValue.lastName,
+        lastName: formValue.lastName,
         email: formValue.email,
         relation: formValue.relation,
         enfantId: this.data.enfantId,
+        emergencyContact:formValue.emergencyContact,
+        authorizePickup: formValue.authorizePickup
       })
-      
+
       .subscribe({
-        next: (res) => [console.log('res', res), alert( res.data.message)],
-        error: (err) =>[ console.error(err),alert(err.error.errors)],
-        complete: () => console.log('Created guardian and assigned to child completed'),
+        next: (res) => [console.log('res', res), alert(res.data.message)],
+        error: (err) => [console.error(err), alert(err.error.errors)],
+        complete: () =>
+          console.log('Created guardian and assigned to child completed'),
       });
   };
 
-  private AssignGuardianToChild = (formValue:any) => {
+  private AssignGuardianToChild = (formValue: any) => {
     this.usersService
       .assignGuardian('Enfant/AssignTutorToEnfant', {
         tutorId: this.selectedUser.id,
         enfantId: this.data.enfantId,
         relation: formValue.relation,
-
       })
       .subscribe({
-        next: (res) => [console.log('res', res), alert( res.data.message)],
-        error: (err) =>[ console.error(err) ,alert(err.error.errors)],
+        next: (res) => [console.log('res', res), alert(res.data.message)],
+        error: (err) => [console.error(err), alert(err.error.errors)],
         complete: () => console.log('Assigned guardian to child completed'),
       });
   };

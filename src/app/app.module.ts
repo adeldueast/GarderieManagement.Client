@@ -22,6 +22,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
+import {MatTooltipModule} from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -39,7 +40,8 @@ import { ChildInformationTabComponent } from './Components/childrens/child/tabs/
 import { ChildCalendarTabComponent } from './Components/childrens/child/tabs/child-calendar-tab/child-calendar-tab.component';
 import { ChildGuardiansTabComponent } from './Components/childrens/child/tabs/child-guardians-tab/child-guardians-tab.component';
 import {MatListModule} from '@angular/material/list';
-
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSelectModule} from '@angular/material/select';
 export function tokenGetter() {
   return localStorage.getItem('access_token');
 }
@@ -56,7 +58,10 @@ const Material_Modules = [
   MatTableModule,
   MatTabsModule,
   MatAutocompleteModule,
-  MatListModule
+  MatListModule,
+  MatTooltipModule,
+  MatCheckboxModule ,MatSelectModule
+  
 ];
 
 @NgModule({

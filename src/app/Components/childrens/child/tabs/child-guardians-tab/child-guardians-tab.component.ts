@@ -58,7 +58,7 @@ export class ChildGuardiansTabComponent implements OnInit {
       .getAllChildsGuardians(`User/ChildsTutors?enfantId=${this.child_info.id}`)
       .subscribe({
         next: (res) => {
-          // console.log(res);
+        //  console.log(res);
 
           res.data.forEach((g: any) => {
             let guardian = {
@@ -66,10 +66,13 @@ export class ChildGuardiansTabComponent implements OnInit {
               name: `${g.applicationUser.firstName} ${g.applicationUser.lastName}`,
               email: g.applicationUser.email,
               relation: g.relation,
+              emergencyContact:g.applicationUser.emergencyContact,
+              authorizePickup: g.applicationUser.authorizePickup
             };
             this.childsGuardians.push(guardian);
-            //   console.log(this.childsGuardians);
+             
           });
+         // console.log(this.childsGuardians);
         },
         error: (err) => [
           console.error(err),

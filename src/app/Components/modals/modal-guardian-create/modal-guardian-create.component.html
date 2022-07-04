@@ -58,11 +58,17 @@
         <mat-label>Email</mat-label>
         <input formControlName="email" matInput placeholder="Email" />
       </mat-form-field>
+   
+
 
       <mat-form-field class="w-full"  [appearance]="!!isCreatingGuardian ? 'outline': 'standard' ">
         <mat-label>Relation</mat-label>
         <input formControlName="relation" matInput placeholder="Relation" />
       </mat-form-field>
+
+         
+      <p><mat-checkbox formControlName="emergencyContact">Contact for emergency</mat-checkbox></p>
+      <p><mat-checkbox formControlName="authorizePickup">Authorized to pick up the child</mat-checkbox></p> 
     </div>
   </form>
 </mat-dialog-content>

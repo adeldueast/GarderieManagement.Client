@@ -8,6 +8,7 @@
       </button>
     </div>
 
+ 
     <!-- Name -->
     <mat-form-field class="w-100" appearance="standard">
       <mat-label>Nom</mat-label>
@@ -24,7 +25,7 @@
     <mat-form-field class="w-full mb-1" appearance="standard">
       <mat-label>Date of birth</mat-label>
       <input
-        formControlName="birthdate"
+        formControlName="dateNaissance"
         matInput
         [matDatepicker]="picker"
       />
@@ -37,10 +38,21 @@
     </mat-form-field>
 
     <!-- Group -->
-    <mat-form-field class="w-100" appearance="standard">
+    <!-- <mat-form-field class="w-100" appearance="standard">
       <mat-label>Group</mat-label>
       <input formControlName="group" type="email" matInput />
-    </mat-form-field>
+    </mat-form-field> -->
+
+
+    <!-- Group -->
+<mat-form-field class="w-full" appearance="standard">
+  <mat-label>Group</mat-label>
+  <mat-select   formControlName="groupId"  (selectionChange)="onChangeGroup($event.value)">
+    <mat-option *ngFor="let group of groups" [value]="group.id">
+      {{group.name}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
 
  
    <div class="flex gap-2">

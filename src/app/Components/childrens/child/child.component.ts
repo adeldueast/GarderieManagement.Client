@@ -29,12 +29,18 @@ export class ChildComponent implements OnInit {
       .getChild(`Enfant/Get/${this.child_info.id}`)
       .subscribe({
         next: (res) => {
-          // console.log(res);
+
           this.child_info.image = res.data.image;
           this.child_info.nom = res.data.nom;
           this.child_info.birthdate = res.data.dateNaissance;
-          this.child_info.group = res.data.group ? res.data.group : 'No group';
+          this.child_info.groupId = res.data.group ? res.data.group.id : 0;
+
+          console.log('CHILD_INFO',this.child_info);
         },
+  
+        
       });
   };
+
+
 }

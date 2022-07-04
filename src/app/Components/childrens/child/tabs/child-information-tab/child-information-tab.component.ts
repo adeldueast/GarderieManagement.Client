@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ChildrenService } from 'src/app/shared/services/http/children.service';
+import { GroupService } from 'src/app/shared/services/http/group.service';
 
 @Component({
   selector: 'app-child-information-tab',
@@ -8,39 +9,91 @@ import { ChildrenService } from 'src/app/shared/services/http/children.service';
   styleUrls: ['./child-information-tab.component.css'],
 })
 export class ChildInformationTabComponent implements OnInit {
-
   @Input() child_info!: any;
   updateForm!: FormGroup;
 
-  constructor(private childrenService: ChildrenService) {}
+  groups: any[] = [{ id: 0, name: 'No Group' }];
+
+  constructor(
+    private childrenService: ChildrenService,
+    private groupService: GroupService
+  ) {}
 
   ngOnInit() {
-  
     this.updateForm = new FormGroup({
+      id : new FormControl(this.child_info.id),
       nom: new FormControl(this.child_info.nom),
-      birthdate: new FormControl(this.child_info.birthdate),
-      group: new FormControl(this.child_info.group),
+      dateNaissance: new FormControl(this.child_info.birthdate),
+      groupId: new FormControl(this.child_info.groupId),
     });
 
- 
-
+    console.log('xoxox',this.updateForm.value);
+    
     this.updateForm.disable();
+
+
+    this.getAllGroups();
+
+    
   }
 
-  onSubmit = () =>
-    console.log(
-      'Updating child with current values => ',
-      this.updateForm.value
-    );
+  getAllGroups = () => {
+    this.groupService.getAllGroups(`Group/Get`).subscribe({
+      next: (res) => {
+        // console.log(res);
+        res.data.forEach((g: any) => {
+          let group = {
+            id: g.id,
+            name: g.name,
+          };
+          this.groups.push(group);
+        });
 
-  toggleEdit = () =>
-    this.updateForm.enabled
-      ? this.updateForm.disable()
-      : this.updateForm.enable();
+       console.log(this.groups);
+      },
+      error: (err) => console.log(err),
+      complete: () => console.log('getting all groups completed'),
+    });
+  };
+
+
+  //todo: replace reload 
+  onSubmit = () =>   [this.updateChild(),location.reload()]
+
+
+    
+
+  toggleEdit() {
+    if (this.updateForm.enabled) {
+      
+      //canceling
+      this.updateForm.patchValue({
+        nom: this.child_info.nom,
+        dateNaissance: this.child_info.birthdate,
+        groupId: this.child_info.group,
+      });
+
+      return this.updateForm.disable();
+    }
+    //updating
+    this.updateForm.enable();
+  }
 
   updateChild = () => {
     this.childrenService
       .updateChild('Enfant/Update', this.updateForm.value)
       .subscribe((res) => console.log(res));
   };
+
+  onChangeGroup(value: any) {
+    console.log(value);
+    this.updateForm.patchValue({
+      groupId: value,
+    });
+  }
+
+  // https://stackoverflow.com/questions/56187371/angular-material-mat-select-default-value-when-using-reactive-forms
+  compareFunction(o1: any, o2: any) {
+    return o1.name == o2.name && o1.id == o2.id;
+  }
 }
