@@ -10,6 +10,7 @@ import { ClassroomsComponent } from './Components/Classrooms/Classrooms.componen
 import { StaffComponent } from './Components/Staff/Staff.component';
 import { ChildrenComponent } from './Components/childrens/children/children.component';
 import { ChildComponent } from './Components/childrens/child/child.component';
+import { GroupsComponent } from './Components/groups/groups.component';
 
 const routes: Routes = [
   // Login page  http://localhost:4200/login
@@ -34,7 +35,12 @@ const routes: Routes = [
         // Child page  http://localhost:4200/children/1
           path: 'children/:id',
           component: ChildComponent,
-        },
+      },
+      {
+        // Groups page  http://localhost:4200/groups
+          path: 'groups',
+          component: GroupsComponent,
+      },
       // Staff page  http://localhost:4200/Staff
       { path: 'staff', component: StaffComponent },
     ],

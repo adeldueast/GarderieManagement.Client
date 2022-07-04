@@ -1,0 +1,38 @@
+<!-- HEADER -->
+<h2 mat-dialog-title>Create a group</h2>
+
+<!-- BODY -->
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="form" (submit)="onSubmit()"  id="ngForm">
+    <mat-form-field class="w-full">
+      <mat-label>Group name</mat-label>
+      <input formControlName="name" matInput placeholder="Group name" />
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>Educator</mat-label>
+      <mat-select
+        formControlName="educatriceId"
+        (selectionChange)="onSelectChange($event.value)"
+      >
+        <mat-option *ngFor="let staff of staff" [value]="staff.id">
+          {{ staff.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<!-- FOOTER -->
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close cdkFocusInitial>Cancel</button>
+  <button
+     form="ngForm"
+    type="submit"
+    mat-button
+    class="btn-primary"
+    [mat-dialog-close]="form"
+  >
+    Create
+  </button>
+</mat-dialog-actions>

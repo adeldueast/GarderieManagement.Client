@@ -42,6 +42,8 @@ import { ChildGuardiansTabComponent } from './Components/childrens/child/tabs/ch
 import {MatListModule} from '@angular/material/list';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSelectModule} from '@angular/material/select';
+import { GroupsComponent } from './Components/groups/groups.component';
+import { ModalGroupCreateComponent } from './Components/modals/modal-group-create/modal-group-create.component';
 export function tokenGetter() {
   return localStorage.getItem('access_token');
 }
@@ -78,7 +80,9 @@ const Material_Modules = [
     ModalGuardianCreateComponent,
     ChildInformationTabComponent,
     ChildCalendarTabComponent,
-    ChildGuardiansTabComponent
+    ChildGuardiansTabComponent,
+    GroupsComponent,
+    ModalGroupCreateComponent
   ],
 
   imports: [

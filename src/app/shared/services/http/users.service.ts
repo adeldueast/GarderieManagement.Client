@@ -11,6 +11,12 @@ export class UsersService {
     private envUrl: EnvironmentUrlService
   ) {}
 
+  getAllStaff(route:string){
+    return this.http.get<any>(
+      this.createCompleteRoute(route, this.envUrl.urlAddress)
+    );
+  }
+
   getAllGuardians(route:string){
     return this.http.get<any>(
       this.createCompleteRoute(route, this.envUrl.urlAddress)

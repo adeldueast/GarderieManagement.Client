@@ -18,6 +18,13 @@ export class GroupService {
     );
   }
 
+  createGroup(route:string, createGroup_request:any){
+    return this.http.post<any>(
+      this.createCompleteRoute(route, this.envUrl.urlAddress),
+      createGroup_request
+    );
+  }
+
   private createCompleteRoute = (route: string, envAddress: string) => {
     const url = `${envAddress}/${route}`;
     return url;
