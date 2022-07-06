@@ -17,7 +17,7 @@ export class ChildrenComponent implements OnInit {
   displayedColumns: string[] = ['id', 'nom'];
   children : any[] = [];
   dataSource = new MatTableDataSource(this.children);
-  childCreate_request: any = undefined;
+ 
 
   constructor(
     public dialog: MatDialog,
@@ -36,15 +36,22 @@ export class ChildrenComponent implements OnInit {
   openDialog() {
     const dialogRef = this.dialog.open(ModalChildCreateComponent);
 
-    dialogRef.beforeClosed().subscribe((result: FormGroup) => {
+    dialogRef.afterClosed().subscribe((result: FormGroup) => {
       if (result) {
-        const enfant = result.value;
-        this.childCreate_request = {
-          Nom: `${enfant.firstname} ${enfant.lastname}`,
-          DateNaissance: enfant.dateOfBirth,
+
+
+        const newChild = result.value;
+     
+     
+        let childCreate_request = {
+          Nom: `${newChild.firstname} ${newChild.lastname}`,
+          DateNaissance: newChild.dateOfBirth,
+          GroupId: newChild.groupId
         };
-        console.log('before closing ...', this.childCreate_request);
-        this.createChild();
+      
+        console.log('NEW ENFANT REQUEST', childCreate_request);
+        this.createChild(childCreate_request);
+        location.reload();
       }
     });
   }
@@ -68,13 +75,13 @@ export class ChildrenComponent implements OnInit {
         //console.error(err.error.errors),
         alert(JSON.stringify(err.error.errors)),
       ],
-      complete: () => console.log('getting all child completed'),
+      complete: () => console.log('getting all staff completed'),
     })
   }
   
-   createChild() {
+   createChild(child_request:any) {
     this.childrenService
-      .createChild('Enfant/Create', this.childCreate_request)
+      .createChild('Enfant/Create', child_request)
       .subscribe({
         next: (res) => {
           console.log(res);

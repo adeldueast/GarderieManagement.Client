@@ -1,0 +1,10 @@
+h1{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.scrollable {
+    
+    height: 74.5vh; /* or any value */
+    overflow-y: auto;
+}

@@ -4,6 +4,7 @@
 <!-- BODY -->
 <mat-dialog-content class="mat-typography">
   <form [formGroup]="form"  >
+
     <div class="grid grid-cols-2 gap-x-2">
       <mat-form-field>
         <mat-label>First name</mat-label>
@@ -24,6 +25,21 @@
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
+
+
+    <!-- group -->
+    <mat-form-field class="w-full mt-3">
+      <mat-label>Group</mat-label>
+      <mat-select
+      [compareWith]="compareFunction"
+        formControlName="groupId"
+      >
+        <mat-option *ngFor="let group of groups" [value]="group.id">
+          {{ group.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
  
   </form>
 </mat-dialog-content>

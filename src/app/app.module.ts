@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { JwtModule } from '@auth0/angular-jwt';
-
+import { MAT_COLOR_FORMATS, NgxMatColorPickerModule, NGX_MAT_COLOR_FORMATS } from '@angular-material-components/color-picker';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './Components/Authentification/Register/Register.component';
 import { LoginComponent } from './Components/Authentification/Login/Login.component';
@@ -44,6 +44,10 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSelectModule} from '@angular/material/select';
 import { GroupsComponent } from './Components/groups/groups.component';
 import { ModalGroupCreateComponent } from './Components/modals/modal-group-create/modal-group-create.component';
+import { ModalStaffCreateComponent } from './Components/modals/modal-staff-create/modal-staff-create.component';
+import { StaffComponent } from './Components/Staff/Staff.component';
+import {MatCardModule} from '@angular/material/card';
+
 export function tokenGetter() {
   return localStorage.getItem('access_token');
 }
@@ -62,7 +66,7 @@ const Material_Modules = [
   MatAutocompleteModule,
   MatListModule,
   MatTooltipModule,
-  MatCheckboxModule ,MatSelectModule
+  MatCheckboxModule ,MatSelectModule,MatCardModule
   
 ];
 
@@ -82,7 +86,10 @@ const Material_Modules = [
     ChildCalendarTabComponent,
     ChildGuardiansTabComponent,
     GroupsComponent,
-    ModalGroupCreateComponent
+    ModalGroupCreateComponent,
+    ModalStaffCreateComponent,
+    StaffComponent,
+
   ],
 
   imports: [
@@ -92,6 +99,7 @@ const Material_Modules = [
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    NgxMatColorPickerModule,
     Material_Modules,
     JwtModule.forRoot({
       config: {
@@ -102,6 +110,7 @@ const Material_Modules = [
     }),
   ],
   providers: [
+    { provide: MAT_COLOR_FORMATS, useValue: NGX_MAT_COLOR_FORMATS },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,

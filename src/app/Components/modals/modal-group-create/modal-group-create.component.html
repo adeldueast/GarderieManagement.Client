@@ -3,23 +3,37 @@
 
 <!-- BODY -->
 <mat-dialog-content class="mat-typography">
-  <form [formGroup]="form" (submit)="onSubmit()"  id="ngForm">
-    <mat-form-field class="w-full">
+  <form [formGroup]="form" (submit)="onSubmit()" id="ngForm">
+    
+    <div class="grid grid-cols-3 gap-x-2 w-96">
+    <!-- GROUP NAME -->
+    <mat-form-field class="col-span-2">
       <mat-label>Group name</mat-label>
       <input formControlName="name" matInput placeholder="Group name" />
     </mat-form-field>
 
+      <!-- COLOR PICKER -->
+      <mat-form-field>
+        <input matInput [ngxMatColorPicker]="picker" formControlName="colorCtr">
+        <ngx-mat-color-toggle matSuffix [for]="picker"></ngx-mat-color-toggle>
+        <ngx-mat-color-picker #picker [touchUi]="true" [color]="color"></ngx-mat-color-picker>
+    </mat-form-field>
+    </div>
+    <!-- GROUP EDUCATOR -->
     <mat-form-field class="w-full">
       <mat-label>Educator</mat-label>
       <mat-select
         formControlName="educatriceId"
-        (selectionChange)="onSelectChange($event.value)"
       >
         <mat-option *ngFor="let staff of staff" [value]="staff.id">
           {{ staff.name }}
         </mat-option>
       </mat-select>
     </mat-form-field>
+
+
+  
+
   </form>
 </mat-dialog-content>
 
@@ -27,7 +41,7 @@
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close cdkFocusInitial>Cancel</button>
   <button
-     form="ngForm"
+    form="ngForm"
     type="submit"
     mat-button
     class="btn-primary"

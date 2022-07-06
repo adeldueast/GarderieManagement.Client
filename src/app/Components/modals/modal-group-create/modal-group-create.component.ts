@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { ThemePalette } from '@angular/material/core';
 import { UsersService } from 'src/app/shared/services/http/users.service';
+import { GroupService } from 'src/app/shared/services/http/group.service';
 
 interface Staff {
   id: string;
@@ -12,25 +14,28 @@ interface Staff {
   templateUrl: './modal-group-create.component.html',
   styleUrls: ['./modal-group-create.component.css'],
 })
-export class ModalGroupCreateComponent implements OnInit {
-  staff: Staff[] = [
-    // {value: 'steak-0', viewValue: 'Steak'},
-    // {value: 'pizza-1', viewValue: 'Pizza'},
-    // {value: 'tacos-2', viewValue: 'Tacos'},
-  ];
 
+export class ModalGroupCreateComponent implements OnInit {
+  
+  staff: Staff[] = [];
+  public color: ThemePalette = 'primary';
   form: FormGroup = new FormGroup({
     name: new FormControl(),
     educatriceId: new FormControl(),
+    colorCtr: new FormControl(),
   });
-  constructor(private userService: UsersService) {}
+
+  constructor(
+    private userService: UsersService,
+    private groupService: GroupService
+  ) {}
 
   ngOnInit() {
-    this.getAllStaff();
+    this.getAllStaffNoGroup();
   }
 
-  getAllStaff = () => {
-    this.userService.getAllStaff('User/employees').subscribe({
+  getAllStaffNoGroup = () => {
+    this.userService.getAllStaffNoGroup('User/employeesNoGroup').subscribe({
       next: (res) => {
         console.log(res),
           res.data.forEach((e: any) => {
@@ -48,15 +53,28 @@ export class ModalGroupCreateComponent implements OnInit {
       },
     });
   };
-  
-  onSelectChange(value: any) {
-    console.log(value);
-    this.form.patchValue({
-      educatriceId: value,
-    });
-  }
+
+  // onSelectChange(value: any) {
+  //   console.log(value);
+  //   this.form.patchValue({
+  //     educatriceId: value,
+  //   });
+  // }
 
   onSubmit() {
     console.log(this.form.value);
+    let createGroup_request = {
+      name: this.form.get('name')?.value,
+      educatriceId: this.form.get('educatriceId')?.value,
+      hexColor: `#${this.form.get('colorCtr')?.value.hex}`,
+    };
+    console.log(createGroup_request);
+    this.createGroup(createGroup_request);
   }
+
+  createGroup = (createGroup_request: any) => {
+    this.groupService
+      .createGroup('Group/Create', createGroup_request)
+      .subscribe((res) => console.log(res));
+  };
 }

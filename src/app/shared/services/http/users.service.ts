@@ -11,6 +11,13 @@ export class UsersService {
     private envUrl: EnvironmentUrlService
   ) {}
 
+  getAllStaffNoGroup(route:string){
+    return this.http.get<any>(
+      this.createCompleteRoute(route, this.envUrl.urlAddress)
+    );
+  }
+
+  
   getAllStaff(route:string){
     return this.http.get<any>(
       this.createCompleteRoute(route, this.envUrl.urlAddress)
@@ -43,7 +50,12 @@ export class UsersService {
       guardian_request
     );
   }
-
+  inviteStaff(route:string,staff_request:any){
+    return this.http.post<any>(
+      this.createCompleteRoute(route, this.envUrl.urlAddress),
+      staff_request
+    );
+  }
   private createCompleteRoute = (route: string, envAddress: string) => {
     const url = `${envAddress}/${route}`;
     return url;
