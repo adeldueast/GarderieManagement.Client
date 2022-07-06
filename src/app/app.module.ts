@@ -108,6 +108,7 @@ const Material_Modules = [
         disallowedRoutes: [],
       },
     }),
+    
   ],
   providers: [
     { provide: MAT_COLOR_FORMATS, useValue: NGX_MAT_COLOR_FORMATS },

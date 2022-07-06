@@ -1,5 +1,8 @@
 <button mat-raised-button (click)="openDialog()" class="mb-3">Add child</button>
 
+
+
+
 <!-- Filter inputfield -->
 <mat-form-field appearance="standard">
   <mat-label>Filter children</mat-label>
@@ -10,8 +13,8 @@
     #input
   />
 </mat-form-field>
-
-<table id="abc" mat-table [dataSource]="dataSource" class="mat-elevation-z10">
+<div class="content-container overflow-y-scroll">
+<table id="abc" mat-table [dataSource]="dataSource" class="mat-elevation-z10 ">
   
   <!-- Id Column -->
   <ng-container matColumnDef="id">
@@ -48,3 +51,5 @@
 </table>
 
 
+
+</div>

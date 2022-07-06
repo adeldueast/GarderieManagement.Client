@@ -18,7 +18,9 @@ interface Staff {
 export class ModalGroupCreateComponent implements OnInit {
   
   staff: Staff[] = [];
+
   public color: ThemePalette = 'primary';
+  
   form: FormGroup = new FormGroup({
     name: new FormControl(),
     educatriceId: new FormControl(),
