@@ -47,6 +47,7 @@ import { ModalGroupCreateComponent } from './Components/modals/modal-group-creat
 import { ModalStaffCreateComponent } from './Components/modals/modal-staff-create/modal-staff-create.component';
 import { StaffComponent } from './Components/Staff/Staff.component';
 import {MatCardModule} from '@angular/material/card';
+import { ModalActionComponent } from './Components/modals/modal-action/modal-action.component';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -89,7 +90,7 @@ const Material_Modules = [
     ModalGroupCreateComponent,
     ModalStaffCreateComponent,
     StaffComponent,
-
+    ModalActionComponent
   ],
 
   imports: [

@@ -1,0 +1,28 @@
+h1{
+    font-size: 30px;
+}
+
+.actions{
+    cursor: pointer;
+    width: 5rem;
+    height: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 11px;
+    padding: 4px;
+}
+
+.actions:hover{
+    background-color:  #D3D3D3	;
+}
+
+.icon-display {
+    transform: scale(1.2);
+ }
+
+ span{
+    font-size: 1rem;
+ }
+

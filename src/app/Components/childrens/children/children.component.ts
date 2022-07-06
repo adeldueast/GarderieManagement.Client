@@ -4,6 +4,7 @@ import { ModalChildCreateComponent } from '../../modals/modal-child-create/modal
 import { FormGroup } from '@angular/forms';
 import { ChildrenService } from 'src/app/shared/services/http/children.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { ModalActionComponent } from '../../modals/modal-action/modal-action.component';
 
 
 
@@ -95,5 +96,17 @@ export class ChildrenComponent implements OnInit {
       });
   }
 
+  openActionModal(child:any){
+
+
+    
+    const dialogRef = this.dialog.open(ModalActionComponent,{
+      data: child,
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+   
+    });
+  }
 
 }
