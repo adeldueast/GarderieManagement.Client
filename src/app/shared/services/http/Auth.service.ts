@@ -4,6 +4,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 
 import { Subject } from 'rxjs';
 import { EnvironmentUrlService } from '../EnvironmentUrl.service';
+import { SignalRService } from './hub/SignalR.service';
 
 @Injectable({
   providedIn: 'root',
@@ -23,9 +24,10 @@ export class AuthService {
     private envUrl: EnvironmentUrlService,
     private jwtHelper: JwtHelperService
   ) {
-   // console.log('😡😡😡 Auth.service constructor 😡😡😡');
-    const token = localStorage.getItem('token');
-    this.UpdateCurrentUserInfo(token);
+    console.log('😡😡😡 Auth.service constructor 😡😡😡');
+    this.isUserAuthenticated()
+
+    
   }
 
   public registerUser = (route: string, register_request: any) => {
@@ -45,6 +47,7 @@ export class AuthService {
   public logout = () => {
     localStorage.removeItem('token');
     this.sendAuthStateChangeNotification(false);
+    this.UpdateCurrentUserInfo(null);
   };
 
   public sendAuthStateChangeNotification = (isAuthenticated: boolean) => {
@@ -54,8 +57,8 @@ export class AuthService {
   UpdateCurrentUserInfo(token: string | null) {
     if (token) {
       const decodedToken = this.jwtHelper.decodeToken(token!);
-    //  console.log(decodedToken);
-      
+      // console.log(decodedToken);
+
       this.user_info.uid = decodedToken.Id;
       this.user_info.email = decodedToken.email;
       this.user_info.first_name = decodedToken.firstname;
@@ -68,19 +71,19 @@ export class AuthService {
       this.user_info.last_name = undefined;
       this.user_info.roles = [];
     }
-   // console.log('UpdatingCurrentUserInfo().. ', this.user_info);
+    // console.log('UpdatingCurrentUserInfo().. ', this.user_info);
   }
 
   public isUserAuthenticated = (): boolean => {
     const token = localStorage.getItem('token');
 
     if (token && !this.jwtHelper.isTokenExpired(token!)) {
+      this.UpdateCurrentUserInfo(token);
       return true;
     }
 
     if (token) {
-      localStorage.removeItem('token');
-      this.UpdateCurrentUserInfo(null);
+      this.logout();
     }
     return false;
   };

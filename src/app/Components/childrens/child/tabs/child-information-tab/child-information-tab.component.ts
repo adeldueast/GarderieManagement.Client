@@ -27,7 +27,7 @@ export class ChildInformationTabComponent implements OnInit {
       groupId: new FormControl(this.child_info.groupId),
     });
 
-    console.log('xoxox',this.updateForm.value);
+   // console.log('xoxox',this.updateForm.value);
     
     this.updateForm.disable();
 
@@ -49,7 +49,7 @@ export class ChildInformationTabComponent implements OnInit {
           this.groups.push(group);
         });
 
-       console.log(this.groups);
+       //console.log(this.groups);
       },
       error: (err) => console.log(err),
       complete: () => console.log('getting all groups completed'),
@@ -58,7 +58,7 @@ export class ChildInformationTabComponent implements OnInit {
 
 
   //todo: replace reload 
-  onSubmit = () =>   [this.updateChild(),location.reload()]
+  onSubmit = () =>   [this.updateChild()]//location.reload()
 
 
     
