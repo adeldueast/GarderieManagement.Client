@@ -33,11 +33,15 @@ export class AuthGuard implements CanActivate {
     }
 
     //If NOT Authenticated , redirect to /login
-  
-    if(state.url = '/'){
-      this.router.navigate(['/login'],{});
-      return false
-    }
+    // if ((state.url = '/')) {
+    //   console.log('11111111111111111');
+    //   console.log(state.url)
+    //   this.router.navigate(['/login'], {});
+    //   return false;
+    // }
+   
+    console.log('state.url =>', state.url);
+    
     this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
     return false;
   }

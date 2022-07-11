@@ -11,7 +11,6 @@ export class SignalRService implements OnDestroy {
   private subscribtion?: Subscription;
   private loginToken = '';
 
-
   constructor(private authService: AuthService) {
     this.subcribeToAuthChanges();
   }
@@ -26,8 +25,8 @@ export class SignalRService implements OnDestroy {
       console.log('auth state changed =>', result);
       if (result) {
         this.loginToken = localStorage.getItem('token')!;
-       // console.log(this.loginToken);
-        
+        // console.log(this.loginToken);
+
         this.startConnection();
         return;
       }
@@ -55,7 +54,10 @@ export class SignalRService implements OnDestroy {
   };
 
   endConnection = () => {
-    this.hubConnection.stop();
+    this.hubConnection
+      .stop()
+      //.then(() => console.log('Connection to Hub ended'))
+      .catch((err) => console.log('Error while ending the  connection: ' + err));
   };
 
   addChildChangesListener = (fn: () => void) => {
@@ -68,6 +70,4 @@ export class SignalRService implements OnDestroy {
   removeChildChangesListener() {
     this.hubConnection.off('childUpdate');
   }
-
-
 }
