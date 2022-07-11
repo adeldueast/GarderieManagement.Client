@@ -8,12 +8,14 @@ import { AuthService } from '../auth.service';
 })
 export class SignalRService implements OnDestroy {
   private hubConnection!: signalR.HubConnection;
-  private updateDataTable!: () => void;
   private subscribtion?: Subscription;
+  private loginToken = '';
+
 
   constructor(private authService: AuthService) {
     this.subcribeToAuthChanges();
   }
+
   ngOnDestroy(): void {
     console.log('ngOnDestroy: cleaning up...');
     this.unsubcribeToAuthChanges();
@@ -23,6 +25,9 @@ export class SignalRService implements OnDestroy {
     this.subscribtion = this.authService.authChanged.subscribe((result) => {
       console.log('auth state changed =>', result);
       if (result) {
+        this.loginToken = localStorage.getItem('token')!;
+       // console.log(this.loginToken);
+        
         this.startConnection();
         return;
       }
@@ -31,7 +36,7 @@ export class SignalRService implements OnDestroy {
   }
 
   unsubcribeToAuthChanges() {
-    this.subscribtion?.unsubscribe();
+    this.subscribtion!.unsubscribe();
   }
 
   startConnection = () => {
@@ -39,6 +44,7 @@ export class SignalRService implements OnDestroy {
       .withUrl(`https://localhost:44356/Children`, {
         skipNegotiation: true,
         transport: signalR.HttpTransportType.WebSockets,
+        accessTokenFactory: () => this.loginToken,
       })
       .build();
 
@@ -56,7 +62,6 @@ export class SignalRService implements OnDestroy {
     this.hubConnection.on('childUpdate', (data) => {
       console.log(data);
       fn();
-      
     });
   };
 
@@ -64,7 +69,5 @@ export class SignalRService implements OnDestroy {
     this.hubConnection.off('childUpdate');
   }
 
-  onDataUpdate(fn: () => void) {
-    this.updateDataTable = fn;
-  }
+
 }

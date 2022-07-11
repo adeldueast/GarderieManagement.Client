@@ -78,6 +78,7 @@ export class AuthService {
     const token = localStorage.getItem('token');
 
     if (token && !this.jwtHelper.isTokenExpired(token!)) {
+      this.sendAuthStateChangeNotification(true);
       this.UpdateCurrentUserInfo(token);
       return true;
     }
