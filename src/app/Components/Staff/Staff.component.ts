@@ -11,7 +11,7 @@ import { ModalStaffCreateComponent } from '../modals/modal-staff-create/modal-st
   templateUrl: './Staff.component.html',
   styleUrls: ['./Staff.component.css'],
 })
-export class StaffComponent implements OnInit,OnDestroy {
+export class StaffComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['nom'];
   staff: any[] = [];
   dataSource = new MatTableDataSource(this.staff);
@@ -28,9 +28,10 @@ export class StaffComponent implements OnInit,OnDestroy {
   ngOnInit() {
     this.getAllStaff();
     this.dataSource = new MatTableDataSource(this.staff);
-    this.signalRService.addNotifyUserStatusChangesListener(this.getAllStaff.bind(this));
+    this.signalRService.addNotifyUserStatusChangesListener(
+      this.getAllStaff.bind(this)
+    );
   }
-  
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -43,8 +44,15 @@ export class StaffComponent implements OnInit,OnDestroy {
         //console.log(res);
 
         this.staff = res.data;
-       // console.log(this.staff);
+        console.log(this.staff);
         
+        this.staff.sort(function(a, b){
+          if(a.firstName.toLowerCase() < b.firstName.toLowerCase()) { return -1; }
+          if(a.firstName.toLowerCase() > b.firstName.toLowerCase()) { return 1; }
+          return 0;
+      })
+       
+
         this.dataSource = new MatTableDataSource(this.staff);
       },
       error: (err) => [
@@ -66,5 +74,14 @@ export class StaffComponent implements OnInit,OnDestroy {
         location.reload();
       }
     });
+  }
+   compare( a:any, b:any ) {
+    if ( a.firstName < b.firstName ){
+      return -1;
+    }
+    if ( a.firstName > b.firstName ){
+      return 1;
+    }
+    return 0;
   }
 }
