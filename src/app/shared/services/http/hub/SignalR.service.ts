@@ -70,4 +70,14 @@ export class SignalRService implements OnDestroy {
   removeChildChangesListener() {
     this.hubConnection.off('childUpdate');
   }
+
+  addNotifyUserStatusChangesListener = (fn: () => void) => {
+    this.hubConnection.on('notifyUserStatusChanges', (data) => {
+      console.log(data);
+      fn();
+    });
+  };
+  removeNotifyUserStatusChangesListener() {
+    this.hubConnection.off('notifyUserStatusChanges');
+  }
 }

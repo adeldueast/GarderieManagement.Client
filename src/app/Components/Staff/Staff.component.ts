@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { SignalRService } from 'src/app/shared/services/http/hub/SignalR.service';
 import { UsersService } from 'src/app/shared/services/http/users.service';
 import { ModalStaffCreateComponent } from '../modals/modal-staff-create/modal-staff-create.component';
 
@@ -10,18 +11,26 @@ import { ModalStaffCreateComponent } from '../modals/modal-staff-create/modal-st
   templateUrl: './Staff.component.html',
   styleUrls: ['./Staff.component.css'],
 })
-export class StaffComponent implements OnInit {
-  displayedColumns: string[] = [ 'nom'];
+export class StaffComponent implements OnInit,OnDestroy {
+  displayedColumns: string[] = ['nom'];
   staff: any[] = [];
   dataSource = new MatTableDataSource(this.staff);
 
-  constructor(private dialog: MatDialog, private userService: UsersService) {}
+  constructor(
+    private dialog: MatDialog,
+    private userService: UsersService,
+    private signalRService: SignalRService
+  ) {}
+  ngOnDestroy(): void {
+    this.signalRService.removeNotifyUserStatusChangesListener();
+  }
 
   ngOnInit() {
     this.getAllStaff();
-  this.dataSource = new MatTableDataSource(this.staff);
-
+    this.dataSource = new MatTableDataSource(this.staff);
+    this.signalRService.addNotifyUserStatusChangesListener(this.getAllStaff.bind(this));
   }
+  
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -29,24 +38,22 @@ export class StaffComponent implements OnInit {
   }
 
   getAllStaff() {
-    this.userService
-      .getAllStaff('User/employees')
-      .subscribe({
-        next: (res) => {
-          console.log(res);
-          
-          this.staff = res.data;
-          this.dataSource = new  MatTableDataSource(this.staff);
-          
-          
-        },
-        error: (err) => [
-          console.error(err),
-          //console.error(err.error.errors),
-          alert(JSON.stringify(err.error.errors)),
-        ],
-        complete: () => console.log('getting all child completed'),
-      });
+    this.userService.getAllStaff('User/employees').subscribe({
+      next: (res) => {
+        //console.log(res);
+
+        this.staff = res.data;
+       // console.log(this.staff);
+        
+        this.dataSource = new MatTableDataSource(this.staff);
+      },
+      error: (err) => [
+        console.error(err),
+        //console.error(err.error.errors),
+        alert(JSON.stringify(err.error.errors)),
+      ],
+      complete: () => console.log('getting all child completed'),
+    });
   }
 
   openDialog() {
@@ -56,9 +63,8 @@ export class StaffComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result: FormGroup) => {
       if (result) {
         const group = result.value;
-        location.reload()
+        location.reload();
       }
-   
     });
   }
 }
