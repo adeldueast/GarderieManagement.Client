@@ -29,6 +29,8 @@
         <!-- <img  class="w-16" src="../../../../assets/images/child_default.jpg" alt="image"> -->
         <img  class="w-12 rounded-full" [src]="element.image" alt="image">
         {{ element.nom }}
+      
+        <mat-icon  matTooltip="Arrived" *ngIf="element.hasArrived" class="icon-display">directions_walk</mat-icon>
     </td>
    
   </ng-container>

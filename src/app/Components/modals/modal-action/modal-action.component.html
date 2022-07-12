@@ -5,8 +5,10 @@
   </div>
   
   <ul class="mt-4 flex justify-center items-center gap-x-5">
-    <li mat-dialog-close class="actions rounded-sm"><mat-icon class="icon-display">arrow_downward</mat-icon><span>Arrived</span></li>
-    <li mat-dialog-close class="actions rounded-sm"><mat-icon class="icon-display">info</mat-icon> <span>Absent</span></li>
+    <li *ngIf="!data.hasArrived" (click)="arrivedAt()" mat-dialog-close class="actions rounded-sm"><mat-icon class="icon-display">arrow_downward</mat-icon><span>Arrived</span></li>
+    <li *ngIf="data.hasArrived" (click)="leftAt()" mat-dialog-close class="actions rounded-sm"><mat-icon class="icon-display">directions_walk</mat-icon><span>Leave</span></li>
+    
+    <li *ngIf="!data.hasArrived" (click)="createAbsence()" mat-dialog-close class="actions rounded-sm"><mat-icon class="icon-display">info</mat-icon> <span>Absent</span></li>
     <li mat-dialog-close class="actions rounded-sm"><mat-icon class="icon-display">chat</mat-icon><span>Messages</span></li>
     <li mat-dialog-close [routerLink]="['/children', data.id]"  class="actions rounded-sm"><mat-icon class="icon-display">folder_shared</mat-icon><span>File</span></li>
   </ul>

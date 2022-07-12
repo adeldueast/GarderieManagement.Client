@@ -1,10 +1,11 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalChildCreateComponent } from '../../modals/modal-child-create/modal-child-create.component';
 import { FormGroup } from '@angular/forms';
 import { ChildrenService } from 'src/app/shared/services/http/children.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { ModalActionComponent } from '../../modals/modal-action/modal-action.component';
+
 
 
 
@@ -65,6 +66,7 @@ export class ChildrenComponent implements OnInit {
   getChildren(){
     this.childrenService.getChildren('Enfant/GetAll').subscribe({
       next: (res) => {
+      // console.log(res);
        
         this.children = res.data;
         this.dataSource = new  MatTableDataSource(this.children);
@@ -76,7 +78,7 @@ export class ChildrenComponent implements OnInit {
         //console.error(err.error.errors),
         alert(JSON.stringify(err.error.errors)),
       ],
-      complete: () => console.log('getting all staff completed'),
+      complete: () => console.log('getting all childs completed'),
     })
   }
   
