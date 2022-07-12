@@ -6,17 +6,28 @@ import { AuthService } from '../auth.service';
 @Injectable({
   providedIn: 'root',
 })
-export class SignalRService implements OnDestroy {
+export class SignalRService {
   private hubConnection!: signalR.HubConnection;
   private subscribtion?: Subscription;
   private loginToken = '';
 
   constructor(private authService: AuthService) {
-    this.subcribeToAuthChanges();
+    console.log('🤣🤣🤣 SIGNAL R.service constructor 🤣🤣🤣');
+  
   }
 
-  ngOnDestroy(): void {
+  onInit(){
+    this.subcribeToAuthChanges();
+    if(this.authService.isUserAuthenticated()){
+      this.authService.sendAuthStateChangeNotification(true);
+    }
+  }
+
+  onDestroy() {
     console.log('ngOnDestroy: cleaning up...');
+    if (this.hubConnection) {
+      this.endConnection();
+    }
     this.unsubcribeToAuthChanges();
   }
 
@@ -25,12 +36,14 @@ export class SignalRService implements OnDestroy {
       console.log('auth state changed =>', result);
       if (result) {
         this.loginToken = localStorage.getItem('token')!;
-        // console.log(this.loginToken);
-
         this.startConnection();
         return;
       }
-      this.endConnection();
+      
+      if (this.hubConnection) {
+        this.endConnection();
+        return;
+      }
     });
   }
 
@@ -38,7 +51,7 @@ export class SignalRService implements OnDestroy {
     this.subscribtion!.unsubscribe();
   }
 
-  startConnection = () => {
+  startConnection = async () => {
     this.hubConnection = new signalR.HubConnectionBuilder()
       .withUrl(`https://localhost:44356/Children`, {
         skipNegotiation: true,
@@ -46,8 +59,9 @@ export class SignalRService implements OnDestroy {
         accessTokenFactory: () => this.loginToken,
       })
       .build();
+    // console.log(this.hubConnection, 'XOXOXO');
 
-    this.hubConnection
+    await this.hubConnection
       .start()
       .then(() => console.log('Connection to Hub started'))
       .catch((err) => console.log('Error while starting connection: ' + err));
@@ -56,7 +70,7 @@ export class SignalRService implements OnDestroy {
   endConnection = () => {
     this.hubConnection
       .stop()
-      //.then(() => console.log('Connection to Hub ended'))
+      .then(() => console.log('Connection to Hub ended'))
       .catch((err) =>
         console.log('Error while ending the  connection: ' + err)
       );

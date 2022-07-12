@@ -26,9 +26,15 @@ export class ChildrenComponent implements OnInit,OnDestroy {
     public dialog: MatDialog,
     public childrenService: ChildrenService,
     private signalRService:SignalRService
-  ) {}
+  ) {
+    console.log('👶👶👶 SIGNAL R.service constructor 👶👶👶 ');
+
+  }
   ngOnDestroy(): void {
+    console.log('👿👿👿 destroying child component... 👿👿👿');
+    
     this.signalRService.removeChildAttendanceChangesListener()
+   
 
   }
 

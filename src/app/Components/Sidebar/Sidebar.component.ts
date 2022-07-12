@@ -17,7 +17,8 @@ export class SidebarComponent implements OnInit {
 
   logout() {
     //Gets rid of the token in the local storage
-    this.authService.logout();
+    //this.authService.logout();
+    localStorage.removeItem('token')
     this.router.navigate(['/login']);
   }
 }

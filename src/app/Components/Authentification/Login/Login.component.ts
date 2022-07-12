@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
     const token = res.data.accessToken;
     localStorage.setItem('token', token);
 
-    // this.authService.sendAuthStateChangeNotification(true);
+    this.authService.sendAuthStateChangeNotification(true);
     // this.authService.UpdateCurrentUserInfo(token);
    
     const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';

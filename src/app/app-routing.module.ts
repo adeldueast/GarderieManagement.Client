@@ -19,30 +19,32 @@ const routes: Routes = [
   // Register page  http://localhost:4200/register
   { path: 'register', component: RegisterComponent },
 
-  // Home page  http://localhost:4200  
+  // Home page  http://localhost:4200
   {
-    path: '',   
+    path: '',
     component: LayoutComponent,
     canActivate: [AuthGuard],
     children: [
-
       // Children page  http://localhost:4200/children
       {
         path: 'children',
         component: ChildrenComponent,
-      },
+        canActivate: [AuthGuard],
+      },  
       {
         // Child page  http://localhost:4200/children/1
-          path: 'children/:id',
-          component: ChildComponent,
+        path: 'children/:id',
+        component: ChildComponent,
+        canActivate: [AuthGuard],
       },
       {
         // Groups page  http://localhost:4200/groups
-          path: 'groups',
-          component: GroupsComponent,
+        path: 'groups',
+        component: GroupsComponent,
+        canActivate: [AuthGuard],
       },
       // Staff page  http://localhost:4200/Staff
-      { path: 'staff', component: StaffComponent },
+      { path: 'staff', component: StaffComponent, canActivate: [AuthGuard] },
     ],
   },
 

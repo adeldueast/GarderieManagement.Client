@@ -1,6 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from './shared/services/http/auth.service';
 import { SignalRService } from './shared/services/http/hub/SignalR.service';
 
 @Component({
@@ -11,16 +9,20 @@ import { SignalRService } from './shared/services/http/hub/SignalR.service';
 export class AppComponent implements OnInit, OnDestroy {
   isAuthenticated?: boolean;
   constructor(
-    private authService: AuthService,
+  
     private signalRService: SignalRService
   ) {
     // console.log('AppComponent constructor');
   }
 
   ngOnInit(): void {
+    console.log('ng INIT APP.COMPONENT.TS');
     
+    this.signalRService.onInit();
   }
   ngOnDestroy(): void {
-   
+    console.log('ng DESOYTR APP.COMPONENT.TS');
+    
+    this.signalRService.onDestroy();
   }
 }

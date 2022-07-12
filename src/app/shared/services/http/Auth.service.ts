@@ -4,13 +4,12 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 
 import { Subject } from 'rxjs';
 import { EnvironmentUrlService } from '../EnvironmentUrl.service';
-import { SignalRService } from './hub/SignalR.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private authChangeSub = new Subject<boolean>();
+  public authChangeSub = new Subject<boolean>();
   public authChanged = this.authChangeSub.asObservable();
   public user_info = {
     uid: undefined,
@@ -24,10 +23,8 @@ export class AuthService {
     private envUrl: EnvironmentUrlService,
     private jwtHelper: JwtHelperService
   ) {
-   // console.log('😡😡😡 Auth.service constructor 😡😡😡');
-    this.isUserAuthenticated()
-
-    
+    console.log('😡😡😡 Auth.service constructor 😡😡😡');
+  
   }
 
   public registerUser = (route: string, register_request: any) => {
@@ -54,7 +51,7 @@ export class AuthService {
     this.authChangeSub.next(isAuthenticated);
   };
 
-  UpdateCurrentUserInfo(token: string | null) {
+  private UpdateCurrentUserInfo(token: string | null) {
     if (token) {
       const decodedToken = this.jwtHelper.decodeToken(token!);
       // console.log(decodedToken);
@@ -78,14 +75,13 @@ export class AuthService {
     const token = localStorage.getItem('token');
 
     if (token && !this.jwtHelper.isTokenExpired(token!)) {
-      this.sendAuthStateChangeNotification(true);
+      //this.sendAuthStateChangeNotification(true);
       this.UpdateCurrentUserInfo(token);
       return true;
     }
 
-    if (token) {
-      this.logout();
-    }
+  
+    this.logout();
     return false;
   };
 

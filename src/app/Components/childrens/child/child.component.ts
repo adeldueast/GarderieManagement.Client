@@ -24,9 +24,7 @@ export class ChildComponent implements OnInit, OnDestroy {
     });
     this.getChild();
 
-    
     this.signalRService.addChildChangesListener(this.getChild.bind(this));
-  
   }
 
   ngOnDestroy(): void {
