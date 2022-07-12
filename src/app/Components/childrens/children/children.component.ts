@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalChildCreateComponent } from '../../modals/modal-child-create/modal-child-create.component';
 import { FormGroup } from '@angular/forms';
 import { ChildrenService } from 'src/app/shared/services/http/children.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { ModalActionComponent } from '../../modals/modal-action/modal-action.component';
+import { SignalRService } from 'src/app/shared/services/http/hub/SignalR.service';
 
 
 
@@ -14,7 +15,7 @@ import { ModalActionComponent } from '../../modals/modal-action/modal-action.com
   templateUrl: './children.component.html',
   styleUrls: ['./children.component.css'],
 })
-export class ChildrenComponent implements OnInit {
+export class ChildrenComponent implements OnInit,OnDestroy {
 
   displayedColumns: string[] = ['id', 'nom'];
   children : any[] = [];
@@ -23,16 +24,20 @@ export class ChildrenComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    public childrenService: ChildrenService
+    public childrenService: ChildrenService,
+    private signalRService:SignalRService
   ) {}
+  ngOnDestroy(): void {
+    this.signalRService.removeChildAttendanceChangesListener()
+
+  }
 
   ngOnInit(): void {
 
   this.getChildren();
-
- 
-  
   this.dataSource = new MatTableDataSource(this.children);
+  this.signalRService.addChildAttendanceChangesListener(this.getChildren.bind(this))
+  
   }
  
   openDialog() {

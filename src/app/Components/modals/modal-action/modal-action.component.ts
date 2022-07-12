@@ -20,7 +20,10 @@ export class ModalActionComponent implements OnInit {
     this.attendanceService
       .arrivedAt(`Attendancies/Arrived/${this.data.id}`)
       .subscribe({
-        next: (res) => [console.log(res), (this.data.hasArrived = true)],
+        next: (res) => {
+         // console.log(res),
+           (this.data.hasArrived = true)
+        },
         error: (err) => console.log(err),
         complete: () => console.log('arrivedAt completed'),
       });
@@ -31,25 +34,33 @@ export class ModalActionComponent implements OnInit {
     this.attendanceService
       .leftAt(`Attendancies/Left/${this.data.id}`)
       .subscribe({
-        next: (res) => [console.log(res), (this.data.hasArrived = false)],
+        next: (res) => {
+       //   console.log(res), 
+          (this.data.hasArrived = false)
+        },
         error: (err) => console.log(err),
         complete: () => console.log('leftAt completed'),
       });
   }
 
   createAbsence() {
+    
     let createAbsenceRequest = {
       enfantId: this.data.id,
       absenceDate: new Date(),
       AbsenceDescription: `${this.data.nom} is sick today`,
     };
+
     this.attendanceService
       .createAbsence(
         `Attendancies/Absent/${this.data.id}`,
         createAbsenceRequest
       )
         .subscribe({
-          next: (res) => [console.log(res), (this.data.hasArrived = false)],
+          next: (res) => {
+           // console.log(res), 
+            (this.data.hasArrived = false)
+          },
         error: (err) => console.log(err),
         complete: () => console.log('leftAt completed'),
       });

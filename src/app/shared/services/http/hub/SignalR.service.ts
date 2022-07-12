@@ -57,7 +57,9 @@ export class SignalRService implements OnDestroy {
     this.hubConnection
       .stop()
       //.then(() => console.log('Connection to Hub ended'))
-      .catch((err) => console.log('Error while ending the  connection: ' + err));
+      .catch((err) =>
+        console.log('Error while ending the  connection: ' + err)
+      );
   };
 
   addChildChangesListener = (fn: () => void) => {
@@ -77,7 +79,20 @@ export class SignalRService implements OnDestroy {
       fn();
     });
   };
+
   removeNotifyUserStatusChangesListener() {
     this.hubConnection.off('notifyUserStatusChanges');
   }
+
+  addChildAttendanceChangesListener = (fn: () => void) => {
+    this.hubConnection.on('childAttendanceUpdate', (data) => {
+      console.log(data);
+      fn();
+    });
+  };
+
+  removeChildAttendanceChangesListener = () => {
+    this.hubConnection.off('childAttendanceUpdate');
+  };
+  // ChildAttendanceUpdate
 }
