@@ -64,7 +64,9 @@ export class SignalRService implements OnDestroy {
 
   addChildChangesListener = (fn: () => void) => {
     this.hubConnection.on('childUpdate', (data) => {
-      console.log(data);
+      // console.log(data);
+      console.warn('notifying other users of childInfoChanges');
+
       fn();
     });
   };
@@ -75,7 +77,9 @@ export class SignalRService implements OnDestroy {
 
   addNotifyUserStatusChangesListener = (fn: () => void) => {
     this.hubConnection.on('notifyUserStatusChanges', (data) => {
-      console.log(data);
+      //console.log(data);
+      console.warn('notifying other users of userStatusChanges');
+
       fn();
     });
   };
@@ -86,7 +90,9 @@ export class SignalRService implements OnDestroy {
 
   addChildAttendanceChangesListener = (fn: () => void) => {
     this.hubConnection.on('childAttendanceUpdate', (data) => {
-      console.log(data);
+      //console.log(data);
+      console.warn('notifying other users of childAttendanceChanges');
+
       fn();
     });
   };

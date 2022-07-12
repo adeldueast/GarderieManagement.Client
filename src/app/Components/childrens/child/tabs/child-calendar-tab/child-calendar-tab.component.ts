@@ -10,6 +10,8 @@ import { ModalGuardianCreateComponent } from 'src/app/Components/modals/modal-gu
 export class ChildCalendarTabComponent implements OnInit {
   constructor() {
     
+    console.log('calendar tab constructor');
+    
   }
 
   ngOnInit() {}

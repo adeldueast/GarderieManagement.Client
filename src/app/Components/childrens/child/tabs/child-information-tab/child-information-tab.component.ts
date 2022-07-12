@@ -17,24 +17,24 @@ export class ChildInformationTabComponent implements OnInit {
   constructor(
     private childrenService: ChildrenService,
     private groupService: GroupService
-  ) {}
+  ) {
+    console.log('information tab constructor');
+
+  }
 
   ngOnInit() {
     this.updateForm = new FormGroup({
-      id : new FormControl(this.child_info.id),
+      id: new FormControl(this.child_info.id),
       nom: new FormControl(this.child_info.nom),
       dateNaissance: new FormControl(this.child_info.birthdate),
       groupId: new FormControl(this.child_info.groupId),
     });
 
-   // console.log('xoxox',this.updateForm.value);
-    
+    // console.log('xoxox',this.updateForm.value);
+
     this.updateForm.disable();
 
-
     this.getAllGroups();
-
-    
   }
 
   getAllGroups = () => {
@@ -49,23 +49,18 @@ export class ChildInformationTabComponent implements OnInit {
           this.groups.push(group);
         });
 
-       //console.log(this.groups);
+        //console.log(this.groups);
       },
       error: (err) => console.log(err),
       complete: () => console.log('getting all groups completed'),
     });
   };
 
-
-  //todo: replace reload 
-  onSubmit = () =>   [this.updateChild()]//location.reload()
-
-
-    
+  //todo: replace reload
+  onSubmit = () => [this.updateChild()]; //location.reload()
 
   toggleEdit() {
     if (this.updateForm.enabled) {
-      
       //canceling
       this.updateForm.patchValue({
         nom: this.child_info.nom,
@@ -82,7 +77,9 @@ export class ChildInformationTabComponent implements OnInit {
   updateChild = () => {
     this.childrenService
       .updateChild('Enfant/Update', this.updateForm.value)
-      .subscribe((res) => console.log(res));
+      .subscribe(
+        //(res) => console.log(res)
+        );
   };
 
   onChangeGroup(value: any) {

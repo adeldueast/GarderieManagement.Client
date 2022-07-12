@@ -1,44 +1,48 @@
+<header class="p-2 flex flex-col justify-center items-center gap-3">
+  <!--bg-green-400  -->
+  <img [src]="child_info.image" class="w-40 rounded-full" alt="" />
+  <p class="text-5xl">{{ child_info.nom }}</p>
+</header>
 
+<mat-tab-group mat-stretch-tabs>
+  <!-- CALENDAR -->
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">calendar_month</mat-icon>
+      Calendar
+    </ng-template>
 
-  <header class="p-2 flex flex-col justify-center items-center gap-3">
-    <!--bg-green-400  -->
-    <img [src]="child_info.image" class="w-40 rounded-full" alt="" />
-    <p class="text-5xl">{{ child_info.nom }}</p>
-  </header>
-
-  <mat-tab-group mat-stretch-tabs>
-    <!-- CALENDAR -->
-    <mat-tab>
-      <ng-template mat-tab-label>
-        <mat-icon class="example-tab-icon">calendar_month</mat-icon>
-        Calendar
-      </ng-template>
+    <ng-template matTabContent>
       <app-child-calendar-tab></app-child-calendar-tab>
-    </mat-tab>
+    </ng-template>
+  </mat-tab>
 
-    <!-- INFORMATION -->
-    <mat-tab>
-      <ng-template mat-tab-label>
-        <mat-icon class="example-tab-icon">folder_shared</mat-icon>
-        Information
-      </ng-template>
+  <!-- INFORMATION -->
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">folder_shared</mat-icon>
+      Information
+    </ng-template>
 
-      <!-- INFORMATION CONTENT -->
-      <app-child-information-tab *ngIf="child_info.nom"
+    <!-- INFORMATION CONTENT -->
+    <ng-template matTabContent>
+      <app-child-information-tab
+        *ngIf="child_info.nom"
         [child_info]="child_info"
       ></app-child-information-tab>
-    </mat-tab>
+    </ng-template>
+  </mat-tab>
 
-    <!-- GUARDIANS -->
-    <mat-tab>
-      <ng-template mat-tab-label>
-        <mat-icon class="example-tab-icon">escalator_warning</mat-icon>
-        Guardians
-      </ng-template>
-
-     <app-child-guardians-tab
-     [child_info]="child_info"
-     ></app-child-guardians-tab>
-    </mat-tab>
-  </mat-tab-group>
-
+  <!-- GUARDIANS -->
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">escalator_warning</mat-icon>
+      Guardians
+    </ng-template>
+    <ng-template matTabContent>
+      <app-child-guardians-tab
+        [child_info]="child_info"
+      ></app-child-guardians-tab>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>

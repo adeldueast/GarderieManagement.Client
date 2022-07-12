@@ -44,7 +44,7 @@ export class StaffComponent implements OnInit, OnDestroy {
         //console.log(res);
 
         this.staff = res.data;
-        console.log(this.staff);
+        //console.log(this.staff);
         
         this.staff.sort(function(a, b){
           if(a.firstName.toLowerCase() < b.firstName.toLowerCase()) { return -1; }

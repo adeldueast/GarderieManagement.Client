@@ -33,7 +33,7 @@ export class GroupsComponent implements OnInit {
           this.groups.push(group);
         });
 
-        console.log(this.groups);
+        //console.log(this.groups);
       },
       error: (err) => console.log(err),
       complete: () => console.log('fetching all groups completed'),
