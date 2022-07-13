@@ -49,6 +49,18 @@ import { StaffComponent } from './Components/Staff/Staff.component';
 import {MatCardModule} from '@angular/material/card';
 import { ModalActionComponent } from './Components/modals/modal-action/modal-action.component';
 
+import { FullCalendarModule } from '@fullcalendar/angular'; // must go before plugins
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
+import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
+import rrulePlugin from '@fullcalendar/rrule'
+
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin,
+  interactionPlugin,
+  rrulePlugin
+]);
+
+
 export function tokenGetter() {
   return localStorage.getItem('access_token');
 }
@@ -109,6 +121,7 @@ const Material_Modules = [
         disallowedRoutes: [],
       },
     }),
+    FullCalendarModule 
     
   ],
   providers: [

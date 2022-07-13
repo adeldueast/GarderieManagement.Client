@@ -23,7 +23,7 @@ export class AuthService {
     private envUrl: EnvironmentUrlService,
     private jwtHelper: JwtHelperService
   ) {
-    console.log('😡😡😡 Auth.service constructor 😡😡😡');
+    //console.log('😡😡😡 Auth.service constructor 😡😡😡');
   
   }
 

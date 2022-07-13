@@ -7,22 +7,26 @@ import { AuthService } from '../auth.service';
   providedIn: 'root',
 })
 export class SignalRService {
-  private hubConnection!: signalR.HubConnection;
+  public connectionId?: any;
+  public hubConnection!: signalR.HubConnection;
   private subscribtion?: Subscription;
   private loginToken = '';
 
   constructor(private authService: AuthService) {
-    console.log('🤣🤣🤣 SIGNAL R.service constructor 🤣🤣🤣');
-  
+    //console.log('🤣🤣🤣 SIGNAL R.service constructor 🤣🤣🤣');
   }
 
-  onInit(){
-    this.subcribeToAuthChanges();
-    if(this.authService.isUserAuthenticated()){
+   onInit() {
+
+    //simply subscribe to obersvable
+     this.subcribeToAuthChanges();
+
+    //will check if user is Authenticated and trigger a true response in the subscription above
+    if (this.authService.isUserAuthenticated()) {
       this.authService.sendAuthStateChangeNotification(true);
     }
   }
-
+  
   onDestroy() {
     console.log('ngOnDestroy: cleaning up...');
     if (this.hubConnection) {
@@ -31,27 +35,33 @@ export class SignalRService {
     this.unsubcribeToAuthChanges();
   }
 
-  subcribeToAuthChanges() {
-    this.subscribtion = this.authService.authChanged.subscribe((result) => {
-      console.log('auth state changed =>', result);
-      if (result) {
-        this.loginToken = localStorage.getItem('token')!;
-        this.startConnection();
-        return;
-      }
+   subcribeToAuthChanges() {
+    this.subscribtion = this.authService.authChanged.subscribe(
+       async (result) => {
+        console.log('auth state changed =>', result);
+
+        // this will be triggered...
+        if (result) {
+          this.loginToken = localStorage.getItem('token')!;
+           await this.startConnection();
+          return;
+        }
       
-      if (this.hubConnection) {
-        this.endConnection();
-        return;
+
+        if (this.hubConnection) {
+          this.endConnection();
+          return;
+        }
       }
-    });
+    );
   }
 
   unsubcribeToAuthChanges() {
     this.subscribtion!.unsubscribe();
   }
 
-  startConnection = async () => {
+  startConnection =  async () => {
+
     this.hubConnection = new signalR.HubConnectionBuilder()
       .withUrl(`https://localhost:44356/Children`, {
         skipNegotiation: true,
@@ -59,12 +69,14 @@ export class SignalRService {
         accessTokenFactory: () => this.loginToken,
       })
       .build();
-    // console.log(this.hubConnection, 'XOXOXO');
+
 
     await this.hubConnection
       .start()
       .then(() => console.log('Connection to Hub started'))
       .catch((err) => console.log('Error while starting connection: ' + err));
+
+    await this.getConnectionId();
   };
 
   endConnection = () => {
@@ -102,17 +114,32 @@ export class SignalRService {
     this.hubConnection.off('notifyUserStatusChanges');
   }
 
-  addChildAttendanceChangesListener = (fn: () => void) => {
+  addChildAttendanceChangesListener = (fn: (data?:any) => any) => {
     this.hubConnection.on('childAttendanceUpdate', (data) => {
-      //console.log(data);
+      console.log(data);
       console.warn('notifying other users of childAttendanceChanges');
+      fn(data);
 
-      fn();
+  
     });
   };
 
   removeChildAttendanceChangesListener = () => {
     this.hubConnection.off('childAttendanceUpdate');
   };
+
+  async getConnectionId() {
+    await this.hubConnection
+      .invoke('GetConnectionId')
+      .then(async (response) => {
+   
+       
+        this.connectionId = response;
+
+        //console.log('FINALLY RECEIVED THE CONNECTION ID',  this.connectionId);
+        
+      })
+      .catch((err) => console.log(err));
+  }
   // ChildAttendanceUpdate
 }

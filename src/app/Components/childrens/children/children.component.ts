@@ -27,12 +27,11 @@ export class ChildrenComponent implements OnInit,OnDestroy {
     public childrenService: ChildrenService,
     private signalRService:SignalRService
   ) {
-    console.log('👶👶👶 SIGNAL R.service constructor 👶👶👶 ');
-
+    //console.log('ChildrenComponent');
+    
   }
   ngOnDestroy(): void {
-    console.log('👿👿👿 destroying child component... 👿👿👿');
-    
+  
     this.signalRService.removeChildAttendanceChangesListener()
    
 
@@ -40,7 +39,10 @@ export class ChildrenComponent implements OnInit,OnDestroy {
 
   ngOnInit(): void {
 
+    //fetches children
   this.getChildren();
+
+
   this.dataSource = new MatTableDataSource(this.children);
   this.signalRService.addChildAttendanceChangesListener(this.getChildren.bind(this))
   

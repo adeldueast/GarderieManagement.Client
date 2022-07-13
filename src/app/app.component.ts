@@ -12,17 +12,15 @@ export class AppComponent implements OnInit, OnDestroy {
   
     private signalRService: SignalRService
   ) {
-    // console.log('AppComponent constructor');
+     //console.log('AppComponent constructor');
   }
 
-  ngOnInit(): void {
-    console.log('ng INIT APP.COMPONENT.TS');
-    
+    ngOnInit(): void {
+    //console.log('ng INIT APP.COMPONENT.TS');
     this.signalRService.onInit();
   }
   ngOnDestroy(): void {
     console.log('ng DESOYTR APP.COMPONENT.TS');
-    
     this.signalRService.onDestroy();
   }
 }
