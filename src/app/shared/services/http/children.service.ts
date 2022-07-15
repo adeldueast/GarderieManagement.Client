@@ -31,6 +31,12 @@ export class ChildrenService {
     );
   }
 
+  getChildrenGroupedByGroup(route: string) {
+    return this.http.get<any>(
+      this.createCompleteRoute(route, this.envUrl.urlAddress)
+    );
+  }
+
   getChild(route: string) {
     return this.http.get<any>(
       this.createCompleteRoute(route, this.envUrl.urlAddress)

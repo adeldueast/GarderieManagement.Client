@@ -1,0 +1,17 @@
+
+
+
+<mat-form-field appearance="fill">
+  <mat-label>Children</mat-label>
+  <mat-select  #mySel [formControl]="pokemonControl" multiple (selectionChange)="doSomething($event)">
+    <mat-option [value]="0" (click)="toggleAllSelection()">All items</mat-option>
+    
+    <mat-optgroup *ngFor="let group of childrensGroups | keyvalue" [label]="group.key === 'null' ? 'No group ':group.key">
+     
+      <mat-option *ngFor="let enfant of group.value" [value]="enfant.id">
+        {{enfant.nom}}
+      </mat-option>
+    </mat-optgroup>
+ 
+  </mat-select>
+</mat-form-field>

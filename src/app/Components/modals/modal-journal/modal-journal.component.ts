@@ -1,9 +1,11 @@
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { JournalService } from 'src/app/shared/services/http/journal.service';
+import { ModalGroupedChildrenComponent } from '../modal-grouped-children/modal-grouped-children.component';
 import { StarRatingColor } from '../star-rating/star-rating.component';
+import { ModalGroupCreateComponent } from './../modal-group-create/modal-group-create.component';
 
 @Component({
   selector: 'app-modal-journal',
@@ -11,8 +13,6 @@ import { StarRatingColor } from '../star-rating/star-rating.component';
   styleUrls: ['./modal-journal.component.css'],
 })
 export class ModalJournalComponent implements OnInit {
-
-
   isCreate = true;
 
   starColor: StarRatingColor = StarRatingColor.accent;
@@ -32,6 +32,7 @@ export class ModalJournalComponent implements OnInit {
   @ViewChild('autosize') autosize!: CdkTextareaAutosize;
 
   constructor(
+    private dialog: MatDialog,
     private journalService: JournalService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
@@ -67,8 +68,6 @@ export class ModalJournalComponent implements OnInit {
     this.journalService
       .getChildsJournal(`Journal/Get/${this.data.id}`)
       .subscribe((res) => {
-    
-
         if (res.data != null) {
           this.isCreate = false;
           this.form.patchValue({
@@ -81,27 +80,30 @@ export class ModalJournalComponent implements OnInit {
             manger_message: res.data.manger_Message,
             commentaire_message: res.data.commentaire_Message,
           });
-
-         
         }
       });
   }
 
-  onSubmit(){
+  onSubmit() {
     console.log(this.form.value);
 
-    if(this.isCreate){
+    if (this.isCreate) {
       console.log('creating journal');
-      
-      this.journalService.createChildJournal(`Journal/Create/${this.data.id}`,this.form.value)
-      .subscribe(res=>console.log(res))
-      return
+
+      this.journalService
+        .createChildJournal(`Journal/Create/${this.data.id}`, this.form.value)
+        .subscribe((res) => console.log(res));
+      return;
     }
 
     console.log('updating journal');
 
-    this.journalService.updateChildJournal(`Journal/Update/${this.data.id}`,this.form.value)
-    .subscribe(res=>console.log(res)
-    )
+    this.journalService
+      .updateChildJournal(`Journal/Update/${this.data.id}`, this.form.value)
+      .subscribe((res) => console.log(res));
+  }
+
+  JournalGroupedClick() {
+    this.dialog.open(ModalGroupedChildrenComponent);
   }
 }
