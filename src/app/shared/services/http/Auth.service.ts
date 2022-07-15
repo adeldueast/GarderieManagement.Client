@@ -11,7 +11,7 @@ import { EnvironmentUrlService } from '../EnvironmentUrl.service';
 export class AuthService {
   public authChangeSub = new Subject<boolean>();
   public authChanged = this.authChangeSub.asObservable();
-  public user_info = {
+  public user_info: any = {
     uid: undefined,
     email: undefined,
     first_name: undefined,
@@ -24,7 +24,6 @@ export class AuthService {
     private jwtHelper: JwtHelperService
   ) {
     //console.log('😡😡😡 Auth.service constructor 😡😡😡');
-  
   }
 
   public registerUser = (route: string, register_request: any) => {
@@ -80,16 +79,12 @@ export class AuthService {
       return true;
     }
 
-  
     this.logout();
     return false;
   };
 
-  public isUserInRole = (role: string): boolean => {
-    const token = localStorage.getItem('token') || undefined;
-    const decodedToken = this.jwtHelper.decodeToken(token);
-    const roles = decodedToken.role;
-    return roles.includes(role);
+  public isUserInRole = (role: string): any => {
+    return this.user_info.roles.includes(role);
   };
 
   private createCompleteRoute = (route: string, envAddress: string) => {

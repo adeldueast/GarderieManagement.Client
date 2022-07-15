@@ -75,6 +75,7 @@ export class SignalRService {
       .start()
       .then(() => console.log('Connection to Hub started'))
       .catch((err) => console.log('Error while starting connection: ' + err));
+      
 
     await this.getConnectionId();
   };

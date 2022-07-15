@@ -6,6 +6,7 @@ import { ChildrenService } from 'src/app/shared/services/http/children.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { ModalActionComponent } from '../../modals/modal-action/modal-action.component';
 import { SignalRService } from 'src/app/shared/services/http/hub/SignalR.service';
+import { AuthService } from 'src/app/shared/services/http/auth.service';
 
 
 
@@ -25,7 +26,8 @@ export class ChildrenComponent implements OnInit,OnDestroy {
   constructor(
     public dialog: MatDialog,
     public childrenService: ChildrenService,
-    private signalRService:SignalRService
+    private signalRService:SignalRService,
+    public authService:AuthService
   ) {
     //console.log('ChildrenComponent');
     
@@ -38,14 +40,15 @@ export class ChildrenComponent implements OnInit,OnDestroy {
   }
 
   ngOnInit(): void {
-
+  //console.log('XOXOX',  this.authService.isUserInRole('employee'));
+  
     //fetches children
   this.getChildren();
 
 
   this.dataSource = new MatTableDataSource(this.children);
   this.signalRService.addChildAttendanceChangesListener(this.getChildren.bind(this))
-  
+ 
   }
  
   openDialog() {
@@ -66,7 +69,7 @@ export class ChildrenComponent implements OnInit,OnDestroy {
       
         console.log('NEW ENFANT REQUEST', childCreate_request);
         this.createChild(childCreate_request);
-        location.reload();
+        // location.reload();
       }
     });
   }

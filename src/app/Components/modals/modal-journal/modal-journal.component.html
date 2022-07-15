@@ -1,0 +1,115 @@
+<div class="min-w-[600px] ">
+  <!-- HEADER -->
+<div class="flex justify-between items-center mb-4">
+  <h2 class="m-0" mat-dialog-title>Journal de bord for {{this.data.nom}}</h2>
+  <button
+  type="button"
+  mat-button
+  class="btn-primary bg-blue-700 text-white"
+ 
+>
+ Journal groupé
+</button>
+</div>
+
+
+
+
+
+
+<!-- BODY -->
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="form"  id="ngForm" (submit)="onSubmit()">
+
+ <div class="mb-1">
+  <div class="grid grid-cols-2 gap-6 mb-1.5">
+    <div class="flex  items-center gap-x-1">
+      <h3 class="m-0 p-0 w-[90.63px]">Humeur</h3>
+      <app-star-rating  [rating]="form.get('humeur_rating')!.value"  [starCount]="5" [color]="starColorW" (ratingUpdated)="onHumeurRatingChanged($event)"></app-star-rating>
+    </div>
+    <div class="flex  items-center gap-x-1">
+      <h3 class="m-0 p-0 ">Manger</h3>
+      <app-star-rating  [rating]="form.get('manger_rating')!.value"  [starCount]="5" [color]="starColorW" (ratingUpdated)="onMangerRatingChanged($event)"></app-star-rating>
+    </div>
+  </div>
+  <div class="grid grid-cols-2 gap-6">
+    <div class="flex  items-center gap-x-1">
+      <h3 class="m-0 p-0">Participation</h3>
+      <app-star-rating  [rating]="form.get('participation_rating')!.value"  [starCount]="5" [color]="starColorW" (ratingUpdated)="onParticipationRatingChanged($event)"></app-star-rating>
+    </div>
+    <div class="flex  items-center gap-x-1">
+      <h3 class="m-0 p-0">Toilette</h3>
+      <app-star-rating  [rating]="form.get('toilette_rating')!.value"  [starCount]="5" [color]="starColorW" (ratingUpdated)="onToiletteRatingChanged($event)"></app-star-rating>
+    </div>
+  </div>
+ </div>
+  
+  
+
+    <mat-form-field  appearance="standard" class="w-full p-0">
+      <mat-label>Activite message</mat-label>
+      <textarea 
+                formControlName="activite_message"
+                matInput
+                placeholder="dadas"
+                cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="1"
+                cdkAutosizeMaxRows="5"></textarea>
+    </mat-form-field>
+
+    <mat-form-field  appearance="standard" class="w-full p-0">
+      <mat-label>Manger message</mat-label>
+      <textarea 
+                formControlName="manger_message"
+                matInput
+                placeholder="dadas"
+                cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="1"
+                cdkAutosizeMaxRows="5"></textarea>
+    </mat-form-field>
+    <mat-form-field  appearance="standard" class="w-full p-0">
+      <mat-label>Commentaire</mat-label>
+      <textarea 
+                formControlName="commentaire_message"
+                matInput
+                placeholder="dadas"
+                cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="1"
+                cdkAutosizeMaxRows="5"></textarea>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- FOOTER -->
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button
+  form="ngForm"
+  type="submit"
+  mat-button
+  class="btn-primary"
+  cdkFocusInitial
+>
+  {{this.isCreate ? 'Create' : 'Update'}}
+</button>
+</mat-dialog-actions>
+</div>
