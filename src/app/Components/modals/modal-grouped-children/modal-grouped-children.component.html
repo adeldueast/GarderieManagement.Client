@@ -1,17 +1,250 @@
+{{
+  this.firstFormGroup.get("selectedChildrenControl")?.value ? "true" : "false"
+}}das
+<br />
+{{ this.firstFormGroup.get("selectedChildrenControl")?.value.length }}das
 
+<mat-stepper orientation="vertical" [linear]="true" #stepper>
+  <!-- SELECT CHILDREN -->
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel
+        >Select children <mat-icon>child_care</mat-icon></ng-template
+      >
 
+      <mat-form-field appearance="fill" class="min-w-[300px]">
+        <mat-label>Children</mat-label>
+        <mat-select
+          formControlName="selectedChildrenControl"
+          multiple
+          matInput
+          required
+          (selectionChange)="onSelectChanges($event)"
+        >
+          <mat-select-trigger>
+            {{
+              this.firstFormGroup.get("selectedChildrenControl")?.value
+                ? this.firstFormGroup.get("selectedChildrenControl")?.value
+                    .length
+                : ""
+            }}
+            child(s) selected
+          </mat-select-trigger>
 
-<mat-form-field appearance="fill">
-  <mat-label>Children</mat-label>
-  <mat-select  #mySel [formControl]="pokemonControl" multiple (selectionChange)="doSomething($event)">
-    <mat-option [value]="0" (click)="toggleAllSelection()">All items</mat-option>
+          <mat-optgroup
+            *ngFor="let group of groupedChildren | keyvalue"
+            class="p-1"
+          >
+            <div class="flex items-center justify-between">
+              <div class="flex items-center">
+                <h3 class="m-0" color="primary">
+                  {{ group.key != "null" ? group.key : "No group" }}
+                </h3>
+                <button
+                  class="pl-0"
+                  mat-button
+                  (click)="expandDocumentTypes(group.key)"
+                >
+                  <mat-icon>keyboard_arrow_down</mat-icon>
+                </button>
+              </div>
+              <mat-checkbox
+                [checked]="false"
+                (change)="toggleSelection($event, group)"
+              ></mat-checkbox>
+            </div>
+
+            <mat-option
+              *ngFor="let enfant of group.value"
+              [value]="enfant.id"
+              [ngClass]="
+                isExpandCategory.get(group.key) ? 'list-show' : 'list-hide'
+              "
+            >
+              {{ enfant.nom }}
+            </mat-option>
+          </mat-optgroup>
+        </mat-select>
+      </mat-form-field>
+
+      <div>
+        <button mat-button matStepperNext type="button">Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <!-- RATING -->
+  <mat-step>
+    <ng-template matStepLabel
+      >Humeur ratings <mat-icon>sentiment_satisfied</mat-icon></ng-template
+    >
+
+    <div
+      *ngFor="
+        let enfant_rating of this.secondFormGroup.get('ratings')?.value;
+        let i = index
+      "
+    >
+      <div class="flex items-center justify-between">
+        {{ enfant_rating.nom }} :<app-star-rating
+          [index]="i"
+          (ratingUpdated)="onHumeurRatingChanged($event)"
+          [rating]="enfant_rating.humeur_rating"
+        ></app-star-rating>
+      </div>
+    </div>
+
+    <div>
+      <button mat-button matStepperNext>Next</button>
+    </div>
+  </mat-step>
+
+  <!-- RATING -->
+  <mat-step>
+    <ng-template matStepLabel
+      >Manger ratings <mat-icon>baby_changing_station</mat-icon></ng-template
+    >
+
+    <div
+      *ngFor="
+        let enfant_rating of this.secondFormGroup.get('ratings')?.value;
+        let i = index
+      "
+    >
+      <div class="flex items-center justify-between">
+        {{ enfant_rating.nom }} :<app-star-rating
+          [index]="i"
+          (ratingUpdated)="onMangerRatingChanged($event)"
+          [rating]="enfant_rating.manger_rating"
+        ></app-star-rating>
+      </div>
+    </div>
+
+    <div>
+      <button mat-button matStepperNext>Next</button>
+    </div>
+  </mat-step>
+
+  <!-- RATING -->
+  <mat-step>
+  
+      <ng-template matStepLabel
+        >Participation ratings <mat-icon>direction_run</mat-icon></ng-template
+      >
+
+      <div
+        *ngFor="
+          let enfant_rating of this.secondFormGroup.get('ratings')?.value;
+          let i = index
+        "
+      >
+        <div class="flex items-center justify-between">
+          {{ enfant_rating.nom }} :<app-star-rating
+            [index]="i"
+            (ratingUpdated)="onParticipationRatingChanged($event)"
+            [rating]="enfant_rating.participation_rating"
+          ></app-star-rating>
+        </div>
+      </div>
+
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
     
-    <mat-optgroup *ngFor="let group of childrensGroups | keyvalue" [label]="group.key === 'null' ? 'No group ':group.key">
+  </mat-step>
+
+  <!-- RATING -->
+  <mat-step>
+    <ng-template matStepLabel
+      >Manger ratings <mat-icon>restaurant_menu</mat-icon></ng-template
+    >
+
+    <div
+      *ngFor="
+        let enfant_rating of this.secondFormGroup.get('ratings')?.value;
+        let i = index
+      "
+    >
+      <div class="flex items-center justify-between">
+        {{ enfant_rating.nom }} :<app-star-rating
+          [index]="i"
+          (ratingUpdated)="onToiletteRatingChanged($event)"
+          [rating]="enfant_rating.toilette_rating"
+        ></app-star-rating>
+      </div>
+    </div>
+
+    <div>
+      <button mat-button matStepperNext>Next</button>
+    </div>
+  </mat-step>
+
+  <!-- ACTIVITY MESSAGE -->
+  <form [formGroup]="secondFormGroup">
+  <mat-step [stepControl]="activiteFormGroup">
+  
+  
+      <ng-template matStepLabel
+      >Activité message<mat-icon></mat-icon
+    ></ng-template>
+
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Activités de la journée</mat-label>
+      <textarea
+      formControlName="activite_message"
+        matInput
+        cdkTextareaAutosize
+        #autosize="cdkTextareaAutosize"
+        cdkAutosizeMinRows="4"
+        cdkAutosizeMaxRows="5"
+        required
+      ></textarea>
+    </mat-form-field>
+
+    <div>
+      <button mat-button matStepperNext type="button">Next</button>
+    </div>
      
-      <mat-option *ngFor="let enfant of group.value" [value]="enfant.id">
-        {{enfant.nom}}
-      </mat-option>
-    </mat-optgroup>
- 
-  </mat-select>
-</mat-form-field>
+  </mat-step>
+  <!-- MANGER MESSAGE -->
+  <mat-step [stepControl]="mangerFormGroup">
+   
+  
+    <ng-template matStepLabel
+    >Manger message<mat-icon></mat-icon
+  ></ng-template>
+
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Activités de la journée</mat-label>
+    <textarea
+    formControlName="manger_message"
+      
+      required
+      matInput
+      cdkTextareaAutosize
+     
+      cdkAutosizeMinRows="4"
+      cdkAutosizeMaxRows="5"
+    ></textarea>
+  </mat-form-field>
+
+  <div>
+    <button mat-button matStepperNext type="button">Next</button>
+  </div>
+
+  
+  </mat-step>
+
+  <!-- FINAL STEP -->
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <p>You are now done.</p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+      <button  type="button" (click)="onSubmit()">SUBMIT</button>
+    </div>
+  </mat-step>
+  
+</form>
+</mat-stepper>

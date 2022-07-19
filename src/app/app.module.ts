@@ -55,7 +55,7 @@ import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
 import rrulePlugin from '@fullcalendar/rrule'
 import { ModalJournalComponent } from './Components/modals/modal-journal/modal-journal.component';
 import { StarRatingComponent } from './Components/modals/star-rating/star-rating.component';
-
+import {MatStepperModule} from '@angular/material/stepper';
 import { ModalGroupedChildrenComponent } from './Components/modals/modal-grouped-children/modal-grouped-children.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
@@ -83,7 +83,8 @@ const Material_Modules = [
   MatAutocompleteModule,
   MatListModule,
   MatTooltipModule,
-  MatCheckboxModule ,MatSelectModule,MatCardModule
+  MatCheckboxModule ,MatSelectModule,MatCardModule,
+  MatStepperModule
   
 ];
 

@@ -13,6 +13,7 @@ export class StarRatingComponent implements OnInit {
 
   @Output() private ratingUpdated = new EventEmitter();
 
+  @Input() index?:number;
 
   public ratingArr:number[] = [];
 
@@ -26,7 +27,12 @@ export class StarRatingComponent implements OnInit {
   }
 
   onClick(rating:number) {
-    this.ratingUpdated.emit(rating);
+    const emitValue = {
+      rating:rating,
+      index: this.index
+
+    }
+    this.ratingUpdated.emit(emitValue);
     return false;
   }
 

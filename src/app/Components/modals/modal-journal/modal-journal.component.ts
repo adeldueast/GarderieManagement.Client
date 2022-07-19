@@ -41,26 +41,26 @@ export class ModalJournalComponent implements OnInit {
     this.getChildsJournal();
   }
 
-  onHumeurRatingChanged(humeur_rating: number) {
+  onHumeurRatingChanged(event:any) {
     this.form.patchValue({
-      humeur_rating: humeur_rating,
+      humeur_rating: event.rating,
     });
   }
-  onMangerRatingChanged(manger_rating: number) {
+  onMangerRatingChanged(event:any) {
     this.form.patchValue({
-      manger_rating: manger_rating,
-    });
-  }
-
-  onParticipationRatingChanged(participation_rating: number) {
-    this.form.patchValue({
-      participation_rating: participation_rating,
+      manger_rating: event.rating,
     });
   }
 
-  onToiletteRatingChanged(toilette_rating: number) {
+  onParticipationRatingChanged(event:any) {
     this.form.patchValue({
-      toilette_rating: toilette_rating,
+      participation_rating: event.rating,
+    });
+  }
+
+  onToiletteRatingChanged(event:any) {
+    this.form.patchValue({
+      toilette_rating: event.rating,
     });
   }
 
@@ -68,13 +68,15 @@ export class ModalJournalComponent implements OnInit {
     this.journalService
       .getChildsJournal(`Journal/Get/${this.data.id}`)
       .subscribe((res) => {
+        console.log(res);
+        
         if (res.data != null) {
           this.isCreate = false;
           this.form.patchValue({
             humeur_rating: res.data.humeur_Rating,
-            manger_rating: res.data.humeur_Rating,
-            participation_rating: res.data.humeur_Rating,
-            toilette_rating: res.data.humeur_Rating,
+            manger_rating: res.data.manger_Rating,
+            participation_rating: res.data.participation_Rating,
+            toilette_rating: res.data.toilette_Rating,
 
             activite_message: res.data.activite_Message,
             manger_message: res.data.manger_Message,

@@ -24,6 +24,17 @@ export class JournalService {
     );
   }
 
+  
+  createGroupedJournals(route: string, createGroupedJournals_request: any) {
+    return this.http.post<any>(
+      this.createCompleteRoute(route, this.envUrl.urlAddress),
+      createGroupedJournals_request
+    );
+  }
+
+
+  
+
   updateChildJournal(route: string, updateJournal_request: any) {
     return this.http.post<any>(
       this.createCompleteRoute(route, this.envUrl.urlAddress),
