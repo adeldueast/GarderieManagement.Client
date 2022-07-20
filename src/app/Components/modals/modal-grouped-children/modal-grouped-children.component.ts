@@ -93,11 +93,14 @@ export class ModalGroupedChildrenComponent implements OnInit {
       console.log('event checked true');
 
       group.value.forEach((child: any) => {
+        console.log('xoxo',child);
+        
         if (!selectedChildrens.includes(child.id)) {
           selectedChildrens.push(child.id);
           ratings.push({
             id: child.id,
             nom: child.nom,
+            image:child.image,
             Humeur_Rating: 5,
             Manger_Rating: 5,
             Participation_Rating: 5,
@@ -119,19 +122,6 @@ export class ModalGroupedChildrenComponent implements OnInit {
       .get('selectedChildrenControl')
       ?.setValue(selectedChildrens);
     this.secondFormGroup.get('ratings')?.setValue(ratings);
-    // this.form.get('ratings')?.value.setValue(
-    //   this.selectedChildrenControl.value.map((x: string) => {
-    //     return {
-    //       id: x,
-    //       ratings: {
-    //         humeur_rating: 5,
-    //         manger_rating: 5,
-    //         participation_rating: 5,
-    //         toilette_rating: 5,
-    //       } as ChildJournal,
-    //     };
-    //   })
-    // );
 
     console.log(this.secondFormGroup.get('ratings')?.value);
 

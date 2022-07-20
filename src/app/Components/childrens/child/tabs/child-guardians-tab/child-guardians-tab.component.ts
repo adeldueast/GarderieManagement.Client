@@ -10,13 +10,6 @@ import { UsersService } from 'src/app/shared/services/http/users.service';
   encapsulation: ViewEncapsulation.None,
 })
 export class ChildGuardiansTabComponent implements OnInit {
-  typesOfShoes: string[] = [
-    'Boots',
-    'Clogs',
-    'Loafers',
-    'Moccasins',
-    'Sneakers',
-  ];
 
   //List of all guardians *needs to be fetched*
   guardians: any[] = [];
@@ -61,7 +54,7 @@ export class ChildGuardiansTabComponent implements OnInit {
       .getAllChildsGuardians(`User/ChildsTutors?enfantId=${this.child_info.id}`)
       .subscribe({
         next: (res) => {
-        //  console.log(res);
+        console.log(res);
 
           res.data.forEach((g: any) => {
             let guardian = {
@@ -69,8 +62,8 @@ export class ChildGuardiansTabComponent implements OnInit {
               name: `${g.applicationUser.firstName} ${g.applicationUser.lastName}`,
               email: g.applicationUser.email,
               relation: g.relation,
-              emergencyContact:g.applicationUser.emergencyContact,
-              authorizePickup: g.applicationUser.authorizePickup
+              emergencyContact:g.emergencyContact,
+              authorizePickup: g.authorizePickup
             };
             this.childsGuardians.push(guardian);
              
@@ -94,10 +87,7 @@ export class ChildGuardiansTabComponent implements OnInit {
         guardians: this.guardians,
       },
     });
-    //todo: pass the created guardian back toe the tab componenent to display it
-    dialogRef.beforeClosed().subscribe((result) => {
-      // console.log(result);
-    });
+  
   }
 
   selectedChange() {

@@ -86,7 +86,12 @@
       "
     >
       <div class="flex items-center justify-between">
-        {{ enfant_rating.nom }} :<app-star-rating
+      <div class="flex items-center justify-start ">
+       <img class="w-8 h-8 rounded-full mr-2" [src]="enfant_rating.image" alt=""> {{ enfant_rating.nom }} :
+
+      </div>
+    
+        <app-star-rating
           [index]="i"
           (ratingUpdated)="onHumeurRatingChanged($event)"
           [rating]="enfant_rating.humeur_rating"
@@ -112,7 +117,10 @@
       "
     >
       <div class="flex items-center justify-between">
-        {{ enfant_rating.nom }} :<app-star-rating
+        <div class="flex items-center justify-start ">
+          <img class="w-8 h-8 rounded-full mr-2" [src]="enfant_rating.image" alt=""> {{ enfant_rating.nom }} :
+   
+         </div><app-star-rating
           [index]="i"
           (ratingUpdated)="onMangerRatingChanged($event)"
           [rating]="enfant_rating.manger_rating"
@@ -139,7 +147,10 @@
         "
       >
         <div class="flex items-center justify-between">
-          {{ enfant_rating.nom }} :<app-star-rating
+          <div class="flex items-center justify-start ">
+            <img class="w-8 h-8 rounded-full mr-2" [src]="enfant_rating.image" alt=""> {{ enfant_rating.nom }} :
+     
+           </div><app-star-rating
             [index]="i"
             (ratingUpdated)="onParticipationRatingChanged($event)"
             [rating]="enfant_rating.participation_rating"
@@ -166,7 +177,10 @@
       "
     >
       <div class="flex items-center justify-between">
-        {{ enfant_rating.nom }} :<app-star-rating
+        <div class="flex items-center justify-start ">
+          <img class="w-8 h-8 rounded-full mr-2" [src]="enfant_rating.image" alt=""> {{ enfant_rating.nom }} :
+   
+         </div><app-star-rating
           [index]="i"
           (ratingUpdated)="onToiletteRatingChanged($event)"
           [rating]="enfant_rating.toilette_rating"
@@ -242,7 +256,7 @@
     <div>
       <button mat-button matStepperPrevious>Back</button>
       <button mat-button (click)="stepper.reset()">Reset</button>
-      <button  type="button" (click)="onSubmit()">SUBMIT</button>
+      <button mat-dialog-close type="button" (click)="onSubmit()">SUBMIT</button>
     </div>
   </mat-step>
   

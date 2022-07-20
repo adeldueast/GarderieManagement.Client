@@ -86,7 +86,7 @@ export class ModalGuardianCreateComponent implements OnInit {
     //We assigning existing guardian for furrent child, so disable the form to display its info except for the relation
     this.isCreatingGuardian = false;
     for (var control in this.form.controls) {
-      if (control != 'relation') {
+      if (control != 'relation' && control != 'emergencyContact' && control != 'authorizePickup' ) {
         this.form.controls[control].disable();
       } else {
         this.form.controls[control].enable();
@@ -145,6 +145,8 @@ export class ModalGuardianCreateComponent implements OnInit {
         tutorId: this.selectedUser.id,
         enfantId: this.data.enfantId,
         relation: formValue.relation,
+        emergencyContact: formValue.emergencyContact,
+        authorizePickup : formValue.authorizePickup
       })
       .subscribe({
         next: (res) => [console.log('res', res), alert(res.data.message)],
