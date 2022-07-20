@@ -57,6 +57,8 @@ import { ModalJournalComponent } from './Components/modals/modal-journal/modal-j
 import { StarRatingComponent } from './Components/modals/star-rating/star-rating.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import { ModalGroupedChildrenComponent } from './Components/modals/modal-grouped-children/modal-grouped-children.component';
+import { GroupComponent } from './Components/group/group.component';
+import { ModalDeleteComponent } from './Components/modals/modal-delete/modal-delete.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -110,7 +112,9 @@ const Material_Modules = [
     ModalActionComponent,
     ModalJournalComponent,
     StarRatingComponent,
-    ModalGroupedChildrenComponent
+    ModalGroupedChildrenComponent,
+    GroupComponent,
+    ModalDeleteComponent
     
   ],
 

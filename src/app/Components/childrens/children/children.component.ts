@@ -47,7 +47,7 @@ export class ChildrenComponent implements OnInit,OnDestroy {
 
 
   this.dataSource = new MatTableDataSource(this.children);
-  this.signalRService.addChildAttendanceChangesListener(this.getChildren.bind(this))
+  this.signalRService.addChildAttendanceChangesListener(this.updateChildren.bind(this))
  
   }
  
@@ -79,7 +79,21 @@ export class ChildrenComponent implements OnInit,OnDestroy {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  updateChildren(data?:any){
+
+    
+   const index =  this.children.findIndex(x => x.id ===  data.enfantId);
+   if(index!= -1){
+    this.children[index].hasArrived = data.present
+   }
+
+   
+    //this.children[index].hasArrived = data.present;
+
+  }
   getChildren(){
+   
+    
     this.childrenService.getChildren('Enfant/GetAll').subscribe({
       next: (res) => {
       console.log(res);

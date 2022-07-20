@@ -11,6 +11,7 @@ import { StaffComponent } from './Components/Staff/Staff.component';
 import { ChildrenComponent } from './Components/childrens/children/children.component';
 import { ChildComponent } from './Components/childrens/child/child.component';
 import { GroupsComponent } from './Components/groups/groups.component';
+import { GroupComponent } from './Components/group/group.component';
 
 const routes: Routes = [
   // Login page  http://localhost:4200/login
@@ -41,6 +42,12 @@ const routes: Routes = [
         // Groups page  http://localhost:4200/groups
         path: 'groups',
         component: GroupsComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        // Groups page  http://localhost:4200/groups
+        path: 'groups/:id',
+        component: GroupComponent,
         canActivate: [AuthGuard],
       },
       // Staff page  http://localhost:4200/Staff

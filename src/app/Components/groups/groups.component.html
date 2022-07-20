@@ -7,6 +7,7 @@
 <div class="content-container overflow-y-scroll ">
   
   <mat-card
+  [routerLink]="['/groups', group.id]"
   class="h-[140px] mb-3"
   [ngStyle]="{
     'background-color': group.hexColor ? group.hexColor : '#ECECEC'

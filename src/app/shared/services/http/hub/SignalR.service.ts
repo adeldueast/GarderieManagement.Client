@@ -117,7 +117,7 @@ export class SignalRService {
 
   addChildAttendanceChangesListener = (fn: (data?:any) => any) => {
     this.hubConnection.on('childAttendanceUpdate', (data) => {
-      console.log(data);
+      //console.log(data);
       console.warn('notifying other users of childAttendanceChanges');
       fn(data);
 

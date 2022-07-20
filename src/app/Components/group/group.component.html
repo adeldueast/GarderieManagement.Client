@@ -1,0 +1,28 @@
+
+<header class="relative p-2 flex flex-col justify-center items-center gap-3 rounded-t-md h-[212px]"  [ngStyle]="{
+  'background-color': group?.hexColor ? group?.hexColor : ''
+}">
+  
+  <p class="text-4xl">{{ group?.name }}</p>
+
+     
+      <button (click)="openDeleteModal(group?.name)" mat-raised-button color="primary" class="mat-button ">Delete<mat-icon class="icon-delete" >delete</mat-icon> </button>
+  </header>
+
+<div *ngIf="group?.enfants.length>0;else noChildren">
+<mat-card class="my-4" *ngFor="let child of group?.enfants" (click)="openActionModal(child)">
+
+  
+<div class="flex items-center gap-x-3">
+  <img  class="w-14 rounded-full"[src]="child.image" alt="image">
+
+  <h2 class="m-0">{{child.nom}}</h2>
+  <mat-icon  matTooltip="Arrived" *ngIf="child.hasArrived" class="icon-arrived">directions_walk</mat-icon>
+</div>
+</mat-card>
+</div>
+
+<ng-template #noChildren>
+  
+  <h1 class="text-center mt-[300px]">No children..</h1>
+</ng-template>
