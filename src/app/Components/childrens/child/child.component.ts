@@ -36,10 +36,13 @@ export class ChildComponent implements OnInit, OnDestroy {
       .getChild(`Enfant/Get/${this.child_info.id}`)
       .subscribe({
         next: (res) => {
+          console.log(res);
+          
           this.child_info.image = res.data.image;
           this.child_info.nom = res.data.nom;
           this.child_info.birthdate = res.data.dateNaissance;
           this.child_info.groupId = res.data.group ? res.data.group.id : 0;
+          this.child_info.hexColor = res.data.group ? res.data.group.hexColor : ''
 
           // console.log('CHILD_INFO', this.child_info);
         },

@@ -20,7 +20,7 @@ export class GroupsComponent implements OnInit {
   getAllGroups() {
     this.groupService.getAllGroups('Group/Get').subscribe({
       next: (res) => {
-        //console.log(res);
+        console.log(res);
         res.data.forEach((g: any) => {
           let group = {
             id: g.id,

@@ -9,7 +9,7 @@
   <mat-card
   class="h-[140px] mb-3"
   [ngStyle]="{
-    'background-color': group.hexColor ? group.hexColor : '#B8B8B8'
+    'background-color': group.hexColor ? group.hexColor : '#ECECEC'
   }"
   *ngFor="let group of groups"
   [title]="group.name"
@@ -20,7 +20,7 @@
       : "No Name"
   }}</mat-card-title>
 
-  <mat-card-subtitle>{{ group.educatriceName }}</mat-card-subtitle>
+  <mat-card-subtitle class="">Educator: {{ group.educatriceName }}</mat-card-subtitle>
   <mat-card-content align="start">
     <div
       *ngIf="group.enfantsIds.length>0; else noEnfants"
@@ -33,7 +33,7 @@
         alt=""
       />
     </div>
-    <ng-template #noEnfants> No children.. </ng-template>
+    <ng-template #noEnfants> <h3>No child has arrived </h3>  </ng-template>
   </mat-card-content>
 </mat-card>
 

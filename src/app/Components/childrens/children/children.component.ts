@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+  import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalChildCreateComponent } from '../../modals/modal-child-create/modal-child-create.component';
 import { FormGroup } from '@angular/forms';
@@ -82,9 +82,19 @@ export class ChildrenComponent implements OnInit,OnDestroy {
   getChildren(){
     this.childrenService.getChildren('Enfant/GetAll').subscribe({
       next: (res) => {
-      // console.log(res);
+      console.log(res);
        
-        this.children = res.data;
+       // this.children = res.data;
+        res.data.forEach((c:any) => {
+          const child = {
+            id:c.id,
+            nom: c.nom,
+            image : c.image,
+            hexColor: c.hexColor,
+            hasArrived : c.hasArrived
+          }
+          this.children.push(child)
+        });
         this.dataSource = new  MatTableDataSource(this.children);
         
         

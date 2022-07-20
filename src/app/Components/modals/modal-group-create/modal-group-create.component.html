@@ -13,8 +13,8 @@
     </mat-form-field>
 
       <!-- COLOR PICKER -->
-      <mat-form-field>
-        <input matInput [ngxMatColorPicker]="picker" formControlName="colorCtr">
+      <mat-form-field >
+        <input matInput [ngxMatColorPicker]="picker" formControlName="colorCtr" >
         <ngx-mat-color-toggle matSuffix [for]="picker"></ngx-mat-color-toggle>
         <ngx-mat-color-picker #picker [touchUi]="true" [color]="color"></ngx-mat-color-picker>
     </mat-form-field>
