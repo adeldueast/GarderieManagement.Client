@@ -18,7 +18,7 @@ import { AuthService } from 'src/app/shared/services/http/auth.service';
 })
 export class ChildrenComponent implements OnInit,OnDestroy {
 
-  displayedColumns: string[] = ['id', 'nom'];
+  displayedColumns: string[] = ['id', 'nom','group'];
   children : any[] = [];
   dataSource = new MatTableDataSource(this.children);
  
@@ -105,7 +105,8 @@ export class ChildrenComponent implements OnInit,OnDestroy {
             nom: c.nom,
             image : c.image,
             hexColor: c.hexColor,
-            hasArrived : c.hasArrived
+            hasArrived : c.hasArrived,
+            group :c.group
           }
           this.children.push(child)
         });
