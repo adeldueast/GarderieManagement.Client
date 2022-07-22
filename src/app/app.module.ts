@@ -60,6 +60,8 @@ import { ModalGroupedChildrenComponent } from './Components/modals/modal-grouped
 import { GroupComponent } from './Components/group/group.component';
 import { ModalDeleteComponent } from './Components/modals/modal-delete/modal-delete.component';
 import { ModalNotificationsComponent } from './Components/modals/modal-notifications/modal-notifications.component';
+import { DateAsAgoPipe } from './shared/services/pipes/dateAsAgo.pipe';
+import { CommonModule } from '@angular/common';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -116,7 +118,8 @@ const Material_Modules = [
     ModalGroupedChildrenComponent,
     GroupComponent,
     ModalDeleteComponent,
-    ModalNotificationsComponent
+    ModalNotificationsComponent,
+    DateAsAgoPipe
     
   ],
 
@@ -136,7 +139,8 @@ const Material_Modules = [
         disallowedRoutes: [],
       },
     }),
-    FullCalendarModule 
+    FullCalendarModule,
+    CommonModule
     
   ],
   providers: [

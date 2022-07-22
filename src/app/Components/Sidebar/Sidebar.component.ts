@@ -18,26 +18,38 @@ export class SidebarComponent implements OnInit {
     public dialog: MatDialog
   ) {}
 
-  notifications?:number;
-  
+  notifications?: any;
+  newNotifications: number = 0;
   ngOnInit() {
-     this.getNotification();
-  
+    this.getNotifications();
   }
 
-  getNotification() {
+  getNotifications() {
     this.notificationService.getAllNotification('Notification/Get').subscribe(
       (res) => {
         console.log(res);
-        this.notifications = res.length;
+        this.newNotifications = 0;
+        this.notifications = res;
+        this.notifications.forEach((n: any) => {
+          if (!n.seen) {
+            this.newNotifications++;
+          } else {
+            return;
+          }
+        });
       },
       (err) => console.log(err)
     );
   }
-  openNotificationDialog(){
-    const dialogRef = this.dialog.open(ModalNotificationsComponent);
 
+  openNotificationDialog() {
+    const dialogRef = this.dialog.open(ModalNotificationsComponent, {
+      data: {
+        notifications: this.notifications,
+      },
+    });
   }
+
   logout() {
     //Gets rid of the token in the local storage
     //this.authService.logout();

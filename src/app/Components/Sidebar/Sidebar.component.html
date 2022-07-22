@@ -13,72 +13,11 @@
     </p>
   </div>
 
-  <!-- Menu  -->
-  <ul class="relative p-4">
+
+  <!-- Guardians Menu  -->
+  <ul class="relative p-4" *ngIf="this.authService.isUserInRole('tutor');else Employees">
     <mat-divider></mat-divider>
 
-    <!-- Childrens -->
-    <li class="relative">
-      <a
-        routerLink="children"
-        class="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out"
-        href="#!"
-        data-mdb-ripple="true"
-        data-mdb-ripple-color="dark"
-      >
-        <mat-icon
-          class="w-3 h-3 mr-3"
-          aria-hidden="true"
-          aria-label="Example home icon"
-          >child_care</mat-icon
-        >
-        <span>Childrens</span>
-      </a>
-    </li>
-
-    <!-- Groups -->
-    <li class="relative">
-      <a
-        routerLink="groups"
-        class="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out"
-        href="#!"
-        data-mdb-ripple="true"
-        data-mdb-ripple-color="dark"
-      >
-        <mat-icon
-          class="w-3 h-3 mr-3"
-          aria-hidden="true"
-          aria-label="Example home icon"
-          >diversity_3</mat-icon
-        >
-        <span>Groups</span>
-      </a>
-    </li>
-
- 
-
-    <!-- Staff -->
-    <li class="relative">
-      <a
-        routerLink="staff"
-        
-        class="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out"
-        href="#!"
-        data-mdb-ripple="true"
-        data-mdb-ripple-color="dark"
-      >
-        <mat-icon
-          class="w-3 h-3 mr-3"
-          aria-hidden="true"
-          aria-label="Example home icon"
-          >badge</mat-icon
-        >
-        <span>Staff</span>
-      </a>
-    </li>
-
-    <!-- Events -->
-    <mat-divider></mat-divider>
     <li class="relative">
       <a
         class="cursor-pointer flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out"
@@ -96,6 +35,22 @@
       </a>
     </li>
 
+      <!-- Photo/Videos -->
+      <li class="relative">
+        <a
+          class="cursor-pointer flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out"
+          data-mdb-ripple="true"
+          data-mdb-ripple-color="dark"
+        >
+          <mat-icon
+            class="w-3 h-3 mr-3"
+            aria-hidden="true"
+            aria-label="Example home icon"
+            >photo_library</mat-icon
+          >
+          <span>Photo/videos</span>
+        </a>
+      </li>
     <li class="relative">
       <a
         class="cursor-pointer flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out"
@@ -127,7 +82,7 @@
             >notifications</mat-icon
           >
           <span>Notifications </span>
-          <span *ngIf="notifications" class="badge">{{notifications}}</span>
+          <span *ngIf="notifications" class="badge">{{newNotifications}}</span>
           
         </a>
       </li>
@@ -152,4 +107,166 @@
       </a>
     </li>
   </ul>
+  
+  <!-- Employees Menu  -->
+  <ng-template #Employees>
+    <ul class="relative p-4" >
+      <mat-divider></mat-divider>
+  
+      <!-- Childrens -->
+      <li class="relative">
+        <a
+          routerLink="children"
+          class="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out"
+          href="#!"
+          data-mdb-ripple="true"
+          data-mdb-ripple-color="dark"
+        >
+          <mat-icon
+            class="w-3 h-3 mr-3"
+            aria-hidden="true"
+            aria-label="Example home icon"
+            >child_care</mat-icon
+          >
+          <span>Childrens</span>
+        </a>
+      </li>
+  
+      <!-- Groups -->
+      <li class="relative">
+        <a
+          routerLink="groups"
+          class="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out"
+          href="#!"
+          data-mdb-ripple="true"
+          data-mdb-ripple-color="dark"
+        >
+          <mat-icon
+            class="w-3 h-3 mr-3"
+            aria-hidden="true"
+            aria-label="Example home icon"
+            >diversity_3</mat-icon
+          >
+          <span>Groups</span>
+        </a>
+      </li>
+  
+   
+  
+      <!-- Staff -->
+      <li class="relative">
+        <a
+          routerLink="staff"
+          
+          class="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out"
+          href="#!"
+          data-mdb-ripple="true"
+          data-mdb-ripple-color="dark"
+        >
+          <mat-icon
+            class="w-3 h-3 mr-3"
+            aria-hidden="true"
+            aria-label="Example home icon"
+            >badge</mat-icon
+          >
+          <span>Staff</span>
+        </a>
+      </li>
+  
+     
+      <mat-divider></mat-divider>
+       <!-- Events -->
+      <li class="relative">
+        <a
+          class="cursor-pointer flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out"
+         
+          data-mdb-ripple="true"
+          data-mdb-ripple-color="dark"
+        >
+          <mat-icon
+            class="w-3 h-3 mr-3"
+            aria-hidden="true"
+            aria-label="Example home icon"
+            >calendar_month</mat-icon
+          >
+          <span>Events</span>
+        </a>
+      </li>
+         <!-- Photo/Videos -->
+         <li class="relative">
+          <a
+            class="cursor-pointer flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out"
+            data-mdb-ripple="true"
+            data-mdb-ripple-color="dark"
+          >
+            <mat-icon
+              class="w-3 h-3 mr-3"
+              aria-hidden="true"
+              aria-label="Example home icon"
+              >photo_library</mat-icon
+            >
+            <span>Photo/videos</span>
+          </a>
+        </li>
+  
+      <li class="relative">
+        <a
+          class="cursor-pointer flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out"
+  
+          data-mdb-ripple="true"
+          data-mdb-ripple-color="dark"
+        >
+          <mat-icon
+            class="w-3 h-3 mr-3"
+            aria-hidden="true"
+            aria-label="Example home icon"
+            >chat</mat-icon
+          >
+          <span>Messages</span>
+        </a>
+      </li>
+         <!-- Notifications -->
+         <li class="relative">
+          <a
+           (click)="openNotificationDialog()"
+            class="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out"
+            data-mdb-ripple="true"
+            data-mdb-ripple-color="dark"
+          >
+            <mat-icon
+              class="w-3 h-3 mr-3"
+              aria-hidden="true"
+              aria-label="Example home icon"
+              >notifications</mat-icon
+            >
+            <span>Notifications </span>
+            <span *ngIf="notifications" class="badge">{{newNotifications}}</span>
+            
+          </a>
+        </li>
+  
+      <!-- Logout -->
+      <mat-divider></mat-divider>
+      <li class="relative">
+        <a
+          (click)="logout()"
+          class="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out"
+    
+          data-mdb-ripple="true"
+          data-mdb-ripple-color="dark"
+        >
+          <mat-icon
+            class="w-3 h-3 mr-3"
+            aria-hidden="true"
+            aria-label="Example home icon"
+            >logout</mat-icon
+          >
+          <span>Logout</span>
+        </a>
+      </li>
+    </ul>
+  </ng-template>
+
+
+
 </div>
