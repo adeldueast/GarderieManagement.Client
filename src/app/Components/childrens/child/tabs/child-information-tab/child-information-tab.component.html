@@ -3,7 +3,7 @@
   <form [formGroup]="updateForm" (ngSubmit)="onSubmit()" class=" example-form w-[70%] mx-auto mt-4 p-8 ">  <!-- bg-red-400 -->
     <div *ngIf="updateForm.disabled" class="example-button-container flex  justify-between w-full">
       <h1>Information</h1>
-      <button (click)="toggleEdit()" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+      <button *ngIf="this.authService.isUserInRole('owner') || this.authService.isUserInRole('admin')" (click)="toggleEdit()" mat-fab color="primary" aria-label="Example icon button with a delete icon">
         <mat-icon>edit</mat-icon>
       </button>
     </div>

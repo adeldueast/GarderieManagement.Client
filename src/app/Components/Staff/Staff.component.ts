@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { AuthService } from 'src/app/shared/services/http/auth.service';
 import { SignalRService } from 'src/app/shared/services/http/hub/SignalR.service';
 import { UsersService } from 'src/app/shared/services/http/users.service';
 import { ModalStaffCreateComponent } from '../modals/modal-staff-create/modal-staff-create.component';
@@ -19,7 +20,8 @@ export class StaffComponent implements OnInit, OnDestroy {
   constructor(
     private dialog: MatDialog,
     private userService: UsersService,
-    private signalRService: SignalRService
+    private signalRService: SignalRService,
+    public authService:AuthService
   ) {}
   ngOnDestroy(): void {
     this.signalRService.removeNotifyUserStatusChangesListener();

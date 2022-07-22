@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { AuthService } from 'src/app/shared/services/http/auth.service';
 import { GroupService } from 'src/app/shared/services/http/group.service';
 import { SignalRService } from 'src/app/shared/services/http/hub/SignalR.service';
 import { ModalGroupCreateComponent } from '../modals/modal-group-create/modal-group-create.component';
@@ -14,7 +15,8 @@ export class GroupsComponent implements OnInit {
   constructor(
     private groupService: GroupService,
     public dialog: MatDialog,
-    private signalRService: SignalRService
+    private signalRService: SignalRService,
+    public authService:AuthService
   ) {}
   groups: any = [];
   ngOnInit() {

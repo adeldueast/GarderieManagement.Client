@@ -1,4 +1,4 @@
-<button mat-raised-button (click)="openDialog()" class="mb-5">
+<button *ngIf="this.authService.isUserInRole('owner') || this.authService.isUserInRole('admin')" mat-raised-button (click)="openDialog()" class="mb-5">
   Create group
 </button>
 

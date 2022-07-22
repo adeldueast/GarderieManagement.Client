@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ChildrenService } from 'src/app/shared/services/http/children.service';
 import { GroupService } from 'src/app/shared/services/http/group.service';
+import { AuthService } from 'src/app/shared/services/http/auth.service';
 
 @Component({
   selector: 'app-child-information-tab',
@@ -16,7 +17,8 @@ export class ChildInformationTabComponent implements OnInit {
 
   constructor(
     private childrenService: ChildrenService,
-    private groupService: GroupService
+    private groupService: GroupService,
+    public authService:AuthService
   ) {
     console.log('information tab constructor');
 

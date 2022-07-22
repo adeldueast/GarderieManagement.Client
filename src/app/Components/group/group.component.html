@@ -6,7 +6,7 @@
   <p class="text-4xl">{{ group?.name }}</p>
 
      
-      <button (click)="openDeleteModal(group?.name)" mat-raised-button color="primary" class="mat-button ">Delete<mat-icon class="icon-delete" >delete</mat-icon> </button>
+      <button *ngIf="this.authService.isUserInRole('owner') || this.authService.isUserInRole('admin')" (click)="openDeleteModal(group?.name)" mat-raised-button color="primary" class="mat-button ">Delete<mat-icon class="icon-delete" >delete</mat-icon> </button>
   </header>
 
 <div *ngIf="group?.enfants.length>0;else noChildren">
