@@ -24,3 +24,13 @@ mat-divider:first-child{
   font-size: 0.85rem;
   color: grey;
 }
+
+.badge {
+  position: absolute;
+  top: 9px;
+  right: -12px;
+  padding: 7.5px 10px;
+  border-radius: 50%;
+  background: red;
+  color: white;
+}

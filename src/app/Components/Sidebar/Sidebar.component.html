@@ -55,24 +55,7 @@
       </a>
     </li>
 
-    <!-- Classrooms -->
-    <!-- <li class="relative">
-      <a
-        routerLink="classrooms"
-        class="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out"
-        href="#!"
-        data-mdb-ripple="true"
-        data-mdb-ripple-color="dark"
-      >
-        <mat-icon
-          class="w-3 h-3 mr-3"
-          aria-hidden="true"
-          aria-label="Example home icon"
-          >meeting_room</mat-icon
-        >
-        <span>Classrooms</span>
-      </a>
-    </li> -->
+ 
 
     <!-- Staff -->
     <li class="relative">
@@ -129,6 +112,25 @@
         <span>Messages</span>
       </a>
     </li>
+       <!-- Notifications -->
+       <li class="relative">
+        <a
+         (click)="openNotificationDialog()"
+          class="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out"
+          data-mdb-ripple="true"
+          data-mdb-ripple-color="dark"
+        >
+          <mat-icon
+            class="w-3 h-3 mr-3"
+            aria-hidden="true"
+            aria-label="Example home icon"
+            >notifications</mat-icon
+          >
+          <span>Notifications </span>
+          <span *ngIf="notifications" class="badge">{{notifications}}</span>
+          
+        </a>
+      </li>
 
     <!-- Logout -->
     <mat-divider></mat-divider>

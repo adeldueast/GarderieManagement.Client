@@ -59,6 +59,7 @@ import {MatStepperModule} from '@angular/material/stepper';
 import { ModalGroupedChildrenComponent } from './Components/modals/modal-grouped-children/modal-grouped-children.component';
 import { GroupComponent } from './Components/group/group.component';
 import { ModalDeleteComponent } from './Components/modals/modal-delete/modal-delete.component';
+import { ModalNotificationsComponent } from './Components/modals/modal-notifications/modal-notifications.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -114,7 +115,8 @@ const Material_Modules = [
     StarRatingComponent,
     ModalGroupedChildrenComponent,
     GroupComponent,
-    ModalDeleteComponent
+    ModalDeleteComponent,
+    ModalNotificationsComponent
     
   ],
 
