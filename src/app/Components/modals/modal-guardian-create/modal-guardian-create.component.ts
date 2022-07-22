@@ -11,7 +11,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class ModalGuardianCreateComponent implements OnInit {
   form!: FormGroup;
-  showForm: boolean = false;
+  showForm: boolean = this.data.showForm;
   isCreatingGuardian: boolean = false;
   selectedUser?: any;
 
@@ -33,17 +33,18 @@ export class ModalGuardianCreateComponent implements OnInit {
 
     //Instanciate the form and set enfantId to data.EnfantId
     this.form = new FormGroup({
-      firstName: new FormControl(),
-      lastName: new FormControl(),
-      email: new FormControl(),
+      firstName: new FormControl(''),
+      lastName: new FormControl(''),
+      email: new FormControl(''),
 
       //new props
+      HasAnAccount: new FormControl(true),
       emergencyContact: new FormControl(true),
       authorizePickup: new FormControl(true),
 
-
-      relation: new FormControl(),
+      relation: new FormControl(''),
       enfantId: new FormControl(this.data.enfantId),
+
     });
   }
 
@@ -66,6 +67,15 @@ export class ModalGuardianCreateComponent implements OnInit {
         return [];
       })
     );
+
+    if (this.data.editingRelation) {
+      //if we only updating a relation of existing one
+
+      const existing_guardian = {
+        value: this.data.selectedGuardian,
+      };
+      this.OnGuardianSelected(existing_guardian);
+    }
   }
 
   public displayFn = (guardian: any) => {
@@ -74,8 +84,10 @@ export class ModalGuardianCreateComponent implements OnInit {
 
   public OnGuardianSelected = (event: any) => {
     //OnOptionSelected , get the whole object of selected option
-    this.selectedUser = event.value;
-
+    this.selectedUser = this.data.editingRelation
+      ? this.data.selectedGuardian
+      : event.value;
+   // console.log(this.selectedUser, 'XOXOXOX');
     //either a guardian object was selected or 'Create a new guardian option'
     this.showForm = true;
     if (typeof this.selectedUser === 'string') {
@@ -86,7 +98,12 @@ export class ModalGuardianCreateComponent implements OnInit {
     //We assigning existing guardian for furrent child, so disable the form to display its info except for the relation
     this.isCreatingGuardian = false;
     for (var control in this.form.controls) {
-      if (control != 'relation' && control != 'emergencyContact' && control != 'authorizePickup' ) {
+      if (
+        control != 'relation' &&
+        control != 'emergencyContact' &&
+        control != 'authorizePickup' && 
+        control!= 'HasAnAccount'
+      ) {
         this.form.controls[control].disable();
       } else {
         this.form.controls[control].enable();
@@ -101,21 +118,34 @@ export class ModalGuardianCreateComponent implements OnInit {
       lastName: last,
       email: this.selectedUser.email,
       enfantId: this.data.enfantId,
-      
+      relation:
+        this.selectedUser.relation != undefined
+          ? this.selectedUser.relation
+          : undefined,
+      emergencyContact:
+        this.selectedUser.emergencyContact != undefined
+          ? this.selectedUser.emergencyContact
+          : true,
+      authorizePickup:
+        this.selectedUser?.authorizePickup != undefined
+          ? this.selectedUser?.authorizePickup
+          : true,
     });
 
     return;
   };
 
   public onSubmit = () => {
+   
     const formValue = this.form.value;
 
-    console.log(formValue);
-   
+
+
     if (this.showForm && this.isCreatingGuardian) {
       return this.createGuardianForChild(formValue);
     }
 
+    
     return this.AssignGuardianToChild(formValue);
   };
 
@@ -127,15 +157,19 @@ export class ModalGuardianCreateComponent implements OnInit {
         email: formValue.email,
         relation: formValue.relation,
         enfantId: this.data.enfantId,
-        emergencyContact:formValue.emergencyContact,
-        authorizePickup: formValue.authorizePickup
+        emergencyContact: formValue.emergencyContact,
+        HasAnAccount : formValue.HasAnAccount,
+        authorizePickup: formValue.authorizePickup,
       })
 
       .subscribe({
-        next: (res) => [console.log('res', res), alert(res.data.message)],
+        next: (res) => [console.log('res', res),[ this.form.enable()]],
         error: (err) => [console.error(err), alert(err.error.errors)],
-        complete: () =>
-          console.log('Created guardian and assigned to child completed'),
+        complete: () =>{
+          console.log('Created guardian and assigned to child completed')
+        }
+        
+
       });
   };
 
@@ -146,12 +180,16 @@ export class ModalGuardianCreateComponent implements OnInit {
         enfantId: this.data.enfantId,
         relation: formValue.relation,
         emergencyContact: formValue.emergencyContact,
-        authorizePickup : formValue.authorizePickup
+        HasAnAccount: formValue.HasAnAccount,
+        authorizePickup: formValue.authorizePickup,
       })
       .subscribe({
-        next: (res) => [console.log('res', res), alert(res.data.message)],
+        next: (res) => [console.log('res', res),this.form.enable()],
         error: (err) => [console.error(err), alert(err.error.errors)],
-        complete: () => console.log('Assigned guardian to child completed'),
+        complete: () =>{
+          console.log('Assigned guardian to child completed')
+  
+        },
       });
   };
 

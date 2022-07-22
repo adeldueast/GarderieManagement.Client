@@ -24,6 +24,13 @@ export class GroupService {
     );
   }
 
+  
+  deleteGroup(route: string) {
+    return this.http.delete<any>(
+      this.createCompleteRoute(route, this.envUrl.urlAddress),{}
+    );
+  }
+
 
   createGroup(route:string, createGroup_request:any){
     return this.http.post<any>(

@@ -16,13 +16,22 @@
 
   <mat-list role="list" class="">
     <mat-list-item *ngFor="let guardian of childsGuardians" class="mt-3">
-      {{ guardian.name }}
+      
+      
+      <div class="">
+       <h2 class="m-0"> {{ guardian.name }} {{guardian.relation ? '('+ guardian.relation + ')' : '' }}</h2>
+    
+      </div>
 
       <ul class="flex items-center gap-x-5">
         <li *ngIf="guardian.emergencyContact"> <mat-icon class="red-icon" matTooltip="Contact for emergency">call</mat-icon></li>
         <li *ngIf="guardian.authorizePickup" > <mat-icon class="green-icon" matTooltip="Is authorize to pick up the child">escalator_warning</mat-icon></li>
-        <li> <mat-icon matTooltip="Has an account">phone_iphone</mat-icon></li>
-        <li class="cursor-pointer"> <mat-icon  matTooltip="Edit the relation between child and guardian">edit</mat-icon></li>
+        <li *ngIf="guardian.hasAccount;else noAccount"> <mat-icon matTooltip="Is a user of the app">smartphone</mat-icon></li>
+        <ng-template #noAccount>
+        <li > <mat-icon matTooltip="Has an account">mobile_off</mat-icon></li>
+
+        </ng-template>
+        <li (click)="editChildTutorRelation(guardian)" class="cursor-pointer"> <mat-icon  matTooltip="Edit the relation between child and guardian">edit</mat-icon></li>
         <li class="cursor-pointer" class="cursor-pointer"> <mat-icon matTooltip="Delete the relation between child and guardian">delete</mat-icon></li>
       </ul>
       
