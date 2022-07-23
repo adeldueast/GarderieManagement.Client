@@ -4,9 +4,9 @@
     No notifications
   </div>
 
-  <ng-template #noNotification>
-    <mat-card *ngFor="let notif of this.data.notifications" class="pb-0 mb-2">
-      <mat-card-header>
+  <ng-template #noNotification >
+    <mat-card (click)="onNotifClick(notif,i)" mat-dialog-close *ngFor="let notif of this.data.notifications;let i = index" class="cursor-pointer pb-0 mb-2 hover:bg-slate-200" >
+      <mat-card-header >
         <!-- <div mat-card-avatar class="example-header-image"></div> -->
         <mat-icon
           mat-card-avatar

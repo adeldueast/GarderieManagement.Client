@@ -48,6 +48,13 @@ export class SidebarComponent implements OnInit {
         notifications: this.notifications,
       },
     });
+    dialogRef.afterClosed().subscribe((index) => {
+      if (index) {
+        
+        this.notifications[index].seen = true;
+        this.newNotifications--;
+      }
+    });
   }
 
   logout() {

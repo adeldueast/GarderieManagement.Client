@@ -11,7 +11,13 @@ export class JournalService {
     private envUrl: EnvironmentUrlService
   ) {}
 
-  getChildsJournal(route: string) {
+  getChildsTodayJournal(route: string) {
+    return this.http.get<any>(
+      this.createCompleteRoute(route, this.envUrl.urlAddress)
+    );
+  }
+
+  getJournalById(route: string) {
     return this.http.get<any>(
       this.createCompleteRoute(route, this.envUrl.urlAddress)
     );

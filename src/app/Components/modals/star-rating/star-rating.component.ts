@@ -17,6 +17,7 @@ export class StarRatingComponent implements OnInit {
 
   public ratingArr:number[] = [];
 
+  @Input() isAllowedEdit?:boolean;
   constructor() { }
 
   ngOnInit() {
@@ -27,6 +28,9 @@ export class StarRatingComponent implements OnInit {
   }
 
   onClick(rating:number) {
+    if(!this.isAllowedEdit){
+      return;
+    }
     const emitValue = {
       rating:rating,
       index: this.index

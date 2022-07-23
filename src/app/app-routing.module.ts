@@ -5,8 +5,6 @@ import { LoginComponent } from './Components/Authentification/Login/Login.compon
 import { PageNotFoundComponent } from './Components/PageNotFound/PageNotFound.component';
 import { RegisterComponent } from './Components/Authentification/Register/Register.component';
 import { AuthGuard } from './shared/guards/auth.guard';
-import { Title } from '@angular/platform-browser';
-import { ClassroomsComponent } from './Components/Classrooms/Classrooms.component';
 import { StaffComponent } from './Components/Staff/Staff.component';
 import { ChildrenComponent } from './Components/childrens/children/children.component';
 import { ChildComponent } from './Components/childrens/child/child.component';

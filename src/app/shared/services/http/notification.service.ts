@@ -18,6 +18,20 @@ export class NotificationService {
     );
   }
 
+  markNotificationSeen(route: string) {
+    return this.http.post<any>(
+      this.createCompleteRoute(route, this.envUrl.urlAddress),
+      {}
+    );
+  }
+
+  markAllNotificationSeen(route: string) {
+    return this.http.post<any>(
+      this.createCompleteRoute(route, this.envUrl.urlAddress),
+      {}
+    );
+  }
+
   private createCompleteRoute = (route: string, envAddress: string) => {
     const url = `${envAddress}/${route}`;
     return url;

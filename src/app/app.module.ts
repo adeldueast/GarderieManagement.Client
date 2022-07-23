@@ -28,7 +28,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ModalChildCreateComponent } from './Components/modals/modal-child-create/modal-child-create.component';
-import { ClassroomsComponent } from './Components/Classrooms/Classrooms.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -103,7 +102,6 @@ const Material_Modules = [
     ChildrenComponent,
     ChildComponent,
     ModalChildCreateComponent,
-    ClassroomsComponent,
     ModalGuardianCreateComponent,
     ChildInformationTabComponent,
     ChildCalendarTabComponent,
