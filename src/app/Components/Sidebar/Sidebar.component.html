@@ -18,6 +18,25 @@
   <ul class="relative p-4" *ngIf="this.authService.isUserInRole('tutor');else Employees">
     <mat-divider></mat-divider>
 
+       <!-- Childrens -->
+       <li class="relative">
+        <a
+          routerLink="children"
+          class="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out"
+          href="#!"
+          data-mdb-ripple="true"
+          data-mdb-ripple-color="dark"
+        >
+          <mat-icon
+            class="w-3 h-3 mr-3"
+            aria-hidden="true"
+            aria-label="Example home icon"
+            >child_care</mat-icon
+          >
+          <span>My childs</span>
+        </a>
+      </li>
+    <!-- Event -->
     <li class="relative">
       <a
         class="cursor-pointer flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out"
@@ -82,7 +101,7 @@
             >notifications</mat-icon
           >
           <span>Notifications </span>
-          <span *ngIf="notifications" class="badge">{{newNotifications}}</span>
+          <span *ngIf="notifications && newNotifications >0 " class="badge">{{newNotifications}}</span>
           
         </a>
       </li>
@@ -240,7 +259,7 @@
               >notifications</mat-icon
             >
             <span>Notifications </span>
-            <span *ngIf="notifications" class="badge">{{newNotifications}}</span>
+            <span *ngIf="notifications && newNotifications >0" class="badge">{{newNotifications}}</span>
             
           </a>
         </li>

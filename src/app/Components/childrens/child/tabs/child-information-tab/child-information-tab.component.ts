@@ -35,8 +35,8 @@ export class ChildInformationTabComponent implements OnInit {
     // console.log('xoxox',this.updateForm.value);
 
     this.updateForm.disable();
-
     this.getAllGroups();
+    
   }
 
   getAllGroups = () => {

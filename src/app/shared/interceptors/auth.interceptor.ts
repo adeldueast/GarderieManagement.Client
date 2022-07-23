@@ -20,6 +20,7 @@ export class AuthInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<unknown>> {
     const token = localStorage.getItem('token');
     if (token) {
+     
    //   console.log(this.signalRService.connectionId);
 
       const cloned = request.clone({

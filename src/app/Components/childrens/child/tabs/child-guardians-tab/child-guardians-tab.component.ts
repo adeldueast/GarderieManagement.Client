@@ -19,10 +19,11 @@ export class ChildGuardiansTabComponent implements OnInit {
 
   @Input() child_info!: any;
   constructor(public dialog: MatDialog, private usersService: UsersService,public authService:AuthService) {
-    console.log('guardians tab constructor');
+    // console.log('guardians tab constructor');
   }
 
   ngOnInit() {
+  
     this.getAllGuardians();
     this.getAllChildsGuardians();
   }

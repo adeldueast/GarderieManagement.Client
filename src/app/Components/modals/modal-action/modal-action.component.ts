@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AttendanceService } from 'src/app/shared/services/http/attendance.service';
+import { AuthService } from 'src/app/shared/services/http/auth.service';
 import { ModalJournalComponent } from '../modal-journal/modal-journal.component';
 
 @Component({
@@ -10,14 +11,17 @@ import { ModalJournalComponent } from '../modal-journal/modal-journal.component'
   styleUrls: ['./modal-action.component.css'],
 })
 export class ModalActionComponent implements OnInit {
+  isTutor!:boolean;
   constructor(
     public dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private attendanceService: AttendanceService
+    private attendanceService: AttendanceService,
+    public authService:AuthService
   ) {}
 
   ngOnInit() {
     // console.log(this.data);
+    this.isTutor = this.authService.isUserInRole('tutor');
   }
   arrivedAt() {
     this.attendanceService
