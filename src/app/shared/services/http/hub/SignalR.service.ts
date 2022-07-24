@@ -16,17 +16,16 @@ export class SignalRService {
     //console.log('🤣🤣🤣 SIGNAL R.service constructor 🤣🤣🤣');
   }
 
-   onInit() {
-
+  onInit() {
     //simply subscribe to obersvable
-     this.subcribeToAuthChanges();
+    this.subcribeToAuthChanges();
 
     //will check if user is Authenticated and trigger a true response in the subscription above
     if (this.authService.isUserAuthenticated()) {
       this.authService.sendAuthStateChangeNotification(true);
     }
   }
-  
+
   onDestroy() {
     console.log('ngOnDestroy: cleaning up...');
     if (this.hubConnection) {
@@ -35,18 +34,17 @@ export class SignalRService {
     this.unsubcribeToAuthChanges();
   }
 
-   subcribeToAuthChanges() {
+  subcribeToAuthChanges() {
     this.subscribtion = this.authService.authChanged.subscribe(
-       async (result) => {
+      async (result) => {
         console.log('auth state changed =>', result);
 
         // this will be triggered...
         if (result) {
           this.loginToken = localStorage.getItem('token')!;
-           await this.startConnection();
+          await this.startConnection();
           return;
         }
-      
 
         if (this.hubConnection) {
           this.endConnection();
@@ -60,8 +58,7 @@ export class SignalRService {
     this.subscribtion!.unsubscribe();
   }
 
-  startConnection =  async () => {
-
+  startConnection = async () => {
     this.hubConnection = new signalR.HubConnectionBuilder()
       .withUrl(`https://localhost:44356/Children`, {
         skipNegotiation: true,
@@ -70,14 +67,12 @@ export class SignalRService {
       })
       .build();
 
-
     await this.hubConnection
       .start()
       .then(() => console.log('Connection to Hub started'))
       .catch((err) => console.log('Error while starting connection: ' + err));
-      
 
-    await this.getConnectionId();
+   // await this.getConnectionId();
   };
 
   endConnection = () => {
@@ -115,13 +110,11 @@ export class SignalRService {
     this.hubConnection.off('notifyUserStatusChanges');
   }
 
-  addChildAttendanceChangesListener = (fn: (data?:any) => any) => {
+  addChildAttendanceChangesListener = (fn: (data?: any) => any) => {
     this.hubConnection.on('childAttendanceUpdate', (data) => {
-      //console.log(data);
+      console.log(data);
       console.warn('notifying other users of childAttendanceChanges');
       fn(data);
-
-  
     });
   };
 
@@ -129,16 +122,24 @@ export class SignalRService {
     this.hubConnection.off('childAttendanceUpdate');
   };
 
+  addNewNotificationListener = (fn: (data?: any) => any) => {
+    this.hubConnection.on('newNotification', (data) => {
+      console.log(data);
+      console.warn('notifying other users of newNotification avaible');
+      fn(data);
+    });
+  };
+  removeNewNotificationListener = () => {
+    this.hubConnection.off('newNotification');
+  };
+
   async getConnectionId() {
     await this.hubConnection
       .invoke('GetConnectionId')
       .then(async (response) => {
-   
-       
         this.connectionId = response;
 
         //console.log('FINALLY RECEIVED THE CONNECTION ID',  this.connectionId);
-        
       })
       .catch((err) => console.log(err));
   }

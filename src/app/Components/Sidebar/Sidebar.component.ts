@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/http/auth.service';
+import { SignalRService } from 'src/app/shared/services/http/hub/SignalR.service';
 import { NotificationService } from 'src/app/shared/services/http/notification.service';
 import { ModalNotificationsComponent } from '../modals/modal-notifications/modal-notifications.component';
 
@@ -10,21 +11,30 @@ import { ModalNotificationsComponent } from '../modals/modal-notifications/modal
   templateUrl: './Sidebar.component.html',
   styleUrls: ['./Sidebar.component.css'],
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent implements OnInit, OnDestroy {
   constructor(
     public authService: AuthService,
     private router: Router,
     private notificationService: NotificationService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private signalRService: SignalRService
   ) {}
+  ngOnDestroy(): void {
+    this.signalRService.removeNewNotificationListener();
+  }
 
   notifications?: any;
   newNotifications: number = 0;
   ngOnInit() {
     this.getNotifications();
+    this.signalRService.addNewNotificationListener(
+      this.getNotifications.bind(this)
+    );
   }
 
   getNotifications() {
+    console.log('getting all notifications');
+    
     this.notificationService.getAllNotification('Notification/Get').subscribe(
       (res) => {
         console.log(res);
@@ -50,7 +60,6 @@ export class SidebarComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((index) => {
       if (index) {
-        
         this.notifications[index].seen = true;
         this.newNotifications--;
       }

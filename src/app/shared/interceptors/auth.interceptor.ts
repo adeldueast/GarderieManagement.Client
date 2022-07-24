@@ -27,12 +27,12 @@ export class AuthInterceptor implements HttpInterceptor {
         headers: request.headers
           .set('Authorization', 'Bearer ' + token)
           // this.signalRService.connectionId is undefined because it wasnt awaited correctly
-          .set(
-            'x-signalr-connection',
-            this.signalRService.connectionId  ?
-            this.signalRService.connectionId  :
-            ''
-          ),
+          // .set(
+          //   'x-signalr-connection',
+          //   this.signalRService.connectionId  ?
+          //   this.signalRService.connectionId  :
+          //   ''
+          // ),
       });
 
       return next.handle(cloned);
