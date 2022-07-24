@@ -54,7 +54,7 @@ export class ChildGuardiansTabComponent implements OnInit {
       .getAllChildsGuardians(`User/ChildsTutors?enfantId=${this.child_info.id}`)
       .subscribe({
         next: (res) => {
-          console.log(res);
+          //console.log(res);
           
           res.data.forEach((g: any) => {
             let guardian = {
@@ -95,6 +95,7 @@ export class ChildGuardiansTabComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
+        //
         console.log(result.value);
 
         const authorizePickup = result.value.authorizePickup;

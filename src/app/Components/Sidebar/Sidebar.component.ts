@@ -33,11 +33,11 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
 
   getNotifications() {
-    console.log('getting all notifications');
+  //  console.log('getting all notifications');
     
     this.notificationService.getAllNotification('Notification/Get').subscribe(
       (res) => {
-        console.log(res);
+        //console.log(res);
         this.newNotifications = 0;
         this.notifications = res;
         this.notifications.forEach((n: any) => {

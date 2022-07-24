@@ -39,7 +39,7 @@ export class ModalGroupCreateComponent implements OnInit {
   getAllStaffNoGroup = () => {
     this.userService.getAllStaffNoGroup('User/employeesNoGroup').subscribe({
       next: (res) => {
-        console.log(res),
+        //console.log(res),
           res.data.forEach((e: any) => {
             let staff = {
               id: e.id,
@@ -47,7 +47,7 @@ export class ModalGroupCreateComponent implements OnInit {
             };
             this.staff.push(staff);
           });
-        console.log(this.staff);
+        //console.log(this.staff);
       },
       error: (err) => console.log(err),
       complete: () => {
@@ -64,19 +64,21 @@ export class ModalGroupCreateComponent implements OnInit {
   // }
 
   onSubmit() {
-    console.log(this.form.value);
+    //(this.form.value);
     let createGroup_request = {
       name: this.form.get('name')?.value,
       educatriceId: this.form.get('educatriceId')?.value,
       hexColor: `#${this.form.get('colorCtr')?.value.hex}`,
     };
-    console.log(createGroup_request);
+    //console.log(createGroup_request);
     this.createGroup(createGroup_request);
   }
 
   createGroup = (createGroup_request: any) => {
     this.groupService
       .createGroup('Group/Create', createGroup_request)
-      .subscribe((res) => console.log(res));
+      .subscribe((res) =>{
+        // console.log(res)
+      });
   };
 }

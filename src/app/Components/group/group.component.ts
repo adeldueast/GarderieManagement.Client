@@ -45,7 +45,7 @@ export class GroupComponent implements OnInit, OnDestroy {
   getGroupById(id: number) {
     this.groupService.getGroupById(`Group/Get/${id}`).subscribe((res) => {
       this.group = res.data;
-      console.log(this.group);
+     // console.log(this.group);
     });
   }
 
@@ -64,7 +64,7 @@ export class GroupComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('deleting group..');
+       // console.log('deleting group..');
         this.deleteGroup();
       }
     });
@@ -74,7 +74,7 @@ export class GroupComponent implements OnInit, OnDestroy {
     this.groupService
       .deleteGroup(`Group/Delete/${this.group.id}`)
       .subscribe((res) => {
-        console.log(res);
+        //console.log(res);
         this.router.navigate(['/groups'])
       },(err) => console.log(err));
   }

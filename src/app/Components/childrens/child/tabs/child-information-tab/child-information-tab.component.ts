@@ -20,7 +20,7 @@ export class ChildInformationTabComponent implements OnInit {
     private groupService: GroupService,
     public authService:AuthService
   ) {
-    console.log('information tab constructor');
+    //console.log('information tab constructor');
 
   }
 
@@ -87,7 +87,7 @@ export class ChildInformationTabComponent implements OnInit {
   };
 
   onChangeGroup(value: any) {
-    console.log(value);
+    //console.log(value);
     this.updateForm.patchValue({
       groupId: value,
     });

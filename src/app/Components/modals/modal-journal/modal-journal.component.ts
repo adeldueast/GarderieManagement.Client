@@ -39,16 +39,16 @@ export class ModalJournalComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log(this.data, 'xoxoxoxoxox');
+   // console.log(this.data, 'xoxoxoxoxox');
 
     //if undefined, the journal was called from modal-action-component to get todays journal for children X
     if (this.data.dataId === undefined) {
-      console.log('dataId doesnt exist');
+     // console.log('dataId doesnt exist');
       this.getChildsTodayJournal();
       return;
     }
     //else it was called from notification
-    console.log('dataId  exist!!');
+   // console.log('dataId  exist!!');
     this.form.disable();
     this.getJournalById();
   }
@@ -103,7 +103,7 @@ export class ModalJournalComponent implements OnInit {
     this.journalService
       .getChildsTodayJournal(`Journal/Get/${this.data.id}`)
       .subscribe((res) => {
-        console.log(res);
+       // console.log(res);
 
         if (res.data != null) {
           this.isCreate = false;
@@ -125,22 +125,27 @@ export class ModalJournalComponent implements OnInit {
     if (!(this.data.dataId === undefined)) {
       return;
     }
-    console.log(this.form.value);
+   // console.log(this.form.value);
 
     if (this.isCreate) {
-      console.log('creating journal');
+      //console.log('creating journal');
 
       this.journalService
         .createChildJournal(`Journal/Create/${this.data.id}`, this.form.value)
-        .subscribe((res) => console.log(res));
+        .subscribe((res) => {
+          //console.log(res)
+        });
       return;
     }
 
+   //
     console.log('updating journal');
 
     this.journalService
       .updateChildJournal(`Journal/Update/${this.data.id}`, this.form.value)
-      .subscribe((res) => console.log(res));
+      .subscribe((res) =>{
+        //console.log(res)
+      });
   }
 
   JournalGroupedClick() {

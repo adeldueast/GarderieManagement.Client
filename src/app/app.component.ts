@@ -20,7 +20,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.signalRService.onInit();
   }
   ngOnDestroy(): void {
-    console.log('ng DESOYTR APP.COMPONENT.TS');
+   // console.log('ng DESOYTR APP.COMPONENT.TS');
     this.signalRService.onDestroy();
   }
 }

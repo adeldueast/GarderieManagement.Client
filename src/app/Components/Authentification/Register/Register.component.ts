@@ -15,10 +15,7 @@ export class RegisterComponent implements OnInit {
     password: undefined,
   };
 
-  constructor(
-    private AuthService: AuthService,
-    private router: Router
-  ) {
+  constructor(private AuthService: AuthService, private router: Router) {
     // redirect to home if already logged in
     if (this.AuthService.isUserAuthenticated()) {
       this.router.navigate(['/']);
@@ -28,9 +25,17 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {}
 
   Register() {
-    this.AuthService.registerUser('Account/Register',this.register_request).subscribe({
-      next: (res) => [console.log('res', res), console.log('res', res)],
-      error: (err) =>[ console.error(err.error.errors),alert(err.error.errors)],
+    this.AuthService.registerUser(
+      'Account/Register',
+      this.register_request
+    ).subscribe({
+      next: (res) => {
+        //console.log('res', res), console.log('res', res);
+      },
+      error: (err) => [
+        console.error(err.error.errors),
+        alert(err.error.errors),
+      ],
       complete: () => console.log('registeration completed'),
     });
   }

@@ -27,7 +27,7 @@ export class SignalRService {
   }
 
   onDestroy() {
-    console.log('ngOnDestroy: cleaning up...');
+   // console.log('ngOnDestroy: cleaning up...');
     if (this.hubConnection) {
       this.endConnection();
     }
@@ -112,7 +112,7 @@ export class SignalRService {
 
   addChildAttendanceChangesListener = (fn: (data?: any) => any) => {
     this.hubConnection.on('childAttendanceUpdate', (data) => {
-      console.log(data);
+      //console.log(data);
       console.warn('notifying other users of childAttendanceChanges');
       fn(data);
     });
@@ -122,9 +122,18 @@ export class SignalRService {
     this.hubConnection.off('childAttendanceUpdate');
   };
 
-  addNewNotificationListener = (fn: (data?: any) => any) => {
+  addNewNotificationListener = (
+    
+    
+    
+    
+    
+    
+    
+    
+    fn: (data?: any) => any) => {
     this.hubConnection.on('newNotification', (data) => {
-      console.log(data);
+     // console.log(data);
       console.warn('notifying other users of newNotification avaible');
       fn(data);
     });

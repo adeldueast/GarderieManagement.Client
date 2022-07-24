@@ -43,7 +43,7 @@ export class ModalNotificationsComponent implements OnInit {
   }
 
   onNotifClick(notification: any, index: number) {
-    console.log('notif click', index);
+   // console.log('notif click', index);
 
     //1) mark the notif as seen
     if (!notification.seen) {
@@ -77,7 +77,7 @@ export class ModalNotificationsComponent implements OnInit {
       .markNotificationSeen(`Notification/MarkSeen/${notificationId}`)
       .subscribe(
         (res) => {
-          console.log(res);
+         // console.log(res);
 
           this.dialogRef.close(`${index}`);
         },
@@ -89,7 +89,9 @@ export class ModalNotificationsComponent implements OnInit {
     this.notificationService
       .markAllNotificationSeen(`Notification/MarkSeen`)
       .subscribe(
-        (res) => console.log(res),
+        (res) => {
+          //console.log(res)
+        },
         (err) => console.log(err)
       );
   }

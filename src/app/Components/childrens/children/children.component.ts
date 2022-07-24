@@ -36,11 +36,11 @@ export class ChildrenComponent implements OnInit, OnDestroy {
     //fetches children
     if (this.authService.isUserInRole('tutor')) {
       this.getChildren(true);
-      console.warn('tutor');
+   //   console.warn('tutor');
       
     } else {
       this.getChildren(false);
-      console.warn('OOPS not a tutor');
+  //    console.warn('OOPS not a tutor');
 
     }
 
@@ -64,7 +64,7 @@ export class ChildrenComponent implements OnInit, OnDestroy {
           GroupId: newChild.groupId,
         };
 
-        console.log('NEW ENFANT REQUEST', childCreate_request);
+        //console.log('NEW ENFANT REQUEST', childCreate_request);
         this.createChild(childCreate_request);
         // location.reload();
       }
@@ -88,7 +88,7 @@ export class ChildrenComponent implements OnInit, OnDestroy {
     if (!isTutor) {
       this.childrenService.getChildren('Enfant/GetAll').subscribe({
         next: (res) => {
-          console.log(res);
+          //console.log(res);
 
           // this.children = res.data;
           res.data.forEach((c: any) => {
@@ -117,7 +117,7 @@ export class ChildrenComponent implements OnInit, OnDestroy {
 
     this.childrenService.getChildren('Enfant/GetAllTutorsChilds').subscribe({
       next: (res) => {
-        console.log(res);
+       // console.log(res);
 
         // this.children = res.data;
         res.data.forEach((c: any) => {
@@ -145,7 +145,7 @@ export class ChildrenComponent implements OnInit, OnDestroy {
   createChild(child_request: any) {
     this.childrenService.createChild('Enfant/Create', child_request).subscribe({
       next: (res) => {
-        console.log(res);
+        //console.log(res);
       },
       error: (err) => [
         console.error(err),

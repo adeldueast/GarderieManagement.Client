@@ -163,7 +163,10 @@ export class ModalGuardianCreateComponent implements OnInit {
       })
 
       .subscribe({
-        next: (res) => [console.log('res', res),[ this.form.enable()]],
+        next: (res) => {
+         // console.log('res', res),
+          this.form.enable()
+        },
         error: (err) => [console.error(err), alert(err.error.errors)],
         complete: () =>{
           console.log('Created guardian and assigned to child completed')
@@ -184,7 +187,10 @@ export class ModalGuardianCreateComponent implements OnInit {
         authorizePickup: formValue.authorizePickup,
       })
       .subscribe({
-        next: (res) => [console.log('res', res),this.form.enable()],
+        next: (res) => {
+          //console.log('res', res),
+          this.form.enable()
+        },
         error: (err) => [console.error(err), alert(err.error.errors)],
         complete: () =>{
           console.log('Assigned guardian to child completed')

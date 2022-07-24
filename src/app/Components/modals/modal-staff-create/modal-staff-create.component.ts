@@ -22,9 +22,11 @@ export class ModalStaffCreateComponent implements OnInit {
   ngOnInit() {}
 
   onSubmit() {
-    console.log(this.form.value);
+    //console.log(this.form.value);
     this.userService
       .inviteStaff('Account/InviteStaff', this.form.value)
-      .subscribe((res) => console.log(res));
+      .subscribe((res) => {
+       // console.log(res)
+      });
   }
 }

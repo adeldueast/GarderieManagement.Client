@@ -117,7 +117,7 @@ export class ChildCalendarTabComponent implements OnInit, OnDestroy {
         this.createAbsence(clickedDate, absenceMessage);
         return;
       }
-      console.log('absence canceled');
+      //console.log('absence canceled');
     }
   }
 

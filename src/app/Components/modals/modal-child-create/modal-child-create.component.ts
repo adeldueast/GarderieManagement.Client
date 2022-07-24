@@ -39,7 +39,7 @@ export class ModalChildCreateComponent implements OnInit {
           };
           this.groups.push(group);
         });
-        console.log(this.groups);
+       // console.log(this.groups);
       },
       error: (err) => console.log(err),
       complete: () => {

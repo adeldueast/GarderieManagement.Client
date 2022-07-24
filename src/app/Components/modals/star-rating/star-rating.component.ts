@@ -31,6 +31,9 @@ export class StarRatingComponent implements OnInit {
     if(!this.isAllowedEdit){
       return;
     }
+
+    //console.warn('editing rating');
+    
     const emitValue = {
       rating:rating,
       index: this.index
