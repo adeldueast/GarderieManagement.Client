@@ -2,7 +2,21 @@
   'background-color': child_info.hexColor ? child_info.hexColor : ''
 }">
   <!--bg-green-400  -->
-  <img [src]="child_info.image" class="w-32 rounded-full" alt="" />
+  
+  <div class=" relative">
+    <img [src]="child_info.image" class="w-32 rounded-full " alt="child image" />
+
+    <form (ngSubmit)="uploadWithProgress()">
+      <input #fileuploadprogress hidden type="file" name="image" accept="image/*">
+      <button (click)="fileuploadprogress.click()" class="button" mat-fab color="primary" aria-label="Example icon button with a delete icon" >
+        <mat-icon>add_a_photo</mat-icon>
+      </button>
+      {{uploadProgress}}%
+    </form>
+   
+     
+  
+  </div>
   <p class="text-4xl">{{ child_info.nom }}</p>
 </header>
 

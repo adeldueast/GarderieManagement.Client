@@ -7,3 +7,17 @@
 .example-full-width {
   width: 100%;
 }
+
+.icon-display {
+  transform: scale(1);
+}
+
+.button{
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+}
+
+input[type="file"] {
+  display: none;
+}
