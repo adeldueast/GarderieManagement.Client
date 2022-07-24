@@ -31,7 +31,7 @@
         <li *ngIf="guardian.authorizePickup" > <mat-icon class="green-icon" matTooltip="Is authorize to pick up the child">escalator_warning</mat-icon></li>
         <li *ngIf="guardian.hasAccount;else noAccount"> <mat-icon matTooltip="Is a user of the app">smartphone</mat-icon></li>
         <ng-template #noAccount>
-        <li > <mat-icon matTooltip="Has an account">mobile_off</mat-icon></li>
+        <li > <mat-icon matTooltip="Does not have an account">mobile_off</mat-icon></li>
 
         </ng-template>
         <li *ngIf="this.authService.isUserInRole('owner') || this.authService.isUserInRole('admin')" (click)="editChildTutorRelation(guardian)" class="cursor-pointer"> <mat-icon  matTooltip="Edit the relation between child and guardian">edit</mat-icon></li>

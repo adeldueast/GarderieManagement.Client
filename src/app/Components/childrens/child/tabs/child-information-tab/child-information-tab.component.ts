@@ -25,6 +25,8 @@ export class ChildInformationTabComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.warn(this.child_info);
+    
     this.updateForm = new FormGroup({
       id: new FormControl(this.child_info.id),
       nom: new FormControl(this.child_info.nom),
@@ -67,7 +69,7 @@ export class ChildInformationTabComponent implements OnInit {
       this.updateForm.patchValue({
         nom: this.child_info.nom,
         dateNaissance: this.child_info.birthdate,
-        groupId: this.child_info.group,
+        groupId: this.child_info.groupId,
       });
 
       return this.updateForm.disable();

@@ -18,12 +18,15 @@ export class ChildGuardiansTabComponent implements OnInit {
   childsGuardians: any[] = [];
 
   @Input() child_info!: any;
-  constructor(public dialog: MatDialog, private usersService: UsersService,public authService:AuthService) {
+  constructor(
+    public dialog: MatDialog,
+    private usersService: UsersService,
+    public authService: AuthService
+  ) {
     // console.log('guardians tab constructor');
   }
 
   ngOnInit() {
-  
     this.getAllGuardians();
     this.getAllChildsGuardians();
   }
@@ -54,14 +57,15 @@ export class ChildGuardiansTabComponent implements OnInit {
       .getAllChildsGuardians(`User/ChildsTutors?enfantId=${this.child_info.id}`)
       .subscribe({
         next: (res) => {
+          this.childsGuardians = [];
           //console.log(res);
-          
+
           res.data.forEach((g: any) => {
             let guardian = {
               id: g.applicationUser.id,
               name: `${g.applicationUser.firstName} ${g.applicationUser.lastName}`,
               email: g.applicationUser.email,
-              hasAccount:g.applicationUser.hasAccount,
+              hasAccount: g.applicationUser.hasAccount,
               relation: g.relation,
               emergencyContact: g.emergencyContact,
               authorizePickup: g.authorizePickup,
@@ -82,6 +86,7 @@ export class ChildGuardiansTabComponent implements OnInit {
   editChildTutorRelation = (guardian: any) => {
     this.openDialog(true, guardian);
   };
+  
   openDialog(editingRelation?: boolean, selectedGuardian?: any) {
     const dialogRef = this.dialog.open(ModalGuardianCreateComponent, {
       data: {
@@ -95,19 +100,25 @@ export class ChildGuardiansTabComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        //
-        console.log(result.value);
-
+        //console.log(result.value);
         const authorizePickup = result.value.authorizePickup;
         const emergencyContact = result.value.emergencyContact;
-
         const email = result.value.email;
-        const index = this.childsGuardians.findIndex((item) => item.email == email);
-         if (index != -1) {
+        const relation = result.value.relation;
+        const index = this.childsGuardians.findIndex(
+          (item) => item.email == email
+        );
+
+        if (index != -1) {
           this.childsGuardians[index].authorizePickup = authorizePickup;
           this.childsGuardians[index].emergencyContact = emergencyContact;
-        }
+          this.childsGuardians[index].relation = relation;
 
+        }else{
+
+          this.getAllChildsGuardians()
+
+        }
       }
     });
   }
