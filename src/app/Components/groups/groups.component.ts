@@ -44,7 +44,7 @@ export class GroupsComponent implements OnInit {
   getAllGroups() {
     this.groupService.getAllGroups('Group/Get').subscribe({
       next: (res) => {
-       // console.log(res);
+       console.log(res);
         this.groups = [];
         res.data.forEach((g: any) => {
           let group = {
@@ -52,7 +52,7 @@ export class GroupsComponent implements OnInit {
             name: g.name,
             educatriceName: g.educatriceFullName,
             hexColor: g.hexColor,
-            enfantsIds: g.enfantsIds,
+            enfants: g.enfants,
           };
 
           this.groups.push(group);

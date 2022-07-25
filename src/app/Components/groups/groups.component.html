@@ -1,41 +1,55 @@
-<button *ngIf="this.authService.isUserInRole('owner') || this.authService.isUserInRole('admin')" mat-raised-button (click)="openDialog()" class="mb-5">
+<button
+  *ngIf="
+    this.authService.isUserInRole('owner') ||
+    this.authService.isUserInRole('admin')
+  "
+  mat-raised-button
+  (click)="openDialog()"
+  class="mb-5"
+>
   Create group
 </button>
 
 <h1 class="">Groups</h1>
 
-<div class="content-container overflow-y-scroll ">
-  
+<div class="content-container overflow-y-scroll">
   <mat-card
-  [routerLink]="['/groups', group.id]"
-  class="h-[140px] mb-3"
-  [ngStyle]="{
-    'background-color': group.hexColor ? group.hexColor : '#ECECEC'
-  }"
-  *ngFor="let group of groups"
-  [title]="group.name"
->
-  <mat-card-title>{{
-    group.name
-      ? group.name.charAt(0).toUpperCase() + group.name.slice(1)
-      : "No Name"
-  }}</mat-card-title>
+    [routerLink]="['/groups', group.id]"
+    class="h-[165px] mb-3"
+    [ngStyle]="{
+      'background-color': group.hexColor ? group.hexColor : '#ECECEC'
+    }"
+    *ngFor="let group of groups"
+    [title]="group.name"
+  >
+    <mat-card-title>{{
+      group.name
+        ? group.name.charAt(0).toUpperCase() + group.name.slice(1)
+        : "No Name"
+    }}</mat-card-title>
 
-  <mat-card-subtitle class="">Educator: {{ group.educatriceName }}</mat-card-subtitle>
-  <mat-card-content align="start">
-    <div
-      *ngIf="group.enfantsIds.length>0; else noEnfants"
-      class="flex mb-5 -space-x-3.5"
+    <mat-card-subtitle class=""
+      >Educator: {{ group.educatriceName }}</mat-card-subtitle
     >
-      <img
-        *ngFor="let item of group.enfantsIds"
-        class="w-14 h-14 border-2 border-white rounded-full dark:border-gray-800"
-        src="data:image/jpeg;base64,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"
-        alt=""
-      />
-    </div>
-    <ng-template #noEnfants> <h3>No child has arrived </h3>  </ng-template>
-  </mat-card-content>
-</mat-card>
+    <mat-card-content align="start">
+      <div
+        *ngIf="group.enfants.length > 0; else noEnfants"
+        class="flex mb-5 -space-x-3.5"
+      >
+        <img
+       [matTooltip]="item.nom"
+          *ngFor="let item of group.enfants"
+          class="w-20 h-20 object-cover rounded-full"
+          [src]="
+            item.image
+              ? ('https://localhost:44356/api/v1/Photos/Couverture/sm/' + item.image | picture | async)
+              : 'https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg'
+          "
+          alt=""
+        />
+      </div>
 
+      <ng-template #noEnfants> <h3>No child has arrived</h3> </ng-template>
+    </mat-card-content>
+  </mat-card>
 </div>

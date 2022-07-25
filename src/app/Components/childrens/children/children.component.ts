@@ -88,7 +88,7 @@ export class ChildrenComponent implements OnInit, OnDestroy {
     if (!isTutor) {
       this.childrenService.getChildren('Enfant/GetAll').subscribe({
         next: (res) => {
-        //  console.log(res);
+         console.log(res);
 
           // this.children = res.data;
           res.data.forEach((c: any) => {

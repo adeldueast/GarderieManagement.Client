@@ -45,7 +45,7 @@ export class GroupComponent implements OnInit, OnDestroy {
   getGroupById(id: number) {
     this.groupService.getGroupById(`Group/Get/${id}`).subscribe((res) => {
       this.group = res.data;
-     // console.log(this.group);
+     console.log(this.group);
     });
   }
 
