@@ -1,0 +1,11 @@
+<!-- Image Preview -->
+<div class="imagePreview w-[500px]" *ngIf="imageURL && imageURL !== ''">
+  <img [src]="imageURL" [alt]="this.data.uploadForm.value.name" />
+</div>
+
+
+<mat-dialog-actions align="end" class="space-out">
+  {{this.uploadProgress}}
+  <div><button mat-button mat-dialog-close >Cancel</button>
+    <button mat-button (click)="submit()" cdkFocusInitial>Upload</button></div>
+</mat-dialog-actions>

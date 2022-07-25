@@ -88,14 +88,14 @@ export class ChildrenComponent implements OnInit, OnDestroy {
     if (!isTutor) {
       this.childrenService.getChildren('Enfant/GetAll').subscribe({
         next: (res) => {
-          //console.log(res);
+        //  console.log(res);
 
           // this.children = res.data;
           res.data.forEach((c: any) => {
             const child = {
               id: c.id,
               nom: c.nom,
-              image: c.image,
+              image: c.photoCouverture ,
               hexColor: c.hexColor,
               hasArrived: c.hasArrived,
               group: c.group,
@@ -103,6 +103,8 @@ export class ChildrenComponent implements OnInit, OnDestroy {
             this.children.push(child);
           });
           this.dataSource = new MatTableDataSource(this.children);
+          console.log(this.children);
+          
         },
         error: (err) => [
           console.error(err),

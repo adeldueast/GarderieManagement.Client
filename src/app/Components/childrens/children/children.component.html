@@ -31,10 +31,27 @@
     <td mat-cell *matCellDef="let element" class="flex items-center gap-3 py-2">
         <!-- <img  class="w-16" src="../../../../assets/images/child_default.jpg" alt="image"> -->
  
-          <img  class="w-12 rounded-full {{element.hexColor ? 'border-4':''}}"  [src]="element.image" alt="image"  [ngStyle]="{
+          <img    *ngIf="!element?.image;else hasPhotoCouverture"  class="w-16 rounded-full object-cover h-16  {{element.hexColor ? 'border-4':''}}"  
+          [src]="'https://cdn.vox-cdn.com/thumbor/23dWY86RxkdF7ZegvfnY8gFjR7s=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/19157811/ply0947_fall_reviews_2019_tv_anime.jpg'"
+          alt="image"  
+          [ngStyle]="{
             
             'border-color': element.hexColor ? element.hexColor : ''
           }">
+
+
+        <ng-template #hasPhotoCouverture >
+       
+        <img    class="w-16 rounded-full object-cover h-16 {{element.hexColor ? 'border-4':''}}"  
+        [src]="'https://localhost:44356/api/v1/Photos/Couverture/sm/'+element?.image | picture | async"
+        alt="image"  
+        [ngStyle]="{
+          'border-color': element.hexColor ? element.hexColor : ''
+        }"
+        >
+        
+         
+        </ng-template>
       
         {{ element.nom }}
       

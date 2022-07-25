@@ -61,6 +61,8 @@ import { ModalDeleteComponent } from './Components/modals/modal-delete/modal-del
 import { ModalNotificationsComponent } from './Components/modals/modal-notifications/modal-notifications.component';
 import { DateAsAgoPipe } from './shared/services/pipes/dateAsAgo.pipe';
 import { CommonModule } from '@angular/common';
+import { ModalImagePreviewComponent } from './Components/modals/modal-image-preview/modal-image-preview.component';
+import { PicturePipe } from './shared/services/pipes/picture.pipe';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -117,7 +119,9 @@ const Material_Modules = [
     GroupComponent,
     ModalDeleteComponent,
     ModalNotificationsComponent,
-    DateAsAgoPipe
+    DateAsAgoPipe,
+    ModalImagePreviewComponent,
+    PicturePipe
     
   ],
 
