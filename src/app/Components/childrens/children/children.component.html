@@ -43,7 +43,7 @@
         <ng-template #hasPhotoCouverture >
        
         <img    class="w-16 rounded-full object-cover h-16 {{element.hexColor ? 'border-4':''}}"  
-        [src]="'https://localhost:44356/api/v1/Photos/Couverture/sm/'+element?.image | picture | async"
+        [src]="'https://localhost:44356/api/v1/Photos/sm/'+element?.image | picture | async"
         alt="image"  
         [ngStyle]="{
           'border-color': element.hexColor ? element.hexColor : ''

@@ -33,7 +33,7 @@ export class ModalImagePreviewComponent implements OnInit {
     formData.append('image', this.data.file, this.data.file.name);
 
     this.photoService
-      .uploadWithProgress(
+      .postCouvertureEnfant(
         `Photos/Couverture/Enfant/${this.data.childId}`,
         formData
       )
@@ -51,13 +51,10 @@ export class ModalImagePreviewComponent implements OnInit {
           }
         },
         (err) => {
-          console.log(err),
-          this.dialogRef.close(false)
-
+          console.log(err), this.dialogRef.close(false);
         },
         () => {
-          console.log('Photo uploaded'),
-          this.dialogRef.close(true)
+          console.log('Photo uploaded'), this.dialogRef.close(true);
         }
       );
   }

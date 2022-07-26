@@ -11,7 +11,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { ChildrenService } from 'src/app/shared/services/http/children.service';
 import { SignalRService } from 'src/app/shared/services/http/hub/SignalR.service';
-import { PhotoService } from 'src/app/shared/services/http/photo.service';
 import { ModalImagePreviewComponent } from '../../modals/modal-image-preview/modal-image-preview.component';
 
 @Component({

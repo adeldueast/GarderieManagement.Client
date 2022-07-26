@@ -11,14 +11,31 @@ export class PhotoService {
     private envUrl: EnvironmentUrlService
   ) {}
 
-  uploadWithProgress(route: string, formData: FormData) {
-  return  this.http.post<any>(
+  postCouvertureEnfant(route: string, formData: FormData) {
+    return this.http.post<any>(
       this.createCompleteRoute(route, this.envUrl.urlAddress),
       formData,
       {
         reportProgress: true,
         observe: 'events',
       }
+    );
+  }
+
+  postGallerieEnfant(route: string, formData: FormData) {
+    return this.http.post<any>(
+      this.createCompleteRoute(route, this.envUrl.urlAddress),
+      formData,
+      {
+        reportProgress: true,
+        observe: 'events',
+      }
+    );
+  }
+
+  getPhoto(route: string) {
+    return this.http.get<any>(
+      this.createCompleteRoute(route, this.envUrl.urlAddress)
     );
   }
 
