@@ -35,7 +35,7 @@
     <li  *ngIf=" !isTutor" (click)="openJournalDialog() " mat-dialog-close class="actions rounded-sm"><mat-icon class="icon-display">edit_document</mat-icon><span>Journal</span></li>
     <li mat-dialog-close class="actions rounded-sm"><mat-icon class="icon-display">message</mat-icon><span>Messages</span></li>
 
-    <li mat-dialog-close [routerLink]="['/children', data.id]"  class="actions rounded-sm"><mat-icon class="icon-display">folder_shared</mat-icon><span>File</span></li>
+    <li mat-dialog-close [routerLink]="['/children', data?.id]" [queryParams]="{ imageId: data?.image }"   class="actions rounded-sm"><mat-icon class="icon-display">folder_shared</mat-icon><span>Folder</span></li>
   </ul>
   
 </div>

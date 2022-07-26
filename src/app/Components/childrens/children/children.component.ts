@@ -7,6 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ModalActionComponent } from '../../modals/modal-action/modal-action.component';
 import { SignalRService } from 'src/app/shared/services/http/hub/SignalR.service';
 import { AuthService } from 'src/app/shared/services/http/auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-children',
@@ -17,7 +18,7 @@ export class ChildrenComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['id', 'nom', 'group'];
   children: any[] = [];
   dataSource = new MatTableDataSource(this.children);
-
+ 
   constructor(
     public dialog: MatDialog,
     public childrenService: ChildrenService,

@@ -19,43 +19,43 @@
   <!-- Id Column -->
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>Id</th>
-    <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    <td mat-cell *matCellDef="let child">{{ child.id }}</td>
   </ng-container>
   <ng-container matColumnDef="group">
     <th mat-header-cell *matHeaderCellDef>Group</th>
-    <td mat-cell *matCellDef="let element">{{ element.group }}</td>
+    <td mat-cell *matCellDef="let child">{{ child.group }}</td>
   </ng-container>
   <!-- Name Column -->
   <ng-container matColumnDef="nom">
     <th mat-header-cell *matHeaderCellDef>Name</th>
-    <td mat-cell *matCellDef="let element" class="flex items-center gap-3 py-2">
+    <td mat-cell *matCellDef="let child" class="flex items-center gap-3 py-2">
         <!-- <img  class="w-16" src="../../../../assets/images/child_default.jpg" alt="image"> -->
  
-          <img    *ngIf="!element?.image;else hasPhotoCouverture"  class="w-16 rounded-full object-cover h-16  {{element.hexColor ? 'border-4':''}}"  
+          <img    *ngIf="!child?.image;else hasPhotoCouverture"  class="w-16 rounded-full object-cover h-16  {{child.hexColor ? 'border-4':''}}"  
           [src]="'https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg'"
           alt="image"  
           [ngStyle]="{
             
-            'border-color': element.hexColor ? element.hexColor : ''
+            'border-color': child.hexColor ? child.hexColor : ''
           }">
 
 
         <ng-template #hasPhotoCouverture >
        
-        <img    class="w-16 rounded-full object-cover h-16 {{element.hexColor ? 'border-4':''}}"  
-        [src]="'https://localhost:44356/api/v1/Photos/sm/'+element?.image | picture | async"
+        <img    class="w-16 rounded-full object-cover h-16 {{child.hexColor ? 'border-4':''}}"  
+        [src]="'https://localhost:44356/api/v1/Photos/sm/'+child?.image | picture | async"
         alt="image"  
         [ngStyle]="{
-          'border-color': element.hexColor ? element.hexColor : ''
+          'border-color': child.hexColor ? child.hexColor : ''
         }"
         >
         
          
         </ng-template>
       
-        {{ element.nom }}
+        {{ child.nom }}
       
-        <mat-icon  matTooltip="Arrived" *ngIf="element.hasArrived" class="icon-display">directions_walk</mat-icon>
+        <mat-icon  matTooltip="Arrived" *ngIf="child.hasArrived" class="icon-display">directions_walk</mat-icon>
     </td>
    
   </ng-container>

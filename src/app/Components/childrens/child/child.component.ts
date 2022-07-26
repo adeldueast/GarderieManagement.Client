@@ -9,6 +9,7 @@ import {
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { map, Observable } from 'rxjs';
 import { ChildrenService } from 'src/app/shared/services/http/children.service';
 import { SignalRService } from 'src/app/shared/services/http/hub/SignalR.service';
 import { ModalImagePreviewComponent } from '../../modals/modal-image-preview/modal-image-preview.component';
@@ -24,10 +25,9 @@ export class ChildComponent implements OnInit, OnDestroy {
 
   @ViewChild('fileuploadprogress', { static: false })
   fileuploadprogress?: ElementRef;
-  uploadProgress: number = 0;
+
 
   uploadForm: FormGroup;
-  imageURL?: string;
   constructor(
     public fb: FormBuilder,
     private signalRService: SignalRService,
@@ -47,7 +47,18 @@ export class ChildComponent implements OnInit, OnDestroy {
     this.route.params.subscribe((params) => {
       this.child_info.id = params['id'];
     });
-
+  
+   const a  = this.route
+    .queryParams
+    .subscribe(params => {
+     
+      
+      // Defaults to 0 if no query param provided.
+      this.child_info.image = params['imageId'] || null;
+      console.log( this.child_info.image);
+      
+    });
+    
     this.getChild();
 
     this.signalRService.addChildChangesListener(this.getChild.bind(this));
