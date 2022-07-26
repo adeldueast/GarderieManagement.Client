@@ -10,7 +10,7 @@ export class ModalDeleteComponent implements OnInit {
 
   constructor(    @Inject(MAT_DIALOG_DATA) public data: any) { }
 
-  ngOnInit() {
+  ngOnInit() { console.clear()
     console.log(this.data);
     
   }

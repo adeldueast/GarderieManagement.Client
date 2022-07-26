@@ -25,7 +25,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   notifications?: any;
   newNotifications: number = 0;
-  ngOnInit() {
+  ngOnInit() { console.clear()
     this.getNotifications();
     this.signalRService.addNewNotificationListener(
       this.getNotifications.bind(this)

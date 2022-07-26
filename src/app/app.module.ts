@@ -63,6 +63,8 @@ import { DateAsAgoPipe } from './shared/services/pipes/dateAsAgo.pipe';
 import { CommonModule } from '@angular/common';
 import { ModalImagePreviewComponent } from './Components/modals/modal-image-preview/modal-image-preview.component';
 import { PicturePipe } from './shared/services/pipes/picture.pipe';
+import { PhotosComponent } from './Components/photos/photos.component';
+import { ModalSelectChildrenComponent } from './Components/modals/modal-select-children/modal-select-children.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -121,7 +123,9 @@ const Material_Modules = [
     ModalNotificationsComponent,
     DateAsAgoPipe,
     ModalImagePreviewComponent,
-    PicturePipe
+    PicturePipe,
+    PhotosComponent,
+    ModalSelectChildrenComponent
     
   ],
 

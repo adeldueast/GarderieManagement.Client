@@ -19,7 +19,7 @@ export class GroupsComponent implements OnInit {
     public authService:AuthService
   ) {}
   groups: any = [];
-  ngOnInit() {
+  ngOnInit() { console.clear()
     this.getAllGroups();
     this.signalRService.addChildAttendanceChangesListener(
       this.updateChildState.bind(this)

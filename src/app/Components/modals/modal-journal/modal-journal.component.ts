@@ -38,7 +38,7 @@ export class ModalJournalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
-  ngOnInit() {
+  ngOnInit() { console.clear()
    // console.log(this.data, 'xoxoxoxoxox');
 
     //if undefined, the journal was called from modal-action-component to get todays journal for children X

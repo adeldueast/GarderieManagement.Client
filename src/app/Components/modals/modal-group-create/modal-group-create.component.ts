@@ -32,7 +32,7 @@ export class ModalGroupCreateComponent implements OnInit {
     private groupService: GroupService
   ) {}
 
-  ngOnInit() {
+  ngOnInit() { console.clear()
     this.getAllStaffNoGroup();
   }
 

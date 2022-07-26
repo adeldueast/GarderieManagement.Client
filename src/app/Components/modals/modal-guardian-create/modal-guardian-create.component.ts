@@ -48,7 +48,7 @@ export class ModalGuardianCreateComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
+  ngOnInit() { console.clear()
     //Fetches all guardian and fill up => this.guardians: any[]
     this.guardians = this.data.guardians;
 

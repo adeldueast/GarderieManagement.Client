@@ -26,7 +26,7 @@ export class ChildGuardiansTabComponent implements OnInit {
     // console.log('guardians tab constructor');
   }
 
-  ngOnInit() {
+  ngOnInit() { console.clear()
     this.getAllGuardians();
     this.getAllChildsGuardians();
   }

@@ -33,7 +33,7 @@ export class PhotoService {
     );
   }
 
-  getPhoto(route: string) {
+  getAllPhotosIds(route: string) {
     return this.http.get<any>(
       this.createCompleteRoute(route, this.envUrl.urlAddress)
     );

@@ -1,0 +1,24 @@
+<div class="flex items-center gap-3">
+  <h1 class="m-0">Photos</h1>
+  <input
+    #fileuploadprogress
+    (change)="onFileChange($event)"
+    (click)="setNull()"
+    hidden
+    multiple
+    type="file"
+    name="image"
+    accept="image/*"
+  />
+  <button
+    (click)="fileuploadprogress.click()"
+    class="button"
+    mat-mini-fab
+    color="primary"
+    aria-label="Example icon button with a delete icon"
+  >
+    <mat-icon>add_a_photo</mat-icon>
+  </button>
+</div>
+
+<div class="bg-red-400 content-container overflow-y-scroll"></div>

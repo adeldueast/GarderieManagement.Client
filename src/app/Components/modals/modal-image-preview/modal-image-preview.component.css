@@ -1,6 +1,10 @@
 .space-out{
     display: flex;
-    justify-content: space-between;
     align-items: center;
 
+}
+
+ul::after {
+  content: "";
+  flex-basis: 230px;
 }

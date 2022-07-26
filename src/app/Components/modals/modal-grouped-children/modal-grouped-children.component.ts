@@ -49,7 +49,7 @@ export class ModalGroupedChildrenComponent implements OnInit {
     private journalService: JournalService
   ) {}
 
-  ngOnInit() {
+  ngOnInit() { console.clear()
     this.getChildren();
   }
   get activiteFormGroup(): FormGroup {

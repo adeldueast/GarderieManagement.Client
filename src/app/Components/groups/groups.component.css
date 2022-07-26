@@ -3,8 +3,9 @@ h1{
     font-weight: bold;
 }
 
-.scrollable {
-    
-    height: 74.5vh; /* or any value */
-    overflow-y: auto;
-}
+
+.content-container{
+    height: calc(100vh - (204px));
+    overflow-y: scroll;
+  }
+  

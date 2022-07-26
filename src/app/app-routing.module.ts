@@ -10,6 +10,7 @@ import { ChildrenComponent } from './Components/childrens/children/children.comp
 import { ChildComponent } from './Components/childrens/child/child.component';
 import { GroupsComponent } from './Components/groups/groups.component';
 import { GroupComponent } from './Components/group/group.component';
+import { PhotosComponent } from './Components/photos/photos.component';
 
 const routes: Routes = [
   // Login page  http://localhost:4200/login
@@ -43,9 +44,15 @@ const routes: Routes = [
         canActivate: [AuthGuard],
       },
       {
-        // Groups page  http://localhost:4200/groups
+        // Groups page  http://localhost:4200/groups/1
         path: 'groups/:id',
         component: GroupComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        // Photos page  http://localhost:4200/photos
+        path: 'photos',
+        component: PhotosComponent,
         canActivate: [AuthGuard],
       },
       // Staff page  http://localhost:4200/Staff

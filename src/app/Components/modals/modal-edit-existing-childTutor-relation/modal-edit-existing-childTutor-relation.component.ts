@@ -9,7 +9,7 @@ export class ModalEditExistingChildTutorRelationComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() { console.clear()
   }
 
 }

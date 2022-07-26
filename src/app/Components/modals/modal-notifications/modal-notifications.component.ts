@@ -25,7 +25,7 @@ export class ModalNotificationsComponent implements OnInit {
     public dialogRef: MatDialogRef<ModalNotificationsComponent>
   ) {}
 
-  ngOnInit() {
+  ngOnInit() { console.clear()
     //  console.log(this.data);
   }
 

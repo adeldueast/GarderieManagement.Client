@@ -26,7 +26,7 @@ export class GroupComponent implements OnInit, OnDestroy {
     this.signalRService.removeChildAttendanceChangesListener();
   }
 
-  ngOnInit() {
+  ngOnInit() { console.clear()
     this.route.params.subscribe((params) => {
       this.getGroupById(params['id']);
     });

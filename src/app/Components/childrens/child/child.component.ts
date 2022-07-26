@@ -43,7 +43,7 @@ export class ChildComponent implements OnInit, OnDestroy {
   setNull() {
     this.fileuploadprogress!.nativeElement.value = null;
   }
-  ngOnInit() {
+  ngOnInit() { console.clear()
     this.route.params.subscribe((params) => {
       this.child_info.id = params['id'];
     });
@@ -87,25 +87,26 @@ export class ChildComponent implements OnInit, OnDestroy {
       });
   };
 
-  showPreview(event: any) {
+  onFileChange(event: any) {
+    let selectedFiles = []
     const file = (event.target as HTMLInputElement).files![0];
 
     if (!file) {
       return;
     }
+    selectedFiles.push(file)
 
     this.uploadForm.patchValue({
       avatar: file,
     });
     this.uploadForm.get('avatar')?.updateValueAndValidity();
-    this.openDialog(file);
+    this.openDialog(selectedFiles);
   }
 
   openDialog(file: any) {
     const dialogRef = this.dialog.open(ModalImagePreviewComponent, {
       data: {
-        uploadForm: this.uploadForm,
-        file: file,
+        selectedFiles: file,
         childId: this.child_info.id,
       },
     });
@@ -113,7 +114,8 @@ export class ChildComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
        ///do something after success photo couverture upload?
-       
+       //result is the photoid.. we can just refresh
+       this.child_info.image = result
       }
     });
   }

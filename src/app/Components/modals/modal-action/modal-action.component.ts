@@ -19,7 +19,7 @@ export class ModalActionComponent implements OnInit {
     public authService:AuthService
   ) {}
 
-  ngOnInit() {
+  ngOnInit() { console.clear()
     // console.log(this.data);
     this.isTutor = this.authService.isUserInRole('tutor');
   }

@@ -19,7 +19,7 @@ export class ModalStaffCreateComponent implements OnInit {
 
   constructor(private userService: UsersService) {}
 
-  ngOnInit() {}
+  ngOnInit() { console.clear()}
 
   onSubmit() {
     //console.log(this.form.value);

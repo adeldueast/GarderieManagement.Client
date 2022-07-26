@@ -9,6 +9,11 @@ table {
 }
 
 
+.content-container{
+  height: calc(100vh - (204px));
+  overflow-y: scroll;
+}
+
 
 .mat-row:hover td::before {
   border-color: gray;

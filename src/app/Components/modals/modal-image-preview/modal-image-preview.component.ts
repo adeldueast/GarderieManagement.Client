@@ -1,7 +1,12 @@
 import { HttpEventType } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
 import { PhotoService } from 'src/app/shared/services/http/photo.service';
+import { ModalSelectChildrenComponent } from '../modal-select-children/modal-select-children.component';
 
 @Component({
   selector: 'app-modal-image-preview',
@@ -10,35 +15,65 @@ import { PhotoService } from 'src/app/shared/services/http/photo.service';
 })
 export class ModalImagePreviewComponent implements OnInit {
   uploadProgress: number = 0;
-  imageURL?: string;
+
+  previews: any[] = [];
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private photoService: PhotoService,
-    public dialogRef: MatDialogRef<ModalImagePreviewComponent>
+    public dialogRef: MatDialogRef<ModalImagePreviewComponent>,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit() {
-    // File Preview
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.imageURL = reader.result as string;
-    };
-    reader.readAsDataURL(this.data.file);
+
+ 
+    
+    //display selected Files..
+    this.previews = [];
+    const selectedFiles = this.data.selectedFiles;
+    if (selectedFiles) {
+      const numberOfFiles = selectedFiles.length;
+      for (let i = 0; i < numberOfFiles; i++) {
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          // console.log(e.target.result);
+          this.previews.push(e.target.result);
+        };
+        reader.readAsDataURL(selectedFiles[i]);
+      }
+    }
   }
 
-  // Submit Form
-  submit() {
+  // Select Children and pass files..
+  selectChildren() {
     let formData = new FormData();
-    formData.append('image', this.data.file, this.data.file.name);
+    const selectedFiles = this.data.selectedFiles;
+    for (const file of selectedFiles) {
+      console.log(file);
+      formData.append('files', file);
+    }
 
+    //open Select Children Dialog and pass the formData
+    this.openSelectChildrenDialog(formData);
+  }
+
+  postPhotoCouverture() {
+    let formData = new FormData();
+    const selectedFiles = this.data.selectedFiles;
+    formData.append('files',selectedFiles[0])
+
+    
+   
     this.photoService
       .postCouvertureEnfant(
         `Photos/Couverture/Enfant/${this.data.childId}`,
         formData
       )
       .subscribe(
-        (res) => {
+        (res:any) => {
+          console.log(res);
+          
           if (res != undefined) {
             if (
               res.type === HttpEventType.UploadProgress &&
@@ -47,15 +82,32 @@ export class ModalImagePreviewComponent implements OnInit {
               this.uploadProgress = Math.round((100 * res.loaded) / res.total);
             } else {
               this.uploadProgress = 100;
+              this.dialogRef.close(res.body)
             }
           }
+        
         },
         (err) => {
           console.log(err), this.dialogRef.close(false);
         },
         () => {
-          console.log('Photo uploaded'), this.dialogRef.close(true);
+          console.log('Photo uploaded');
         }
       );
+  }
+
+  openSelectChildrenDialog(formData: FormData) {
+    const dialogRef = this.dialog.open(ModalSelectChildrenComponent, {
+      data: {
+        formData: formData,
+      },
+    });
+    dialogRef.beforeClosed().subscribe(result=>{
+      if(result){
+        console.log(result);
+        this.dialog.closeAll()
+        
+      }
+    })
   }
 }
