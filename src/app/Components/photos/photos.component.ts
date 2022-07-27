@@ -3,6 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { PhotoService } from 'src/app/shared/services/http/photo.service';
 import { ModalImagePreviewComponent } from '../modals/modal-image-preview/modal-image-preview.component';
+import { ModalPreviewPictureComponent } from './../modals/modal-preview-picture/modal-preview-picture.component';
 
 @Component({
   selector: 'app-photos',
@@ -13,6 +14,7 @@ export class PhotosComponent implements OnInit {
   @ViewChild('fileuploadprogress', { static: false })
   fileuploadprogress?: ElementRef;
 
+  images : any[] = []
   constructor(public dialog: MatDialog, public photoService: PhotoService) {}
 
   ngOnInit() {
@@ -21,7 +23,12 @@ export class PhotosComponent implements OnInit {
 
   getAllPhotosIds() {
     this.photoService.getAllPhotosIds('Photos/GetPhotoIds').subscribe(
-      (res) => console.log(res),
+      (res) =>{
+        console.log(res)
+        res.forEach((image:any) => {
+          this.images.push(image)
+        });
+      },
       (err) => console.log(err)
     );
   }
@@ -30,10 +37,10 @@ export class PhotosComponent implements OnInit {
     if (selectedFiles.length < 0) {
       return;
     }
-    this.openImagePreviewDialog(selectedFiles);
+    this.openImagesSelectDialog(selectedFiles);
   }
 
-  openImagePreviewDialog(selectedFiles: any) {
+  openImagesSelectDialog(selectedFiles: any) {
     const dialogRef = this.dialog.open(ModalImagePreviewComponent, {
       data: {
         selectedFiles: selectedFiles,
@@ -43,6 +50,21 @@ export class PhotosComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         ///do something after success photo couverture upload?
+      }
+    });
+  }
+
+  openImagePreview(clickedImageIndex:any, images:any){
+    const dialogRef = this.dialog.open(ModalPreviewPictureComponent, {
+      data: {
+        images: images,
+        index: clickedImageIndex
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        
       }
     });
   }

@@ -17,6 +17,7 @@ export class ModalSelectChildrenComponent implements OnInit {
 
   firstFormGroup = this._formBuilder.group({
     selectedChildrenControl: [[], Validators.minLength(1)],
+    description: ['', Validators.required],
   });
 
   constructor(
@@ -24,8 +25,7 @@ export class ModalSelectChildrenComponent implements OnInit {
     public _formBuilder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private photoService: PhotoService,
-    public dialogRef: MatDialogRef<ModalSelectChildrenComponent>,
-
+    public dialogRef: MatDialogRef<ModalSelectChildrenComponent>
   ) {}
 
   ngOnInit() {
@@ -70,6 +70,8 @@ export class ModalSelectChildrenComponent implements OnInit {
   }
 
   expandDocumentTypes(groupKey: any) {
+    console.warn('collapse');
+    
     this.isExpandCategory.set(groupKey, !this.isExpandCategory.get(groupKey));
     // expand only selected parent dropdown category with that childs
   }
@@ -121,10 +123,14 @@ export class ModalSelectChildrenComponent implements OnInit {
       .get('selectedChildrenControl')!
       .value.map((child: any) => child.id);
 
+    const photosDescription = this.firstFormGroup.get('description')?.value;
 
+
+    
     let formData = this.data.formData as FormData;
-    formData.set('enfants',childrenIds)
-  
+    formData.set('enfants', childrenIds);
+    formData.set('description',photosDescription);
+
     console.warn(formData.getAll('files'));
     console.warn(formData.getAll('enfants'));
     this.photoService
@@ -134,7 +140,6 @@ export class ModalSelectChildrenComponent implements OnInit {
         (err) => console.log(err)
       );
 
-      this.dialogRef.close(true);
-
+    this.dialogRef.close(true);
   }
 }

@@ -1,0 +1,9 @@
+.left-button{
+    position: absolute;
+    left:-10px;
+}
+.right-button{
+    position: absolute;
+    right:-10px;
+}
+

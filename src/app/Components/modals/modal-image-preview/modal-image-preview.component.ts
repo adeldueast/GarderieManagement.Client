@@ -19,9 +19,10 @@ export class ModalImagePreviewComponent implements OnInit {
   previews: any[] = [];
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any,
+
     private photoService: PhotoService,
     public dialogRef: MatDialogRef<ModalImagePreviewComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     public dialog: MatDialog
   ) {}
 

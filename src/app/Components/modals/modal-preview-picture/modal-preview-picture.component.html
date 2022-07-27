@@ -1,0 +1,28 @@
+
+<div class="w-[800px] h-[700px] flex items-center justify-center bg-gray-200 relative">
+
+  <img
+  [src]="
+    'https://localhost:44356/api/v1/Photos/md/' + this.data.images[this.index]?.id
+      | picture
+      | async
+  "
+  alt="image"
+ 
+  class="max-h-full max-w-full mx-auto "
+  
+/>
+
+
+<button class="left-button" mat-fab color="accent" *ngIf="!isFirstImage()" (click)="previousImage()" aria-label="Example icon button with a bookmark icon">
+  <mat-icon>keyboard_arrow_left</mat-icon>
+</button>
+<button class="right-button" mat-fab color="accent"  *ngIf="!isLastImage()" (click)="nextImage()"aria-label="Example icon button with a bookmark icon">
+  <mat-icon>keyboard_arrow_right</mat-icon>
+</button>
+
+</div>
+
+<mat-dialog-actions align="center">
+<h1>{{this.data.images[this.index].description  }}</h1>
+</mat-dialog-actions>

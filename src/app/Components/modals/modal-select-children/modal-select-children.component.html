@@ -3,7 +3,7 @@
     >Select children <mat-icon>child_care</mat-icon></ng-template
   >
 
-  <mat-form-field appearance="fill" class="min-w-[300px]">
+  <mat-form-field appearance="fill" class="w-full">
     <mat-label>Children</mat-label>
     <mat-select
       formControlName="selectedChildrenControl"
@@ -15,8 +15,7 @@
       <mat-select-trigger>
         {{
           this.firstFormGroup.get("selectedChildrenControl")?.value
-            ? this.firstFormGroup.get("selectedChildrenControl")?.value
-                .length
+            ? this.firstFormGroup.get("selectedChildrenControl")?.value.length
             : ""
         }}
         child(s) selected
@@ -58,7 +57,21 @@
     </mat-select>
   </mat-form-field>
 
+  <mat-form-field class="w-full" appearance="fill">
+    <mat-label>Photo description</mat-label>
+    <textarea
+      formControlName="description"
+      matInput
+      placeholder="Ex. Mia and John playing outside"
+      cdkAutosizeMinRows="2"
+      cdkAutosizeMaxRows="4"
+      cdkTextareaAutosize>
+    ></textarea>
+  </mat-form-field>
+
   <mat-dialog-actions align="end">
-    <button mat-button [disabled]="!firstFormGroup.valid"  type="submit">Upload</button>
+    <button mat-button [disabled]="!firstFormGroup.valid" type="submit">
+      Upload
+    </button>
   </mat-dialog-actions>
 </form>

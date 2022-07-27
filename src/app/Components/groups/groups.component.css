@@ -5,7 +5,8 @@ h1{
 
 
 .content-container{
-    height: calc(100vh - (204px));
-    overflow-y: scroll;
+    
+    height: calc(100vh - (212px));
+    overflow-y: auto;
   }
   

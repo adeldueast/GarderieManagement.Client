@@ -1,4 +1,4 @@
-<div class="flex items-center gap-3">
+<div class="flex items-center gap-3 mb-3">
   <h1 class="m-0">Photos</h1>
   <input
     #fileuploadprogress
@@ -21,4 +21,18 @@
   </button>
 </div>
 
-<div class="bg-red-400 content-container overflow-y-scroll"></div>
+<div class="content-container ">
+  <ul class="flex flex-wrap justify-center gap-3">
+    <li class="basis-[230px] h-[230px]" *ngFor="let img of images;let i = index" (click)="openImagePreview(i,images)">
+      <img
+        [src]="
+          'https://localhost:44356/api/v1/Photos/sm/' + img?.id
+            | picture
+            | async
+        "
+        alt="image"
+        class="w-full h-full object-cover align-middle rounded-md"
+      />
+    </li>
+  </ul>
+</div>

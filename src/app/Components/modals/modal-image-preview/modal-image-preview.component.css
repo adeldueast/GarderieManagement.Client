@@ -4,7 +4,9 @@
 
 }
 
+
 ul::after {
   content: "";
-  flex-basis: 230px;
-}
+  flex-basis: 460px;
+} 
+

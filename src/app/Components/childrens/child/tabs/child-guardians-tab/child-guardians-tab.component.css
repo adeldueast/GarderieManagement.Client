@@ -4,6 +4,10 @@
   align-items: center;
 
 }
+.content-container{
+  height: calc(100vh - (460px));
+  overflow-y: auto;
+}
 
 .example-button-container{
 
