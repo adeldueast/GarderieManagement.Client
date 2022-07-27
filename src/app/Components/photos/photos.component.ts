@@ -22,7 +22,7 @@ export class PhotosComponent implements OnInit {
   }
 
   getAllPhotosIds() {
-    this.photoService.getAllPhotosIds('Photos/GetPhotoIds').subscribe(
+    this.photoService.getAllPhotosIds('Photos/Gallerie/Get').subscribe(
       (res) =>{
         console.log(res)
         res.forEach((image:any) => {

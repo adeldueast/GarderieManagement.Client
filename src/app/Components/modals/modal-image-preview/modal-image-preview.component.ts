@@ -101,6 +101,7 @@ export class ModalImagePreviewComponent implements OnInit {
     const dialogRef = this.dialog.open(ModalSelectChildrenComponent, {
       data: {
         formData: formData,
+        child_info: this.data.child_info
       },
     });
     dialogRef.beforeClosed().subscribe(result=>{

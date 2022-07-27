@@ -9,7 +9,7 @@
   <div class="relative">
     <!-- <img [src]="child_info.image" class="w-32 rounded-full " alt="child image" /> -->
     <img
-      *ngIf="!child_info?.image ; else hasPhotoCouverture"
+      *ngIf="!child_info?.image; else hasPhotoCouverture"
       class="w-32 h-32 rounded-full object-cover"
       [src]="
         'https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg'
@@ -21,8 +21,7 @@
       <img
         class="w-32 h-32 rounded-full object-cover"
         [src]="
-          'https://localhost:44356/api/v1/Photos/sm/' +
-            child_info?.image
+          'https://localhost:44356/api/v1/Photos/sm/' + child_info?.image
             | picture
             | async
         "
@@ -90,11 +89,23 @@
       <mat-icon class="example-tab-icon">escalator_warning</mat-icon>
       Guardians
     </ng-template>
+
     <ng-template matTabContent>
       <app-child-guardians-tab
         *ngIf="child_info.nom"
         [child_info]="child_info"
       ></app-child-guardians-tab>
+    </ng-template>
+  </mat-tab>
+  <!-- PHOTOS -->
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">image</mat-icon>
+      Photos
+    </ng-template>
+    <ng-template matTabContent>
+      <app-child-photos-tab *ngIf="child_info.nom" [child_info]="child_info">
+      </app-child-photos-tab>
     </ng-template>
   </mat-tab>
 </mat-tab-group>

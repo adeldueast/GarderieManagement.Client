@@ -12,6 +12,8 @@ import { HttpParams } from '@angular/common/http';
   styleUrls: ['./modal-select-children.component.css'],
 })
 export class ModalSelectChildrenComponent implements OnInit {
+  // *NOTE : this select input component is also used in grouped journal. For journal we just use it to select
+  // childrens but dont submit in this component. How ever, for photos, we submit in here (onSumbit())
   groupedChildren: any[] = [];
   isExpandCategory = new Map([]);
 
@@ -44,6 +46,7 @@ export class ModalSelectChildrenComponent implements OnInit {
         ) {
           group[enfant.group] = group[enfant.group] || [];
           group[enfant.group].push(enfant);
+
           return group;
         },
         Object.create(null));
@@ -52,7 +55,20 @@ export class ModalSelectChildrenComponent implements OnInit {
 
         Object.entries(this.groupedChildren).forEach(([key, value], index) => {
           // 👇️ name Tom 0, country Chile 1
-          //console.log(key, value, index);
+          // console.log(key, value, index);
+
+         //pre-select the current child..
+          if(this.data.child_info){
+            value.forEach((child: any) => {
+              if (child.id == this.data.child_info.id) {
+                console.warn('found it', child);
+                this.firstFormGroup
+                  .get('selectedChildrenControl')
+                  ?.setValue([child]);
+              }
+            });
+          }
+         
           this.isExpandCategory.set(key, false);
         });
 
@@ -71,7 +87,7 @@ export class ModalSelectChildrenComponent implements OnInit {
 
   expandDocumentTypes(groupKey: any) {
     console.warn('collapse');
-    
+
     this.isExpandCategory.set(groupKey, !this.isExpandCategory.get(groupKey));
     // expand only selected parent dropdown category with that childs
   }
@@ -125,11 +141,9 @@ export class ModalSelectChildrenComponent implements OnInit {
 
     const photosDescription = this.firstFormGroup.get('description')?.value;
 
-
-    
     let formData = this.data.formData as FormData;
     formData.set('enfants', childrenIds);
-    formData.set('description',photosDescription);
+    formData.set('description', photosDescription);
 
     console.warn(formData.getAll('files'));
     console.warn(formData.getAll('enfants'));

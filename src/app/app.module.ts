@@ -66,6 +66,7 @@ import { PicturePipe } from './shared/services/pipes/picture.pipe';
 import { PhotosComponent } from './Components/photos/photos.component';
 import { ModalSelectChildrenComponent } from './Components/modals/modal-select-children/modal-select-children.component';
 import { ModalPreviewPictureComponent } from './Components/modals/modal-preview-picture/modal-preview-picture.component';
+import { ChildPhotosTabComponent } from './Components/childrens/child/tabs/child-photos-tab/child-photos-tab.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -127,7 +128,8 @@ const Material_Modules = [
     PicturePipe,
     PhotosComponent,
     ModalSelectChildrenComponent,
-    ModalPreviewPictureComponent
+    ModalPreviewPictureComponent,
+    ChildPhotosTabComponent
     
   ],
 
