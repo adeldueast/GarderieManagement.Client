@@ -7,6 +7,7 @@ import {
 import { NotificationService } from 'src/app/shared/services/http/notification.service';
 import { Router } from '@angular/router';
 import { ModalJournalComponent } from '../modal-journal/modal-journal.component';
+import { ModalPreviewPictureComponent } from '../modal-preview-picture/modal-preview-picture.component';
 
 @Component({
   selector: 'app-modal-notifications',
@@ -43,7 +44,7 @@ export class ModalNotificationsComponent implements OnInit {
   }
 
   onNotifClick(notification: any, index: number) {
-   // console.log('notif click', index);
+   console.log('notif click', index,notification);
 
     //1) mark the notif as seen
     if (!notification.seen) {
@@ -56,6 +57,7 @@ export class ModalNotificationsComponent implements OnInit {
         this.openJournalDialog(notification.dataId);
         break;
       case NotificationType.Photo:
+        this.openImagePreview(notification.dataId);
         break;
       case NotificationType.Event:
         break;
@@ -69,6 +71,22 @@ export class ModalNotificationsComponent implements OnInit {
       data: {
         dataId: notificationDataId,
       },
+    });
+  }
+
+  openImagePreview(notificationDataId: number){
+    const dialogRef = this.dialog.open(ModalPreviewPictureComponent, {
+      data: {
+        images: [{id:notificationDataId}],
+        index:0,
+        fromNotif:true,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        
+      }
     });
   }
 

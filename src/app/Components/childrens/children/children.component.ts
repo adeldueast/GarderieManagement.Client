@@ -127,12 +127,14 @@ export class ChildrenComponent implements OnInit, OnDestroy {
           const child = {
             id: c.id,
             nom: c.nom,
-            image: c.image,
+            image: c.photoCouverture ,
             hexColor: c.hexColor,
             hasArrived: c.hasArrived,
             group: c.group,
           };
           this.children.push(child);
+          console.log(child);
+          
         });
         this.dataSource = new MatTableDataSource(this.children);
       },

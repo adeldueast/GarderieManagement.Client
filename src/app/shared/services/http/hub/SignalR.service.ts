@@ -124,13 +124,6 @@ export class SignalRService {
 
   addNewNotificationListener = (
     
-    
-    
-    
-    
-    
-    
-    
     fn: (data?: any) => any) => {
     this.hubConnection.on('newNotification', (data) => {
      // console.log(data);

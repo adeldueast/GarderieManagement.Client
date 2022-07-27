@@ -38,13 +38,17 @@ export class PhotoService {
       this.createCompleteRoute(route, this.envUrl.urlAddress)
     );
   }
-  
+
   getPhotoIdsOfChild(route: string) {
     return this.http.get<any>(
       this.createCompleteRoute(route, this.envUrl.urlAddress)
     );
   }
-
+  getPhotoInformation(route: string) {
+    return this.http.get<any>(
+      this.createCompleteRoute(route, this.envUrl.urlAddress)
+    );
+  }
 
   private createCompleteRoute = (route: string, envAddress: string) => {
     const url = `${envAddress}/${route}`;
