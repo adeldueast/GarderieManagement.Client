@@ -66,7 +66,9 @@
         <input formControlName="relation" matInput placeholder="Relation" />
       </mat-form-field>
 
-      <p *ngIf="!this.data.editingRelation"><mat-checkbox formControlName="HasAnAccount">Will have an account </mat-checkbox></p>
+      <!-- {{this.isCreatingGuardian}}
+      {{this.data.editingRelation}} -->
+      <p *ngIf="!this.data.editingRelation && this.isCreatingGuardian"><mat-checkbox formControlName="HasAnAccount">Will have an account </mat-checkbox></p>
       <p ><mat-checkbox formControlName="emergencyContact">Contact for emergency</mat-checkbox></p>
       <p><mat-checkbox formControlName="authorizePickup">Authorized to pick up the child</mat-checkbox></p> 
     </div>

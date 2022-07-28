@@ -1,8 +1,9 @@
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalGuardianCreateComponent } from 'src/app/Components/modals/modal-guardian-create/modal-guardian-create.component';
 import { UsersService } from 'src/app/shared/services/http/users.service';
 import { AuthService } from 'src/app/shared/services/http/auth.service';
+import { SignalRService } from './../../../../../shared/services/http/hub/SignalR.service';
 
 @Component({
   selector: 'app-child-guardians-tab',
@@ -10,7 +11,7 @@ import { AuthService } from 'src/app/shared/services/http/auth.service';
   styleUrls: ['./child-guardians-tab.component.css'],
   encapsulation: ViewEncapsulation.None,
 })
-export class ChildGuardiansTabComponent implements OnInit {
+export class ChildGuardiansTabComponent implements OnInit,OnDestroy {
   //List of all guardians *needs to be fetched*
   guardians: any[] = [];
 
@@ -19,16 +20,22 @@ export class ChildGuardiansTabComponent implements OnInit {
 
   @Input() child_info!: any;
   constructor(
+    private signalRService:SignalRService,
     public dialog: MatDialog,
     private usersService: UsersService,
     public authService: AuthService
   ) {
     // console.log('guardians tab constructor');
   }
+  ngOnDestroy(): void {
+    this.signalRService.removeChildChangesListener();
+
+  }
 
   ngOnInit() { console.clear()
     this.getAllGuardians();
     this.getAllChildsGuardians();
+    this.signalRService.addChildChangesListener(this.getAllChildsGuardians.bind(this));
   }
 
   private getAllGuardians = () => {

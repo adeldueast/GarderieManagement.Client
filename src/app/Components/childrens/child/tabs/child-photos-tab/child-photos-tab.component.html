@@ -11,6 +11,7 @@
     accept="image/*"
   />
   <button
+  *ngIf="!this.authService.isUserInRole('tutor')"
     (click)="fileuploadprogress.click()"
     class="button"
     mat-mini-fab

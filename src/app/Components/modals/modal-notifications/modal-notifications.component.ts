@@ -57,6 +57,7 @@ export class ModalNotificationsComponent implements OnInit {
         this.openJournalDialog(notification.dataId);
         break;
       case NotificationType.Photo:
+        this.router.navigate(['photos'])
         this.openImagePreview(notification.dataId);
         break;
       case NotificationType.Event:

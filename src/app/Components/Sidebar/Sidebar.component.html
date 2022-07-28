@@ -57,6 +57,8 @@
       <!-- Photo/Videos -->
       <li class="relative">
         <a
+        [routerLink]="['photos']" 
+
           class="cursor-pointer flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out"
           data-mdb-ripple="true"
           data-mdb-ripple-color="dark"
@@ -87,7 +89,7 @@
       </a>
     </li>
        <!-- Notifications -->
-       <li class="relative">
+       <li class="relative" >
         <a
          (click)="openNotificationDialog()"
           class="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out"
@@ -247,7 +249,7 @@
           <span>Messages</span>
         </a>
       </li>
-         <!-- Notifications -->
+         <!-- Notifications 
          <li class="relative">
           <a
            (click)="openNotificationDialog()"
@@ -265,8 +267,8 @@
             <span *ngIf="notifications && newNotifications >0" class="badge">{{newNotifications}}</span>
             
           </a>
-        </li>
-  
+        </li> -->
+ 
       <!-- Logout -->
       <mat-divider></mat-divider>
       <li class="relative">

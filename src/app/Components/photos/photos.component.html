@@ -1,6 +1,6 @@
 <div class="flex items-center gap-3 mb-3">
   <h1 class="m-0">Photos</h1>
-  <input
+  <input 
     #fileuploadprogress
     (change)="onFileChange($event)"
     (click)="setNull()"
@@ -11,6 +11,7 @@
     accept="image/*"
   />
   <button
+  *ngIf="!this.authService.isUserInRole('tutor')"
     (click)="fileuploadprogress.click()"
     class="button"
     mat-mini-fab

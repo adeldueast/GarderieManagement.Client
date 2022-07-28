@@ -3,6 +3,8 @@ import { PhotoService } from 'src/app/shared/services/http/photo.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalImagePreviewComponent } from 'src/app/Components/modals/modal-image-preview/modal-image-preview.component';
 import { ModalPreviewPictureComponent } from 'src/app/Components/modals/modal-preview-picture/modal-preview-picture.component';
+import { AuthService } from 'src/app/shared/services/http/auth.service';
+import { SignalRService } from 'src/app/shared/services/http/hub/SignalR.service';
 
 @Component({
   selector: 'app-child-photos-tab',
@@ -16,11 +18,13 @@ export class ChildPhotosTabComponent implements OnInit {
   fileuploadprogress?: ElementRef;
 
   images: any[] = [];
-  constructor(private photoService: PhotoService, public dialog: MatDialog) {}
+  constructor(private photoService: PhotoService, public dialog: MatDialog,public authService:AuthService,private signalRService:SignalRService) {}
 
   ngOnInit() {
 
     this.getPhotoIdsOfChild();
+    this.signalRService.addChildChangesListener(this.getPhotoIdsOfChild.bind(this));
+
   }
 
   getPhotoIdsOfChild() {

@@ -18,7 +18,7 @@ export class ChildrenComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['id', 'nom', 'group'];
   children: any[] = [];
   dataSource = new MatTableDataSource(this.children);
- 
+
   constructor(
     public dialog: MatDialog,
     public childrenService: ChildrenService,
@@ -29,6 +29,7 @@ export class ChildrenComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
     this.signalRService.removeChildAttendanceChangesListener();
+    this.signalRService.removeChildChangesListener();
   }
 
   ngOnInit(): void {
@@ -37,18 +38,20 @@ export class ChildrenComponent implements OnInit, OnDestroy {
     //fetches children
     if (this.authService.isUserInRole('tutor')) {
       this.getChildren(true);
-   //   console.warn('tutor');
-      
+      //   console.warn('tutor');
     } else {
       this.getChildren(false);
-  //    console.warn('OOPS not a tutor');
-
+      //    console.warn('OOPS not a tutor');
     }
 
     this.dataSource = new MatTableDataSource(this.children);
 
     this.signalRService.addChildAttendanceChangesListener(
       this.updateChildren.bind(this)
+    );
+
+    this.signalRService.addChildChangesListener(
+      this.getChildren.bind(this, this.authService.isUserInRole('tutor'))
     );
   }
 
@@ -86,17 +89,18 @@ export class ChildrenComponent implements OnInit, OnDestroy {
     //this.children[index].hasArrived = data.present;
   }
   getChildren(isTutor: boolean) {
+    this.children = [];
     if (!isTutor) {
       this.childrenService.getChildren('Enfant/GetAll').subscribe({
         next: (res) => {
-         console.log(res);
+          console.log(res);
 
           // this.children = res.data;
           res.data.forEach((c: any) => {
             const child = {
               id: c.id,
               nom: c.nom,
-              image: c.photoCouverture ,
+              image: c.photoCouverture,
               hexColor: c.hexColor,
               hasArrived: c.hasArrived,
               group: c.group,
@@ -104,8 +108,7 @@ export class ChildrenComponent implements OnInit, OnDestroy {
             this.children.push(child);
           });
           this.dataSource = new MatTableDataSource(this.children);
-          console.log(this.children);
-          
+         // console.log(this.children);
         },
         error: (err) => [
           console.error(err),
@@ -120,21 +123,20 @@ export class ChildrenComponent implements OnInit, OnDestroy {
 
     this.childrenService.getChildren('Enfant/GetAllTutorsChilds').subscribe({
       next: (res) => {
-       // console.log(res);
+        console.log(res);
 
         // this.children = res.data;
         res.data.forEach((c: any) => {
           const child = {
             id: c.id,
             nom: c.nom,
-            image: c.photoCouverture ,
+            image: c.photoCouverture,
             hexColor: c.hexColor,
             hasArrived: c.hasArrived,
             group: c.group,
           };
           this.children.push(child);
-          console.log(child);
-          
+         // console.log(child);
         });
         this.dataSource = new MatTableDataSource(this.children);
       },
@@ -157,7 +159,10 @@ export class ChildrenComponent implements OnInit, OnDestroy {
         //console.error(err.error.errors),
         alert(JSON.stringify(err.error.errors)),
       ],
-      complete: () => console.log('creating child completed'),
+      complete: () => {
+        console.log('creating child completed');
+        this.getChildren(false);
+      },
     });
   }
 

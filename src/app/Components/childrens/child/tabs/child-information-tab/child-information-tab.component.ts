@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ChildrenService } from 'src/app/shared/services/http/children.service';
 import { GroupService } from 'src/app/shared/services/http/group.service';
 import { AuthService } from 'src/app/shared/services/http/auth.service';
+import { SignalRService } from 'src/app/shared/services/http/hub/SignalR.service';
 
 @Component({
   selector: 'app-child-information-tab',
@@ -16,6 +17,7 @@ export class ChildInformationTabComponent implements OnInit {
   groups: any[] = [{ id: 0, name: 'No Group' }];
 
   constructor(
+    private signalRService:SignalRService,
     private childrenService: ChildrenService,
     private groupService: GroupService,
     public authService:AuthService
@@ -39,6 +41,7 @@ export class ChildInformationTabComponent implements OnInit {
     this.updateForm.disable();
     this.getAllGroups();
     
+    // this.signalRService.addChildChangesListener(this.getChild.bind(this));
   }
 
   getAllGroups = () => {

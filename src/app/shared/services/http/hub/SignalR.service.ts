@@ -135,15 +135,6 @@ export class SignalRService {
     this.hubConnection.off('newNotification');
   };
 
-  async getConnectionId() {
-    await this.hubConnection
-      .invoke('GetConnectionId')
-      .then(async (response) => {
-        this.connectionId = response;
 
-        //console.log('FINALLY RECEIVED THE CONNECTION ID',  this.connectionId);
-      })
-      .catch((err) => console.log(err));
-  }
   // ChildAttendanceUpdate
 }

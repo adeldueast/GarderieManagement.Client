@@ -146,7 +146,7 @@ export class ChildCalendarTabComponent implements OnInit, OnDestroy {
             display: 'auto',
           };
           
-          this.calendarComponent.getApi().addEvent(event);
+          // this.calendarComponent.getApi().addEvent(event);
         },
         error: (err) => console.log(err),
         complete: async () => {
