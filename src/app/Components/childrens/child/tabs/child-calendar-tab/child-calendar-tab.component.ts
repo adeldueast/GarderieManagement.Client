@@ -52,7 +52,13 @@ export class ChildCalendarTabComponent implements OnInit, OnDestroy {
       
     }
 
-    this.calendarComponent.getApi().addEvent(event);
+    const existingEvent =this.calendarComponent.getApi().getEventById(attendance!.id);
+  
+    if(existingEvent){
+      existingEvent?.remove();
+      this.calendarComponent.getApi().addEvent(event);
+    }
+  
   }
 
   private initCalendarOptions = () => {
@@ -85,6 +91,8 @@ export class ChildCalendarTabComponent implements OnInit, OnDestroy {
       )
     )
       .then((res) => {
+        console.log(res);
+        
         res.forEach((e: any) => {
           const event = {
             id: e.id,

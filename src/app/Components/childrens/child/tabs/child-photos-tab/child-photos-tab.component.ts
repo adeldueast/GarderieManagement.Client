@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { PhotoService } from 'src/app/shared/services/http/photo.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalImagePreviewComponent } from 'src/app/Components/modals/modal-image-preview/modal-image-preview.component';
@@ -11,7 +11,7 @@ import { SignalRService } from 'src/app/shared/services/http/hub/SignalR.service
   templateUrl: './child-photos-tab.component.html',
   styleUrls: ['./child-photos-tab.component.css'],
 })
-export class ChildPhotosTabComponent implements OnInit {
+export class ChildPhotosTabComponent implements OnInit,OnDestroy {
   //TODO: MAKE THIS PHOTO GALLERIE DISPLAY A COMPONENT BECAUSE ITS IS A COPY PASTE OF PHOTO 
   @Input() child_info!: any;
   @ViewChild('fileuploadprogress', { static: false })
@@ -19,6 +19,10 @@ export class ChildPhotosTabComponent implements OnInit {
 
   images: any[] = [];
   constructor(private photoService: PhotoService, public dialog: MatDialog,public authService:AuthService,private signalRService:SignalRService) {}
+  ngOnDestroy(): void {
+    this.signalRService.removeChildChangesListener();
+
+  }
 
   ngOnInit() {
 
@@ -26,12 +30,17 @@ export class ChildPhotosTabComponent implements OnInit {
     this.signalRService.addChildChangesListener(this.getPhotoIdsOfChild.bind(this));
 
   }
-
+  onLoad(index:number) {
+    this.images[index].isLoading =false;
+   
+}
   getPhotoIdsOfChild() {
     this.photoService.getPhotoIdsOfChild(`Photos/Gallerie/Get/${this.child_info.id}`).subscribe(
       (res) => {
         console.log(res);
+        this.images=[]
         res.forEach((image: any) => {
+          image.isLoading = true;
           this.images.push(image);
         });
       },

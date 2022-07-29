@@ -43,6 +43,14 @@ export class ChildrenService {
     );
   }
 
+  
+  deleteChild(route: string) {
+    return this.http.post<any>(
+      this.createCompleteRoute(route, this.envUrl.urlAddress)
+      ,{}
+    );
+  }
+
   getChildAttendances(route: string) {
     return this.http.get<any>(
       this.createCompleteRoute(route, this.envUrl.urlAddress)

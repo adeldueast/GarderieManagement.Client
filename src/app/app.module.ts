@@ -67,7 +67,7 @@ import { PhotosComponent } from './Components/photos/photos.component';
 import { ModalSelectChildrenComponent } from './Components/modals/modal-select-children/modal-select-children.component';
 import { ModalPreviewPictureComponent } from './Components/modals/modal-preview-picture/modal-preview-picture.component';
 import { ChildPhotosTabComponent } from './Components/childrens/child/tabs/child-photos-tab/child-photos-tab.component';
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
   interactionPlugin,
@@ -94,8 +94,8 @@ const Material_Modules = [
   MatListModule,
   MatTooltipModule,
   MatCheckboxModule ,MatSelectModule,MatCardModule,
-  MatStepperModule
-  
+  MatStepperModule,
+  MatProgressSpinnerModule
 ];
 
 @NgModule({

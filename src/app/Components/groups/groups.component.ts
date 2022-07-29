@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/app/shared/services/http/auth.service';
@@ -11,40 +11,46 @@ import { ModalGroupCreateComponent } from '../modals/modal-group-create/modal-gr
   templateUrl: './groups.component.html',
   styleUrls: ['./groups.component.css'],
 })
-export class GroupsComponent implements OnInit {
+export class GroupsComponent implements OnInit,OnDestroy {
   constructor(
     private groupService: GroupService,
     public dialog: MatDialog,
     private signalRService: SignalRService,
-    public authService:AuthService
+    public authService: AuthService
   ) {}
   groups: any = [];
-  ngOnInit() { console.clear()
+  ngOnInit() {
+    console.clear();
     this.getAllGroups();
+
     this.signalRService.addChildAttendanceChangesListener(
-      this.updateChildState.bind(this)
+      this.getAllGroups.bind(this)
     );
-    
+
+    this.signalRService.addChildChangesListener(
+      this.getAllGroups.bind(this)
+    );
+
+    this.signalRService.addGroupsChangesListener(
+      this.getAllGroups.bind(this)
+    );
+
   }
 
-  updateChildState(data?: any) {
-    //console.log(data);
-   this.getAllGroups()
-    // const index = this.group.enfants.findIndex(
-    //   (x: any) => x.id === data.enfantId
-    // );
-    // if (index != -1) {
-    //   this.group.enfants[index].hasArrived = data.present;
-    // }
-  }
+
   ngOnDestroy(): void {
     this.signalRService.removeChildAttendanceChangesListener();
-    
+
+    this.signalRService.removeChildChangesListener();
+
+    this.signalRService.removeGroupsChangesListener();
+
+
   }
   getAllGroups() {
     this.groupService.getAllGroups('Group/Get').subscribe({
       next: (res) => {
-       console.log(res);
+        console.log(res);
         this.groups = [];
         res.data.forEach((g: any) => {
           let group = {

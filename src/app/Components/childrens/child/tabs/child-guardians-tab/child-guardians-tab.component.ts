@@ -33,8 +33,11 @@ export class ChildGuardiansTabComponent implements OnInit,OnDestroy {
   }
 
   ngOnInit() { console.clear()
+    console.warn(this.child_info);
+    
     this.getAllGuardians();
     this.getAllChildsGuardians();
+    
     this.signalRService.addChildChangesListener(this.getAllChildsGuardians.bind(this));
   }
 
@@ -51,7 +54,7 @@ export class ChildGuardiansTabComponent implements OnInit,OnDestroy {
         });
       },
       error: (err) => [
-        console.error(err),
+        console.error('getAllGuardians',err),
         //console.error(err.error.errors),
         alert(JSON.stringify(err.error.errors)),
       ],
@@ -60,6 +63,8 @@ export class ChildGuardiansTabComponent implements OnInit,OnDestroy {
   };
 
   private getAllChildsGuardians = () => {
+    console.warn(this.child_info);
+    
     this.usersService
       .getAllChildsGuardians(`User/ChildsTutors?enfantId=${this.child_info.id}`)
       .subscribe({
@@ -82,14 +87,20 @@ export class ChildGuardiansTabComponent implements OnInit,OnDestroy {
           // console.log(this.childsGuardians);
         },
         error: (err) => [
-          console.error(err),
+         
           //console.error(err.error.errors),
+        console.error('getAllChildsGuardians',err),
+
           alert(JSON.stringify(err.error.errors)),
         ],
         complete: () => console.log("getting only child's guardians completed"),
       });
   };
 
+
+
+
+  
   editChildTutorRelation = (guardian: any) => {
     this.openDialog(true, guardian);
   };
@@ -106,6 +117,8 @@ export class ChildGuardiansTabComponent implements OnInit,OnDestroy {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
+      this.getAllChildsGuardians()
+      return;
       if (result) {
         //console.log(result.value);
         const authorizePickup = result.value.authorizePickup;
@@ -126,6 +139,7 @@ export class ChildGuardiansTabComponent implements OnInit,OnDestroy {
           this.getAllChildsGuardians()
 
         }
+        
       }
     });
   }

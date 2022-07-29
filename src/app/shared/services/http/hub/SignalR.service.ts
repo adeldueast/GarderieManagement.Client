@@ -27,7 +27,7 @@ export class SignalRService {
   }
 
   onDestroy() {
-   // console.log('ngOnDestroy: cleaning up...');
+    // console.log('ngOnDestroy: cleaning up...');
     if (this.hubConnection) {
       this.endConnection();
     }
@@ -72,7 +72,7 @@ export class SignalRService {
       .then(() => console.log('Connection to Hub started'))
       .catch((err) => console.log('Error while starting connection: ' + err));
 
-   // await this.getConnectionId();
+    // await this.getConnectionId();
   };
 
   endConnection = () => {
@@ -112,7 +112,7 @@ export class SignalRService {
 
   addChildAttendanceChangesListener = (fn: (data?: any) => any) => {
     this.hubConnection.on('childAttendanceUpdate', (data) => {
-      //console.log(data);
+      console.log(data);
       console.warn('notifying other users of childAttendanceChanges');
       fn(data);
     });
@@ -122,11 +122,9 @@ export class SignalRService {
     this.hubConnection.off('childAttendanceUpdate');
   };
 
-  addNewNotificationListener = (
-    
-    fn: (data?: any) => any) => {
+  addNewNotificationListener = (fn: (data?: any) => any) => {
     this.hubConnection.on('newNotification', (data) => {
-     // console.log(data);
+      // console.log(data);
       console.warn('notifying other users of newNotification avaible');
       fn(data);
     });
@@ -135,6 +133,17 @@ export class SignalRService {
     this.hubConnection.off('newNotification');
   };
 
+  addGroupsChangesListener = (fn: (data?: any) => any) => {
+    this.hubConnection.on('groupsChanges', (data) => {
+      console.log(data);
+      console.warn('notifying other users of groupsChanges');
+      fn(data);
+    });
+  };
+
+  removeGroupsChangesListener = () => {
+    this.hubConnection.off('groupsChanges');
+  };
 
   // ChildAttendanceUpdate
 }

@@ -1,13 +1,19 @@
 
 <div class="w-[800px] h-[700px] flex items-center justify-center bg-gray-200 relative">
 
+  <mat-spinner *ngIf="loading"></mat-spinner>
   <img
+
+  [hidden]="loading"
+  (load)="onLoad()"
+  alt="image"
   [src]="
+  
     'https://localhost:44356/api/v1/Photos/md/' + this.data.images[this.index]?.id
       | picture
       | async
   "
-  alt="image"
+ 
  
   class="max-h-full max-w-full mx-auto "
   

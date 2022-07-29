@@ -8,6 +8,8 @@ import { PhotoService } from 'src/app/shared/services/http/photo.service';
   styleUrls: ['./modal-preview-picture.component.css'],
 })
 export class ModalPreviewPictureComponent implements OnInit {
+  loading: boolean = true
+
   index!: number;
   image: any;
   constructor(
@@ -35,15 +37,19 @@ export class ModalPreviewPictureComponent implements OnInit {
         );
     }
   }
-
+  onLoad() {
+    this.loading = false;
+}
   previousImage() {
     if (!this.isFirstImage()) {
+      this.loading = true;
       this.index -= 1;
     }
   }
 
   nextImage() {
     if (!this.isLastImage()) {
+      this.loading = true;
       this.index += 1;
     }
   }

@@ -30,9 +30,13 @@ export class ChildrenComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.signalRService.removeChildAttendanceChangesListener();
     this.signalRService.removeChildChangesListener();
+    this.signalRService.removeGroupsChangesListener();
+
   }
 
   ngOnInit(): void {
+  
+      
     //console.log('XOXOX',  this.authService.isUserInRole('employee'));
 
     //fetches children
@@ -48,6 +52,10 @@ export class ChildrenComponent implements OnInit, OnDestroy {
 
     this.signalRService.addChildAttendanceChangesListener(
       this.updateChildren.bind(this)
+    );
+
+    this.signalRService.addGroupsChangesListener(
+      this.getChildren.bind(this, this.authService.isUserInRole('tutor'))
     );
 
     this.signalRService.addChildChangesListener(
@@ -89,6 +97,8 @@ export class ChildrenComponent implements OnInit, OnDestroy {
     //this.children[index].hasArrived = data.present;
   }
   getChildren(isTutor: boolean) {
+  console.log('FETCHING KIDS');
+  
     this.children = [];
     if (!isTutor) {
       this.childrenService.getChildren('Enfant/GetAll').subscribe({

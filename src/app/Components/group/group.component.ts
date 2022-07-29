@@ -24,15 +24,25 @@ export class GroupComponent implements OnInit, OnDestroy {
   ) {}
   ngOnDestroy(): void {
     this.signalRService.removeChildAttendanceChangesListener();
+
+    this.signalRService.removeChildChangesListener();
+
   }
 
   ngOnInit() { console.clear()
+    let groupId ;
     this.route.params.subscribe((params) => {
-      this.getGroupById(params['id']);
+      groupId = (params['id']);
+      this.getGroupById(groupId)
     });
     this.signalRService.addChildAttendanceChangesListener(
-      this.updateChildState.bind(this)
+      this.getGroupById.bind(this,groupId)
     );
+
+    this.signalRService.addChildChangesListener(
+      this.getGroupById.bind(this,groupId)
+    );
+    
   }
   updateChildState(data?: any) {
     const index = this.group.enfants.findIndex(
@@ -42,7 +52,7 @@ export class GroupComponent implements OnInit, OnDestroy {
       this.group.enfants[index].hasArrived = data.present;
     }
   }
-  getGroupById(id: number) {
+  getGroupById(id?: number) {
     this.groupService.getGroupById(`Group/Get/${id}`).subscribe((res) => {
       this.group = res.data;
      console.log(this.group);

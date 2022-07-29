@@ -1,6 +1,12 @@
 <div class="flex items-center gap-3 mb-3">
-  <h1 class="m-0">Photos</h1>
-  <input 
+  <h1 class="m-0">
+    {{
+      this.authService.isUserInRole("tutor")
+        ? "Photos of my children "
+        : "Photos of all children"
+    }}
+  </h1>
+  <input
     #fileuploadprogress
     (change)="onFileChange($event)"
     (click)="setNull()"
@@ -11,7 +17,7 @@
     accept="image/*"
   />
   <button
-  *ngIf="!this.authService.isUserInRole('tutor')"
+    *ngIf="!this.authService.isUserInRole('tutor')"
     (click)="fileuploadprogress.click()"
     class="button"
     mat-mini-fab
@@ -22,10 +28,17 @@
   </button>
 </div>
 
-<div class="content-container ">
+<div class="content-container">
   <ul class="flex flex-wrap justify-center gap-3">
-    <li class="basis-[230px] h-[230px]" *ngFor="let img of images;let i = index" (click)="openImagePreview(i,images)">
+    <li
+      class="basis-[230px] h-[230px] flex justify-center items-center"
+      *ngFor="let img of images; let i = index"
+      (click)="openImagePreview(i, images)"
+    >
+    <mat-spinner *ngIf="img.isLoading"></mat-spinner>
       <img
+      [hidden]="img.isLoading"
+      (load)="onLoad(i)"
         [src]="
           'https://localhost:44356/api/v1/Photos/sm/' + img?.id
             | picture

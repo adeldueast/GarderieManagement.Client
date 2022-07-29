@@ -34,6 +34,11 @@ export class PhotosComponent implements OnInit,OnDestroy {
     this.getAllPhotosIds();
   }
 
+  onLoad(index:number) {
+    this.images[index].isLoading =false;
+   
+}
+
   getAllPhotosIds() {
     this.photoService.getAllPhotosIds('Photos/Gallerie/Get').subscribe(
       (res) =>{
@@ -41,7 +46,9 @@ export class PhotosComponent implements OnInit,OnDestroy {
         this.images=[]
 
         res.forEach((image:any) => {
+          image.isLoading = true;
           this.images.push(image)
+
         });
       },
       (err) => console.log(err)

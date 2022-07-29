@@ -11,7 +11,7 @@ table {
 
 .content-container{
   height: calc(100vh - (204px));
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 

@@ -1,5 +1,5 @@
 <header
-  class="p-2 flex flex-col justify-center items-center gap-3 rounded-t-md"
+  class="p-2 flex flex-col justify-center items-center gap-3 rounded-t-md relative"
   [ngStyle]="{
     'background-color': child_info.hexColor ? child_info.hexColor : ''
   }"
@@ -49,6 +49,7 @@
     </button>
   </div>
   <p class="text-4xl">{{ child_info.nom }}</p>
+  <button mat-raised-button (click)="onDelete()" class="btn-delete">Delete</button>
 </header>
 
 <mat-tab-group mat-stretch-tabs>
