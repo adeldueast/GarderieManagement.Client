@@ -39,15 +39,18 @@ export class ChildCalendarTabComponent implements OnInit, OnDestroy {
   }
 
   onChildAttendancesChanges(attendance?: any): any {
-   // console.log('MONEY TEAM', attendance);
+    console.log('MONEY TEAM', attendance);
+   
     const event:EventInput = {
+      
       id: attendance.id,
-      title: attendance.present ? 'Present' : 'Absent',
+      title: attendance.present ? 'Present' : `Absent: ${attendance.absenceDescription}`,
     
       allDay: true,
       date: attendance.date,
       color: attendance.present ? '#00ff1a' : '#ff0011',
       display: 'auto',
+      
       
       
     }
@@ -58,14 +61,16 @@ export class ChildCalendarTabComponent implements OnInit, OnDestroy {
       existingEvent?.remove();
       this.calendarComponent.getApi().addEvent(event);
     }
-  
+    this.calendarComponent.getApi().addEvent(event);
   }
 
   private initCalendarOptions = () => {
    
-   const  child_birthdayEvent  = {
+   const  child_birthdayEvent:EventInput  = {
+
       title: '🎂 BIRTHDAY 🎂',
       allDay: true,
+    icon:'asterisk',
       rrule: {
         freq: 'yearly',
         dtstart: this.child_info.birthdate,
@@ -96,7 +101,7 @@ export class ChildCalendarTabComponent implements OnInit, OnDestroy {
         res.forEach((e: any) => {
           const event = {
             id: e.id,
-            title: e.present ? 'Present' : 'Absent',
+            title: e.present ? 'Present' : `Absent: ${e.absenceDescription}`,
             allDay: true,
             date: e.date,
             color: e.present ? '#00ff1a' : '#ff0011',

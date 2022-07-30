@@ -4,6 +4,7 @@ import { Observable, startWith, map } from 'rxjs';
 
 import { UsersService } from 'src/app/shared/services/http/users.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AuthService } from 'src/app/shared/services/http/auth.service';
 @Component({
   selector: 'app-modal-guardian-create',
   templateUrl: './modal-guardian-create.component.html',
@@ -25,6 +26,7 @@ export class ModalGuardianCreateComponent implements OnInit {
   filteredGuardians?: Observable<any[]>;
 
   constructor(
+    public authService:AuthService,
     private usersService: UsersService,
     // data is just some data passed from child component to this modal (children && childName)
     @Inject(MAT_DIALOG_DATA) public data: any
@@ -35,10 +37,10 @@ export class ModalGuardianCreateComponent implements OnInit {
     this.form = new FormGroup({
       firstName: new FormControl(''),
       lastName: new FormControl(''),
-      email: new FormControl(''),
+      email: new FormControl(authService.isUserInRole('tutor')?null:''),
 
       //new props
-      HasAnAccount: new FormControl(true),
+      HasAnAccount: new FormControl(authService.isUserInRole('tutor')?false:true),
       emergencyContact: new FormControl(true),
       authorizePickup: new FormControl(true),
 

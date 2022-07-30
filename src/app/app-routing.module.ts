@@ -11,6 +11,7 @@ import { ChildComponent } from './Components/childrens/child/child.component';
 import { GroupsComponent } from './Components/groups/groups.component';
 import { GroupComponent } from './Components/group/group.component';
 import { PhotosComponent } from './Components/photos/photos.component';
+import { CreateGarderieComponent } from './Components/create-garderie/create-garderie.component';
 
 const routes: Routes = [
   // Login page  http://localhost:4200/login
@@ -30,7 +31,7 @@ const routes: Routes = [
         path: 'children',
         component: ChildrenComponent,
         canActivate: [AuthGuard],
-      },  
+      },
       {
         // Child page  http://localhost:4200/children/1
         path: 'children/:id',
@@ -59,7 +60,11 @@ const routes: Routes = [
       { path: 'staff', component: StaffComponent, canActivate: [AuthGuard] },
     ],
   },
-
+  {
+    path: 'garderie',
+    component: CreateGarderieComponent,
+    canActivate: [AuthGuard],
+  },
   //{ path: '', redirectTo: 'login', pathMatch: 'full' }, // redirect to home
   { path: '**', component: PageNotFoundComponent },
 ];

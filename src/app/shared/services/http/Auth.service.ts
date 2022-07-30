@@ -16,6 +16,7 @@ export class AuthService {
     email: undefined,
     first_name: undefined,
     last_name: undefined,
+    garderieId:'',
     roles: [],
   };
   constructor(
@@ -50,16 +51,21 @@ export class AuthService {
     this.authChangeSub.next(isAuthenticated);
   };
 
+  public userHasGarderie(){
+    return  typeof this.user_info.garderieId === 'string' && !(this.user_info.garderieId.length === 0)
+  }
   private UpdateCurrentUserInfo(token: string | null) {
     if (token) {
       const decodedToken = this.jwtHelper.decodeToken(token!);
-      // console.log(decodedToken);
+     // console.log(decodedToken);
+     
 
       this.user_info.uid = decodedToken.Id;
       this.user_info.email = decodedToken.email;
       this.user_info.first_name = decodedToken.firstname;
       this.user_info.last_name = decodedToken.lastname;
       this.user_info.roles = decodedToken.role;
+      this.user_info.garderieId = decodedToken.GarderieId;
     } else {
       this.user_info.uid = undefined;
       this.user_info.email = undefined;

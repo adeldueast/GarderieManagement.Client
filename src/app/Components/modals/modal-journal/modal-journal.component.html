@@ -1,20 +1,27 @@
-<div class="min-w-[600px]">
+<div class="min-w-[600px] ">
   <!-- HEADER -->
-  <div class="flex justify-between items-center mb-4">
-    <h2 class="m-0" mat-dialog-title>
-      Journal de bord for {{ this.data?.nom ? this.data.nom : this.childName }}
-    </h2>
+  <div class="flex justify-between items-center ">
+    <h1 class="m-0" mat-dialog-title>
+      Journal de bord de <h1 class="m-0 inline-block">
+        <span class="font-bold ">{{ this.data?.nom ? this.data.nom : this.childName }}</span>
+      </h1>
+    </h1>
+  
     <button
       *ngIf="this.data.dataId === undefined"
       type="button"
       mat-button
-      class="btn-primary bg-blue-700 text-white"
+      class="btn-primary bg-blue-700 ml-2 text-white"
       (click)="JournalGroupedClick()"
       mat-dialog-close
     >
       Journal groupé
     </button>
   </div>
+  <h3>
+    {{this.form.get('createdAt')?.value ?readableDate(this.form.get('createdAt')?.value):''}}
+
+  </h3>
 
   <!-- BODY -->
   <mat-dialog-content class="mat-typography">

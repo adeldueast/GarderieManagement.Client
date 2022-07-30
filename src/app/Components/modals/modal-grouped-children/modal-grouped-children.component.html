@@ -82,20 +82,30 @@
     >
       <div class="flex items-center justify-between">
         <div class="flex items-center justify-start">
+
           <img
-            class="w-8 h-8 rounded-full mr-2"
-            [src]="enfant_rating.image"
-            alt=""
-          />
+          class="w-12 h-12 rounded-full object-cover mr-2"
+          [src]="
+          enfant_rating.image
+              ? ('https://localhost:44356/api/v1/Photos/sm/' +
+              enfant_rating.image
+                | picture
+                | async)
+              : 'https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg'
+          "
+          alt="image"
+        />
+
+         
           {{ enfant_rating.nom }} :
         </div>
 
-        {{ enfant_rating.Humeur_Rating }}
+        <!-- {{ enfant_rating.Humeur_Rating }} -->
         <app-star-rating
           [isAllowedEdit]="true"
           [index]="i"
           (ratingUpdated)="onHumeurRatingChanged($event)"
-          [rating]="enfant_rating.Humeur_rating"
+          [rating]="enfant_rating.Humeur_Rating"
         ></app-star-rating>
       </div>
     </div>
@@ -120,17 +130,24 @@
       <div class="flex items-center justify-between">
         <div class="flex items-center justify-start">
           <img
-            class="w-8 h-8 rounded-full mr-2"
-            [src]="enfant_rating.image"
-            alt=""
-          />
+          class="w-8 h-8 rounded-full mr-2"
+          [src]="
+          enfant_rating.image
+              ? ('https://localhost:44356/api/v1/Photos/sm/' +
+              enfant_rating.image
+                | picture
+                | async)
+              : 'https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg'
+          "
+          alt="image"
+        />
           {{ enfant_rating.nom }} :
         </div>
         <app-star-rating
           [isAllowedEdit]="true"
           [index]="i"
           (ratingUpdated)="onMangerRatingChanged($event)"
-          [rating]="enfant_rating.Manger_rating"
+          [rating]="enfant_rating.Manger_Rating"
         ></app-star-rating>
       </div>
     </div>
@@ -155,17 +172,24 @@
       <div class="flex items-center justify-between">
         <div class="flex items-center justify-start">
           <img
-            class="w-8 h-8 rounded-full mr-2"
-            [src]="enfant_rating.image"
-            alt=""
-          />
+          class="w-8 h-8 rounded-full mr-2"
+          [src]="
+          enfant_rating.image
+              ? ('https://localhost:44356/api/v1/Photos/sm/' +
+              enfant_rating.image
+                | picture
+                | async)
+              : 'https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg'
+          "
+          alt="image"
+        />
           {{ enfant_rating.nom }} :
         </div>
         <app-star-rating
           [isAllowedEdit]="true"
           [index]="i"
           (ratingUpdated)="onParticipationRatingChanged($event)"
-          [rating]="enfant_rating.Participation_rating"
+          [rating]="enfant_rating.Participation_Rating"
         ></app-star-rating>
       </div>
     </div>
@@ -190,17 +214,24 @@
       <div class="flex items-center justify-between">
         <div class="flex items-center justify-start">
           <img
-            class="w-8 h-8 rounded-full mr-2"
-            [src]="enfant_rating.image"
-            alt=""
-          />
+          class="w-8 h-8 rounded-full mr-2"
+          [src]="
+          enfant_rating.image
+              ? ('https://localhost:44356/api/v1/Photos/sm/' +
+              enfant_rating.image
+                | picture
+                | async)
+              : 'https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg'
+          "
+          alt="image"
+        />
           {{ enfant_rating.nom }} :
         </div>
         <app-star-rating
           [isAllowedEdit]="true"
           [index]="i"
           (ratingUpdated)="onToiletteRatingChanged($event)"
-          [rating]="enfant_rating.Toilette_rating"
+          [rating]="enfant_rating.Toilette_Rating"
         ></app-star-rating>
       </div>
     </div>

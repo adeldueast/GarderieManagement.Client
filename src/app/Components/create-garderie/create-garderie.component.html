@@ -1,0 +1,59 @@
+<form
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+  class="bg-white shadow-md rounded p-3 center-screen max-w-[500px]"
+>
+  <h1>Create a garderie</h1>
+  <mat-form-field class="w-full">
+    <mat-label>Name</mat-label>
+    <input formControlName="Name" matInput placeholder="Name" />
+  </mat-form-field>
+
+  <div formGroupName="Address" class="flex flex-col">
+    <mat-form-field>
+      <mat-label>City</mat-label>
+      <input formControlName="Ville" matInput placeholder="City" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Street</mat-label>
+      <input formControlName="Rue" matInput placeholder="Street" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Province</mat-label>
+      <mat-select formControlName="Province" name="province">
+        <mat-option *ngFor="let province of provinces" [value]="province">
+          {{ province }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="grid grid-cols-2 gap-x-2">
+      <mat-form-field class="">
+        <mat-label>Zip</mat-label>
+        <input formControlName="CodePostal" matInput placeholder="Zip code" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Phone </mat-label>
+        <input formControlName="Telephone" matInput placeholder="Phone" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- <p>Form value: {{ form.value |json}}</p>
+  <p>Form status: {{ form.status |json}}</p> -->
+  <div class="flex justify-between items-center">
+    <button mat-raised-button type="submit" valid>Create</button>
+    <button mat-raised-button (click)="logout()">
+      <mat-icon
+        class="w-3 h-3 mr-3"
+        aria-hidden="true"
+        aria-label="Example home icon"
+        >logout</mat-icon
+      >
+      Logout
+    </button>
+  </div>
+</form>

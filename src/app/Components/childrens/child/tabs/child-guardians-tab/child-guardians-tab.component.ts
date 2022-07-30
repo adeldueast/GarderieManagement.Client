@@ -28,7 +28,7 @@ export class ChildGuardiansTabComponent implements OnInit,OnDestroy {
     // console.log('guardians tab constructor');
   }
   ngOnDestroy(): void {
-    this.signalRService.removeChildChangesListener();
+    //this.signalRService.removeChildChangesListener();
 
   }
 

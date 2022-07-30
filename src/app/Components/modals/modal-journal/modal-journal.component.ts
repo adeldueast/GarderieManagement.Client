@@ -21,11 +21,11 @@ export class ModalJournalComponent implements OnInit {
 
   childName?: undefined;
   form: FormGroup = new FormGroup({
-    humeur_rating: new FormControl(''),
-    manger_rating: new FormControl(''),
-    participation_rating: new FormControl(''),
-    toilette_rating: new FormControl(''),
-
+    humeur_rating: new FormControl('0'),
+    manger_rating: new FormControl('0'),
+    participation_rating: new FormControl('0'),
+    toilette_rating: new FormControl('0'),
+    createdAt:new FormControl(),
     activite_message: new FormControl(''),
     manger_message: new FormControl(''),
     commentaire_message: new FormControl(''),
@@ -53,28 +53,7 @@ export class ModalJournalComponent implements OnInit {
     this.getJournalById();
   }
 
-  onHumeurRatingChanged(event: any) {
-    this.form.patchValue({
-      humeur_rating: event.rating,
-    });
-  }
-  onMangerRatingChanged(event: any) {
-    this.form.patchValue({
-      manger_rating: event.rating,
-    });
-  }
-
-  onParticipationRatingChanged(event: any) {
-    this.form.patchValue({
-      participation_rating: event.rating,
-    });
-  }
-
-  onToiletteRatingChanged(event: any) {
-    this.form.patchValue({
-      toilette_rating: event.rating,
-    });
-  }
+ 
 
   getJournalById() {
     this.journalService
@@ -86,11 +65,13 @@ export class ModalJournalComponent implements OnInit {
         if (res.data != null) {
           this.isCreate = false;
           this.form.patchValue({
+            createdAt: res.data.createdAt,
+
             humeur_rating: res.data.humeur_Rating,
             manger_rating: res.data.manger_Rating,
             participation_rating: res.data.participation_Rating,
             toilette_rating: res.data.toilette_Rating,
-
+            
             activite_message: res.data.activite_Message,
             manger_message: res.data.manger_Message,
             commentaire_message: res.data.commentaire_Message,
@@ -103,16 +84,18 @@ export class ModalJournalComponent implements OnInit {
     this.journalService
       .getChildsTodayJournal(`Journal/Get/${this.data.id}`)
       .subscribe((res) => {
-       // console.log(res);
-
+        console.log(res);
+        
         if (res.data != null) {
           this.isCreate = false;
           this.form.patchValue({
+            createdAt: res.data.createdAt,
+
             humeur_rating: res.data.humeur_Rating,
             manger_rating: res.data.manger_Rating,
             participation_rating: res.data.participation_Rating,
             toilette_rating: res.data.toilette_Rating,
-
+           
             activite_message: res.data.activite_Message,
             manger_message: res.data.manger_Message,
             commentaire_message: res.data.commentaire_Message,
@@ -120,8 +103,14 @@ export class ModalJournalComponent implements OnInit {
         }
       });
   }
+  readableDate(date:any){
 
+    return new Date(date).toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" })
+  }
   onSubmit() {
+
+    console.log(this.form.value);
+
     if (!(this.data.dataId === undefined)) {
       return;
     }
@@ -151,4 +140,29 @@ export class ModalJournalComponent implements OnInit {
   JournalGroupedClick() {
     this.dialog.open(ModalGroupedChildrenComponent);
   }
+
+  //#region 
+  onHumeurRatingChanged(event: any) {
+    this.form.patchValue({
+      humeur_rating: event.rating,
+    });
+  }
+  onMangerRatingChanged(event: any) {
+    this.form.patchValue({
+      manger_rating: event.rating,
+    });
+  }
+
+  onParticipationRatingChanged(event: any) {
+    this.form.patchValue({
+      participation_rating: event.rating,
+    });
+  }
+
+  onToiletteRatingChanged(event: any) {
+    this.form.patchValue({
+      toilette_rating: event.rating,
+    });
+  }
+  //#endregion
 }

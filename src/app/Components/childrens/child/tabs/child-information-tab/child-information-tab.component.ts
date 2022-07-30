@@ -85,7 +85,7 @@ export class ChildInformationTabComponent implements OnInit {
     this.childrenService
       .updateChild('Enfant/Update', this.updateForm.value)
       .subscribe(
-        //(res) => console.log(res)
+        (res) => console.log(res)
         );
     
         this.updateForm.disable()

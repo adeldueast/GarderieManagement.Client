@@ -36,7 +36,11 @@ export class RegisterComponent implements OnInit {
         console.error(err.error.errors),
         alert(err.error.errors),
       ],
-      complete: () => console.log('registeration completed'),
+      complete: () =>{
+        console.log('registeration completed'),
+        this.router.navigate(['/login']);
+        alert('registeration completed, go back and signin')
+      },
     });
   }
 }

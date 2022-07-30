@@ -24,15 +24,17 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  ngOnInit() { console.clear()}
-
+  ngOnInit() {}
 
   Login() {
     this.authService.loginUser('Account/Login', this.login_request).subscribe({
       next: (res) => {
         this.onSuccessLogin(res);
       },
-      error: (err) => [console.error(err.error.errors), alert(err.error.errors)],
+      error: (err) => [
+        console.error(err.error.errors),
+        alert(err.error.errors),
+      ],
       complete: () => console.log('login completed'),
     });
   }
@@ -43,7 +45,9 @@ export class LoginComponent implements OnInit {
 
     this.authService.sendAuthStateChangeNotification(true);
     // this.authService.UpdateCurrentUserInfo(token);
-   
+    //Check if user (owner) created a garderie
+    
+
     const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     this.router.navigate([returnUrl]);
   }

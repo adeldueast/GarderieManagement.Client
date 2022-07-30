@@ -5,7 +5,8 @@
   </div>
 
   <ng-template #noNotification >
-    <mat-card (click)="onNotifClick(notif,i)" mat-dialog-close *ngFor="let notif of this.data.notifications;let i = index" class="cursor-pointer pb-0 mb-2 hover:bg-slate-200" >
+   
+    <mat-card (click)="onNotifClick(notif,i)" mat-dialog-close *ngFor="let notif of this.data.notifications;let i = index" class="cursor-pointer pb-0 mb-2 " >
       <mat-card-header >
         <!-- <div mat-card-avatar class="example-header-image"></div> -->
         <mat-icon
@@ -17,10 +18,10 @@
         <mat-card-title class="min-w-[254px]">{{
           notif.message
         }}</mat-card-title>
-        <mat-card-title-group
+        <span
           *ngIf="!notif.seen"
           class="bg-red-600 rounded-md h-min py-1 px-2 text-white"
-          >New</mat-card-title-group
+          >New</span
         >
         <mat-card-subtitle>{{ notif.createdAt | dateAsAgo }}</mat-card-subtitle>
       </mat-card-header>

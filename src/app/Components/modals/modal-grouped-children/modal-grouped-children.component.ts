@@ -49,7 +49,7 @@ export class ModalGroupedChildrenComponent implements OnInit {
     private journalService: JournalService
   ) {}
 
-  ngOnInit() { console.clear()
+  ngOnInit() { 
     this.getChildren();
   }
   get activiteFormGroup(): FormGroup {
@@ -82,17 +82,17 @@ export class ModalGroupedChildrenComponent implements OnInit {
       const selected = event.source.selected;
 
       if (selected) {
-        //console.log('XOOXOX', selectedChild);
+        console.log('XOOXOX', selectedChild);
 
         if (!ratings.some((c: any) => c.id === selectedChild.id)) {
           ratings.push({
             id: selectedChild.id,
             nom: selectedChild.nom,
-            image: selectedChild.image,
-            Humeur_Rating: 5,
-            Manger_Rating: 5,
-            Participation_Rating: 5,
-            Toilette_Rating: 5,
+            image: selectedChild.photoCouverture,
+            Humeur_Rating: 0,
+            Manger_Rating: 0,
+            Participation_Rating: 0,
+            Toilette_Rating: 0,
           });
         }
       } else {
@@ -124,14 +124,16 @@ export class ModalGroupedChildrenComponent implements OnInit {
       group.value.forEach((child: any) => {
         if (!selectedChildrens.some((c: any) => c.id === child.id)) {
           selectedChildrens.push(child);
+          console.log(child);
+          
           ratings.push({
             id: child.id,
             nom: child.nom,
-            image: child.image,
-            Humeur_Rating: 5,
-            Manger_Rating: 5,
-            Participation_Rating: 5,
-            Toilette_Rating: 5,
+            image: child.photoCouverture,
+            Humeur_Rating: 0,
+            Manger_Rating: 0,
+            Participation_Rating: 0,
+            Toilette_Rating: 0,
           });
         }
       });
@@ -153,7 +155,7 @@ export class ModalGroupedChildrenComponent implements OnInit {
     this.secondFormGroup.get('ratings')?.setValue(ratings);
 
     //(this.secondFormGroup.get('ratings')?.value);
-    //console.log(this.firstFormGroup.get('selectedChildrenControl')?.value);
+    //console.log(this.firstFormGroup.get('ratings')?.value);
   }
 
   isChecked(groupKey: string) {
@@ -181,7 +183,6 @@ export class ModalGroupedChildrenComponent implements OnInit {
         },
         Object.create(null));
 
-        // console.log(this.childrensGroups);
 
         Object.entries(this.groupedChildren).forEach(([key, value], index) => {
           // 👇️ name Tom 0, country Chile 1
@@ -210,7 +211,7 @@ export class ModalGroupedChildrenComponent implements OnInit {
     let ratings = this.secondFormGroup.get('ratings')?.value;
     //console.log(ratings);
 
-    ratings[index].Humeur_rating = rating;
+    ratings[index].Humeur_Rating = rating;
     this.secondFormGroup.get('ratings')?.setValue(ratings);
   }
 
@@ -220,7 +221,7 @@ export class ModalGroupedChildrenComponent implements OnInit {
     let ratings = this.secondFormGroup.get('ratings')?.value;
     //console.log(ratings);
 
-    ratings[index].Manger_rating = rating;
+    ratings[index].Manger_Rating = rating;
     this.secondFormGroup.get('ratings')?.setValue(ratings);
   }
 
@@ -230,7 +231,7 @@ export class ModalGroupedChildrenComponent implements OnInit {
     let ratings = this.secondFormGroup.get('ratings')?.value;
     //console.log(ratings);
 
-    ratings[index].Participation_rating = rating;
+    ratings[index].Participation_Rating = rating;
     this.secondFormGroup.get('ratings')?.setValue(ratings);
   }
 
@@ -240,7 +241,7 @@ export class ModalGroupedChildrenComponent implements OnInit {
     let ratings = this.secondFormGroup.get('ratings')?.value;
     //console.log(ratings);
 
-    ratings[index].Toilette_rating = rating;
+    ratings[index].Toilette_Rating = rating;
     this.secondFormGroup.get('ratings')?.setValue(ratings);
   }
   //#endregion

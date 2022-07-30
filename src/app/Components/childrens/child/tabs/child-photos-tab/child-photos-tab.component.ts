@@ -20,7 +20,7 @@ export class ChildPhotosTabComponent implements OnInit,OnDestroy {
   images: any[] = [];
   constructor(private photoService: PhotoService, public dialog: MatDialog,public authService:AuthService,private signalRService:SignalRService) {}
   ngOnDestroy(): void {
-    this.signalRService.removeChildChangesListener();
+    //this.signalRService.removeChildChangesListener();
 
   }
 

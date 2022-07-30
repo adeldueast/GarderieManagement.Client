@@ -171,7 +171,7 @@ export class ChildrenComponent implements OnInit, OnDestroy {
       ],
       complete: () => {
         console.log('creating child completed');
-        this.getChildren(false);
+        // this.getChildren(false);
       },
     });
   }
