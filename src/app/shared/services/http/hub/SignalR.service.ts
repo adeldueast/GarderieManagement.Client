@@ -59,8 +59,12 @@ export class SignalRService {
   }
 
   startConnection = async () => {
+    const prod =  'https://garderie-management-api.herokuapp.com/Children'
+    const dev = 'https://localhost:44356/Children'
     this.hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl(`https://localhost:44356/Children`, {
+   
+    
+      .withUrl(`${prod}`, {
         skipNegotiation: true,
         transport: signalR.HttpTransportType.WebSockets,
         accessTokenFactory: () => this.loginToken,

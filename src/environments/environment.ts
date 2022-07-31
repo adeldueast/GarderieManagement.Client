@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  urlAddress: 'https://localhost:44356/api/v1'
+ // urlAddress: 'https://localhost:44356/api/v1',
+ urlAddress: 'https://garderie-management-api.herokuapp.com/api/v1'
+
 };
 
 /*
