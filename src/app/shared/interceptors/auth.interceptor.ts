@@ -26,6 +26,7 @@ export class AuthInterceptor implements HttpInterceptor {
       const cloned = request.clone({
         headers: request.headers
           .set('Authorization', 'Bearer ' + token)
+          
           // this.signalRService.connectionId is undefined because it wasnt awaited correctly
           // .set(
           //   'x-signalr-connection',

@@ -40,10 +40,10 @@
           }">
 
 
-        <ng-template #hasPhotoCouverture >
+        <ng-template #hasPhotoCouverture >  
        
         <img    class="w-16 rounded-full object-cover h-16 {{child.hexColor ? 'border-4':''}}"  
-        [src]="'https://localhost:44356/api/v1/Photos/sm/'+child?.image | picture | async"
+        [src]="envUrls.urlAdressPhoto+child?.image | picture | async"
         alt="image"  
         [ngStyle]="{
           'border-color': child.hexColor ? child.hexColor : ''

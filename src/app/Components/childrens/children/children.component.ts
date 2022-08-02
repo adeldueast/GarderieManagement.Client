@@ -8,6 +8,7 @@ import { ModalActionComponent } from '../../modals/modal-action/modal-action.com
 import { SignalRService } from 'src/app/shared/services/http/hub/SignalR.service';
 import { AuthService } from 'src/app/shared/services/http/auth.service';
 import { Observable } from 'rxjs';
+import { EnvironmentUrlService } from 'src/app/shared/services/EnvironmentUrl.service';
 
 @Component({
   selector: 'app-children',
@@ -23,9 +24,11 @@ export class ChildrenComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     public childrenService: ChildrenService,
     private signalRService: SignalRService,
-    public authService: AuthService
+    public authService: AuthService,
+    public envUrls: EnvironmentUrlService
   ) {
     //console.log('ChildrenComponent');
+   
   }
   ngOnDestroy(): void {
     this.signalRService.removeChildAttendanceChangesListener();

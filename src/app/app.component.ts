@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SignalRService } from './shared/services/http/hub/SignalR.service';
 
+import { environment } from 'src/environments/environment';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -18,6 +20,8 @@ export class AppComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
     //console.log('ng INIT APP.COMPONENT.TS');
     this.signalRService.onInit();
+    console.warn('is production mode:',environment.production);
+    
   }
   ngOnDestroy(): void {
    // console.log('ng DESOYTR APP.COMPONENT.TS');

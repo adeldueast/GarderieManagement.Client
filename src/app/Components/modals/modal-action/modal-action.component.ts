@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { EnvironmentUrlService } from 'src/app/shared/services/EnvironmentUrl.service';
 import { AttendanceService } from 'src/app/shared/services/http/attendance.service';
 import { AuthService } from 'src/app/shared/services/http/auth.service';
 import { ModalJournalComponent } from '../modal-journal/modal-journal.component';
@@ -16,7 +17,7 @@ export class ModalActionComponent implements OnInit {
     public dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private attendanceService: AttendanceService,
-    public authService:AuthService
+    public authService:AuthService, public envUrls: EnvironmentUrlService
   ) {}
 
   ngOnInit() { console.clear()

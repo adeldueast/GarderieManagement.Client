@@ -18,12 +18,13 @@
     />
 
     <ng-template #hasPhotoCouverture>
+    
+      
       <img
         class="w-32 h-32 rounded-full object-cover"
         [src]="
-          'https://localhost:44356/api/v1/Photos/sm/' + child_info?.image
-            | picture
-            | async
+          envUrls.urlAdressPhoto + child_info?.image
+            | picture|async
         "
         alt="image"
       />

@@ -15,10 +15,6 @@ export class PhotoService {
     return this.http.post<any>(
       this.createCompleteRoute(route, this.envUrl.urlAddress),
       formData,
-      {
-        reportProgress: true,
-        observe: 'events',
-      }
     );
   }
 

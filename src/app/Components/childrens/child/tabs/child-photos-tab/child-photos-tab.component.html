@@ -31,7 +31,7 @@
       [hidden]="img.isLoading"
       (load)="onLoad(i)"
         [src]="
-          'https://localhost:44356/api/v1/Photos/sm/' + img?.id
+        envUrls.urlAdressPhoto+img?.id
             | picture
             | async
         "
