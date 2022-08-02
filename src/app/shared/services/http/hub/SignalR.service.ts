@@ -1,7 +1,8 @@
-import { fn } from '@angular/compiler/src/output/output_ast';
+
 import { Injectable, OnInit, OnDestroy } from '@angular/core';
 import * as signalR from '@aspnet/signalr';
 import { Subscription } from 'rxjs';
+import { EnvironmentUrlService } from '../../EnvironmentUrl.service';
 import { AuthService } from '../auth.service';
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,10 @@ export class SignalRService {
   private subscribtion?: Subscription;
   private loginToken = '';
 
-  constructor(private authService: AuthService) {
+  constructor(
+    private authService: AuthService,
+    private envUrl: EnvironmentUrlService
+  ) {
     //console.log('🤣🤣🤣 SIGNAL R.service constructor 🤣🤣🤣');
   }
 
@@ -47,7 +51,7 @@ export class SignalRService {
         }
 
         if (this.hubConnection) {
-          this.endConnection();
+         await this.endConnection();
           return;
         }
       }
@@ -59,12 +63,13 @@ export class SignalRService {
   }
 
   startConnection = async () => {
-    const prod =  'https://garderie-management-api.herokuapp.com/Children'
-    const dev = 'https://localhost:44356/Children'
-    this.hubConnection = new signalR.HubConnectionBuilder()
-   
+    const url = `${this.envUrl.urlAddress}/Children`;
     
-      .withUrl(`${prod}`, {
+  console.warn('start connection hub',url);
+  
+    this.hubConnection = new signalR.HubConnectionBuilder()
+
+      .withUrl(`${url}`, {
         skipNegotiation: true,
         transport: signalR.HttpTransportType.WebSockets,
         accessTokenFactory: () => this.loginToken,

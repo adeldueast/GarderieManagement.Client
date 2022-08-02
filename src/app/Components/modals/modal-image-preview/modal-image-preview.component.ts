@@ -62,14 +62,17 @@ export class ModalImagePreviewComponent implements OnInit {
   postPhotoCouverture() {
     let formData = new FormData();
     const selectedFiles = this.data.selectedFiles;
-    formData.append('files',selectedFiles[0])
+    formData.append('files',selectedFiles[0],selectedFiles[0].name)
 
-    
+
+    console.log(formData.getAll('files'));
+
    
     this.photoService
       .postCouvertureEnfant(
         `Photos/Couverture/Enfant/${this.data.childId}`,
         formData
+        
       )
       .subscribe(
         (res:any) => {

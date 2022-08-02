@@ -12,6 +12,8 @@ export class PicturePipe implements PipeTransform {
    */
   constructor(public http: HttpClient, public domSanitizer: DomSanitizer) {}
   transform(value: any, args?: any): any {
+    console.log(value);
+    
     return this.http
       .get(value, { responseType: 'blob' })
       .pipe(

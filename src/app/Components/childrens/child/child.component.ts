@@ -10,6 +10,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { lastValueFrom, map, Observable } from 'rxjs';
+import { EnvironmentUrlService } from 'src/app/shared/services/EnvironmentUrl.service';
 import { ChildrenService } from 'src/app/shared/services/http/children.service';
 import { SignalRService } from 'src/app/shared/services/http/hub/SignalR.service';
 import { ModalImagePreviewComponent } from '../../modals/modal-image-preview/modal-image-preview.component';
@@ -33,7 +34,8 @@ export class ChildComponent implements OnInit, OnDestroy {
     private signalRService: SignalRService,
     private childrenService: ChildrenService,
     private route: ActivatedRoute,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public envUrls: EnvironmentUrlService
   ) {
     // Reactive Form
     this.uploadForm = this.fb.group({

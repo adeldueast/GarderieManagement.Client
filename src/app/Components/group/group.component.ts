@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { EnvironmentUrlService } from 'src/app/shared/services/EnvironmentUrl.service';
 import { AuthService } from 'src/app/shared/services/http/auth.service';
 import { GroupService } from 'src/app/shared/services/http/group.service';
 import { SignalRService } from 'src/app/shared/services/http/hub/SignalR.service';
@@ -20,7 +21,7 @@ export class GroupComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private signalRService: SignalRService,
     private router:Router,
-    public authService:AuthService
+    public authService:AuthService, public envUrls: EnvironmentUrlService
   ) {}
   ngOnDestroy(): void {
     this.signalRService.removeChildAttendanceChangesListener();

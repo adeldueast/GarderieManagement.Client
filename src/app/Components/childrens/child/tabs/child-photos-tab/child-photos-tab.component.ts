@@ -5,6 +5,7 @@ import { ModalImagePreviewComponent } from 'src/app/Components/modals/modal-imag
 import { ModalPreviewPictureComponent } from 'src/app/Components/modals/modal-preview-picture/modal-preview-picture.component';
 import { AuthService } from 'src/app/shared/services/http/auth.service';
 import { SignalRService } from 'src/app/shared/services/http/hub/SignalR.service';
+import { EnvironmentUrlService } from 'src/app/shared/services/EnvironmentUrl.service';
 
 @Component({
   selector: 'app-child-photos-tab',
@@ -18,7 +19,7 @@ export class ChildPhotosTabComponent implements OnInit,OnDestroy {
   fileuploadprogress?: ElementRef;
 
   images: any[] = [];
-  constructor(private photoService: PhotoService, public dialog: MatDialog,public authService:AuthService,private signalRService:SignalRService) {}
+  constructor(private photoService: PhotoService, public dialog: MatDialog,public authService:AuthService,private signalRService:SignalRService, public envUrls: EnvironmentUrlService) {}
   ngOnDestroy(): void {
     //this.signalRService.removeChildChangesListener();
 

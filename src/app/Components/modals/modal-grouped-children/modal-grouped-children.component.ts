@@ -11,6 +11,7 @@ import { MatSelect } from '@angular/material/select';
 import { ChildrenService } from 'src/app/shared/services/http/children.service';
 import { take } from 'rxjs/operators';
 import { JournalService } from './../../../shared/services/http/journal.service';
+import { EnvironmentUrlService } from 'src/app/shared/services/EnvironmentUrl.service';
 
 @Component({
   selector: 'app-modal-grouped-children',
@@ -46,7 +47,7 @@ export class ModalGroupedChildrenComponent implements OnInit {
     private _ngZone: NgZone,
     public _formBuilder: FormBuilder,
     private childrenService: ChildrenService,
-    private journalService: JournalService
+    private journalService: JournalService, public envUrls: EnvironmentUrlService
   ) {}
 
   ngOnInit() { 
