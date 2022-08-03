@@ -152,7 +152,7 @@ const Material_Modules = [
     HttpClientModule,
     BrowserAnimationsModule,
     NgxMatColorPickerModule,
-    Material_Modules,
+    [Material_Modules],
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
