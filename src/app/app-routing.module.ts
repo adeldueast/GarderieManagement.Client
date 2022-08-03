@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 
-import { PageNotFoundComponent } from './Components/PageNotFound/page-not-found.component';
+import { PageNotFoundComponent } from './Components/pagenotfound/page-not-found.component';
 
 import { AuthGuard } from './shared/guards/auth.guard';
 import { StaffComponent } from './Components/staff/staff.component';
@@ -14,7 +14,7 @@ import { PhotosComponent } from './Components/photos/photos.component';
 import { CreateGarderieComponent } from './Components/create-garderie/create-garderie.component';
 import { LoginComponent } from './Components/Authentification/login/login.component';
 import { RegisterComponent } from './Components/Authentification/register/register.component';
-import { LayoutComponent } from './Components/Layout/layout.component';
+import { LayoutComponent } from './Components/layout/layout.component';
 
 const routes: Routes = [
   // Login page  http://localhost:4200/login

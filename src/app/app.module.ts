@@ -8,7 +8,7 @@ import { MAT_COLOR_FORMATS, NgxMatColorPickerModule, NGX_MAT_COLOR_FORMATS } fro
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './Components/Authentification/register/register.component';
 import { LoginComponent } from './Components/Authentification/login/login.component';
-import { LayoutComponent } from './Components/Layout/layout.component';
+import { LayoutComponent } from './Components/layout/layout.component';
 
 import { ChildrenComponent } from './Components/childrens/children/children.component';
 
