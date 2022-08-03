@@ -7,8 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "heroku-postbuild":"ng build --configuration production"
-  }, 
+    "heroku-postbuild": "ng build --configuration production"
+  },
   "private": true,
   "dependencies": {
     "@angular-material-components/color-picker": "^7.0.1",
@@ -25,11 +25,11 @@
     "@angular/router": "~13.3.0",
     "@aspnet/signalr": "^1.0.27",
     "@auth0/angular-jwt": "^5.0.2",
-    "@fullcalendar/angular": "^5.11.0",
+    "@fullcalendar/angular": "^5.11.2",
     "@fullcalendar/core": "^5.11.0",
-    "@fullcalendar/daygrid": "^5.11.0",
+    "@fullcalendar/daygrid": "^5.11.2",
     "@fullcalendar/interaction": "^5.11.0",
-    "@fullcalendar/rrule": "^5.11.0",
+    "@fullcalendar/rrule": "^5.11.2",
     "@ng-bootstrap/ng-bootstrap": "^12.1.2",
     "@popperjs/core": "^2.10.2",
     "bootstrap": "^5.1.3",

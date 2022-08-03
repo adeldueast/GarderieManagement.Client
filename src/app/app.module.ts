@@ -71,12 +71,12 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';impo
 import { CreateGarderieComponent } from './Components/create-garderie/create-garderie.component';
 import { SidebarComponent } from './Components/Sidebar/sidebar.component';
 
+
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
   interactionPlugin,
   rrulePlugin
 ]);
-
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
