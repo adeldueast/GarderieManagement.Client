@@ -46,7 +46,7 @@ export class ChildComponent implements OnInit, OnDestroy {
   ngOnInit() {
     console.clear();
     this.route.params.subscribe((params) => {
-      console.log(params);
+    //  console.log(params);
       const id = params['id'].includes('?')
         ? params['id'].split('?', 1)
         : params['id'];
@@ -56,7 +56,7 @@ export class ChildComponent implements OnInit, OnDestroy {
     const a = this.route.queryParams.subscribe((params) => {
       // Defaults to 0 if no query param provided.
       this.child_info.image = params['imageId'] || null;
-      console.log(this.child_info.image);
+     // console.log(this.child_info.image);
     });
 
     this.getChild();
@@ -73,9 +73,9 @@ export class ChildComponent implements OnInit, OnDestroy {
       this.childrenService.deleteChild(`Enfant/Delete/${this.child_info.id}`)
     )
       .then((res) => {
-        console.log(res);
+       // console.log(res);
         this.router.navigate(['children']);
-        console.log(`delete child ${this.child_info.id} completed`);
+       // console.log(`delete child ${this.child_info.id} completed`);
       })
       .catch((err) => console.log(err));
   }
@@ -88,7 +88,7 @@ export class ChildComponent implements OnInit, OnDestroy {
       .getChild(`Enfant/Get/${this.child_info.id}`)
       .subscribe({
         next: (res) => {
-          console.log(res);
+        //  console.log(res);
           this.child_info.image = res.data.image;
           this.child_info.nom = res.data.nom;
           this.child_info.birthdate = res.data.dateNaissance;
@@ -97,7 +97,7 @@ export class ChildComponent implements OnInit, OnDestroy {
             ? res.data.group.hexColor
             : '';
 
-          console.log('CHILD_INFO', this.child_info);
+       //   console.log('CHILD_INFO', this.child_info);
         },
         error:(err)=>console.log(err),
         complete:()=>console.log('get child by id completed')

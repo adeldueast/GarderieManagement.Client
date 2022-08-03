@@ -39,7 +39,7 @@ export class ChildCalendarTabComponent implements OnInit, OnDestroy {
   }
 
   onChildAttendancesChanges(attendance?: any): any {
-    console.log('MONEY TEAM', attendance);
+   // console.log('MONEY TEAM', attendance);
    
     const event:EventInput = {
       
@@ -96,7 +96,7 @@ export class ChildCalendarTabComponent implements OnInit, OnDestroy {
       )
     )
       .then((res) => {
-        console.log(res);
+     //   console.log(res);
         
         res.forEach((e: any) => {
           const event = {
