@@ -5,15 +5,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './Components/PageNotFound/page-not-found.component';
 
 import { AuthGuard } from './shared/guards/auth.guard';
-import { StaffComponent } from './Components/Staff/staff.component';
+import { StaffComponent } from './Components/staff/staff.component';
 import { ChildrenComponent } from './Components/childrens/children/children.component';
 import { ChildComponent } from './Components/childrens/child/child.component';
 import { GroupsComponent } from './Components/groups/groups.component';
 import { GroupComponent } from './Components/group/group.component';
 import { PhotosComponent } from './Components/photos/photos.component';
 import { CreateGarderieComponent } from './Components/create-garderie/create-garderie.component';
-import { LoginComponent } from './Components/Authentification/Login/login.component';
-import { RegisterComponent } from './Components/Authentification/Register/register.component';
+import { LoginComponent } from './Components/Authentification/login/login.component';
+import { RegisterComponent } from './Components/Authentification/register/register.component';
 import { LayoutComponent } from './Components/Layout/layout.component';
 
 const routes: Routes = [
