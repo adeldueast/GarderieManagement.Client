@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ChildrenService } from 'src/app/shared/services/http/children.service';
 import { GroupService } from 'src/app/shared/services/http/group.service';
 import { AuthService } from 'src/app/shared/services/http/auth.service';
@@ -12,7 +12,7 @@ import { SignalRService } from 'src/app/shared/services/http/hub/signal-r.servic
 })
 export class ChildInformationTabComponent implements OnInit {
   @Input() child_info!: any;
-  updateForm!: UntypedFormGroup;
+  updateForm!: FormGroup;
 
   groups: any[] = [{ id: 0, name: 'No Group' }];
 
@@ -29,11 +29,11 @@ export class ChildInformationTabComponent implements OnInit {
     console.clear();
     console.warn(this.child_info);
 
-    this.updateForm = new UntypedFormGroup({
-      id: new UntypedFormControl(this.child_info.id),
-      nom: new UntypedFormControl(this.child_info.nom),
-      dateNaissance: new UntypedFormControl(this.child_info.birthdate),
-      groupId: new UntypedFormControl(this.child_info.groupId),
+    this.updateForm = new FormGroup({
+      id: new FormControl(this.child_info.id),
+      nom: new FormControl(this.child_info.nom),
+      dateNaissance: new FormControl(this.child_info.birthdate),
+      groupId: new FormControl(this.child_info.groupId),
     });
 
     // console.log('xoxox',this.updateForm.value);

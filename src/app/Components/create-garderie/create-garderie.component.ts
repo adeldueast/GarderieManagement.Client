@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { EnvironmentUrlService } from 'src/app/shared/services/EnvironmentUrl.service';
 import { Router } from '@angular/router';
@@ -39,7 +39,7 @@ export class CreateGarderieComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    public fb: UntypedFormBuilder,
+    public fb: FormBuilder,
     private http: HttpClient,
     private envUrl: EnvironmentUrlService
   ) {}

@@ -36,7 +36,7 @@ import { ChildComponent } from './Components/childrens/child/child.component';
 import { ModalGuardianCreateComponent } from './Components/modals/modal-guardian-create/modal-guardian-create.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ChildInformationTabComponent } from './Components/childrens/child/tabs/child-information-tab/child-information-tab.component';
-import { ChildCalendarTabComponent } from './Components/childrens/child/tabs/child-calendar-tab/child-calendar-tab.component';
+// import { ChildCalendarTabComponent } from './Components/childrens/child/tabs/child-calendar-tab/child-calendar-tab.component';
 import { ChildGuardiansTabComponent } from './Components/childrens/child/tabs/child-guardians-tab/child-guardians-tab.component';
 import {MatListModule} from '@angular/material/list';
 import {MatCheckboxModule} from '@angular/material/checkbox';
@@ -114,7 +114,7 @@ const Material_Modules = [
     ModalChildCreateComponent,
     ModalGuardianCreateComponent,
     ChildInformationTabComponent,
-    ChildCalendarTabComponent,
+    // ChildCalendarTabComponent,
     ChildGuardiansTabComponent,
     GroupsComponent,
     ModalGroupCreateComponent,

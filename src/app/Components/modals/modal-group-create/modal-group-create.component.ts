@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormGroup, UntypedFormControl } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { ThemePalette } from '@angular/material/core';
 import { UsersService } from 'src/app/shared/services/http/users.service';
 import { GroupService } from 'src/app/shared/services/http/group.service';
@@ -21,10 +21,10 @@ export class ModalGroupCreateComponent implements OnInit {
 
   public color: ThemePalette = 'primary';
   
-  form: UntypedFormGroup = new UntypedFormGroup({
-    name: new UntypedFormControl(),
-    educatriceId: new UntypedFormControl(),
-    colorCtr: new UntypedFormControl(),
+  form: FormGroup = new FormGroup({
+    name: new FormControl(),
+    educatriceId: new FormControl(),
+    colorCtr: new FormControl(),
   });
 
   constructor(

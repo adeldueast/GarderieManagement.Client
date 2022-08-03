@@ -1,6 +1,6 @@
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { JournalService } from 'src/app/shared/services/http/journal.service';
 import { ModalGroupedChildrenComponent } from '../modal-grouped-children/modal-grouped-children.component';
@@ -20,15 +20,15 @@ export class ModalJournalComponent implements OnInit {
   starColorW: StarRatingColor = StarRatingColor.warn;
 
   childName?: undefined;
-  form: UntypedFormGroup = new UntypedFormGroup({
-    humeur_rating: new UntypedFormControl('0'),
-    manger_rating: new UntypedFormControl('0'),
-    participation_rating: new UntypedFormControl('0'),
-    toilette_rating: new UntypedFormControl('0'),
-    createdAt:new UntypedFormControl(),
-    activite_message: new UntypedFormControl(''),
-    manger_message: new UntypedFormControl(''),
-    commentaire_message: new UntypedFormControl(''),
+  form: FormGroup = new FormGroup({
+    humeur_rating: new FormControl('0'),
+    manger_rating: new FormControl('0'),
+    participation_rating: new FormControl('0'),
+    toilette_rating: new FormControl('0'),
+    createdAt:new FormControl(),
+    activite_message: new FormControl(''),
+    manger_message: new FormControl(''),
+    commentaire_message: new FormControl(''),
   });
   @ViewChild('autosize') autosize!: CdkTextareaAutosize;
 

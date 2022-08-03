@@ -1,9 +1,9 @@
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { Component, NgZone, OnInit, ViewChild } from '@angular/core';
 import {
-  UntypedFormBuilder,
-  UntypedFormControl,
-  UntypedFormGroup,
+  FormBuilder,
+  FormControl,
+  FormGroup,
   Validators,
 } from '@angular/forms';
 import { MatOption } from '@angular/material/core';
@@ -34,7 +34,7 @@ export class ModalGroupedChildrenComponent implements OnInit {
   });
 
   secondFormGroup = this._formBuilder.group({
-    ratings: new UntypedFormControl([]),
+    ratings: new FormControl([]),
     activite_message: ['', Validators.required],
     manger_message: ['', Validators.required],
   });
@@ -45,7 +45,7 @@ export class ModalGroupedChildrenComponent implements OnInit {
 
   constructor(
     private _ngZone: NgZone,
-    public _formBuilder: UntypedFormBuilder,
+    public _formBuilder: FormBuilder,
     private childrenService: ChildrenService,
     private journalService: JournalService, public envUrls: EnvironmentUrlService
   ) {}
@@ -53,12 +53,12 @@ export class ModalGroupedChildrenComponent implements OnInit {
   ngOnInit() { 
     this.getChildren();
   }
-  get activiteFormGroup(): UntypedFormGroup {
-    return this.secondFormGroup?.get('activite_message') as UntypedFormGroup;
+  get activiteFormGroup(): FormGroup {
+    return this.secondFormGroup?.get('activite_message') as FormGroup;
   }
 
-  get mangerFormGroup(): UntypedFormGroup {
-    return this.secondFormGroup?.get('manger_message') as UntypedFormGroup;
+  get mangerFormGroup(): FormGroup {
+    return this.secondFormGroup?.get('manger_message') as FormGroup;
   }
   onSubmit() {
     //console.log(this.secondFormGroup.value);
