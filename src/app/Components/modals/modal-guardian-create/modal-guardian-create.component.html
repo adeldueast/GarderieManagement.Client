@@ -3,14 +3,10 @@
 
 <!-- BODY -->
 <mat-dialog-content class="mat-typography">
-  <form [formGroup]="form" 
-  id="ngForm"
-
-  (ngSubmit)="onSubmit()"
-  >
+  <form [formGroup]="form" id="ngForm" (ngSubmit)="onSubmit()">
     <!-- SEARCH FIELD -->
     <div [hidden]="showForm">
-      <mat-form-field class="example-full-width w-full" >
+      <mat-form-field class="example-full-width w-full">
         <mat-label>Guardian's name</mat-label>
         <input
           type="text"
@@ -39,7 +35,9 @@
     <!-- CREATE GUARDIAN FORM  -->
     <div [hidden]="!showForm">
       <div class="grid grid-cols-2 gap-2">
-        <mat-form-field  [appearance]="!!isCreatingGuardian ? 'outline': 'standard' ">
+        <mat-form-field
+          [appearance]="!!isCreatingGuardian ? 'outline' : 'standard'"
+        >
           <mat-label>First name</mat-label>
           <input
             formControlName="firstName"
@@ -48,29 +46,54 @@
           />
         </mat-form-field>
 
-        <mat-form-field  [appearance]="!!isCreatingGuardian ? 'outline': 'standard' "> 
+        <mat-form-field
+          [appearance]="!!isCreatingGuardian ? 'outline' : 'standard'"
+        >
           <mat-label>Last name</mat-label>
           <input formControlName="lastName" matInput placeholder="Last name" />
         </mat-form-field>
       </div>
 
-      <mat-form-field class="w-full"  *ngIf="!authService.isUserInRole('tutor') " [appearance]="!!isCreatingGuardian ? 'outline': 'standard' ">
+      <mat-form-field
+        class="w-full"
+        *ngIf="!authService.isUserInRole('tutor')"
+        [appearance]="!!isCreatingGuardian ? 'outline' : 'standard'"
+      >
         <mat-label>Email</mat-label>
         <input formControlName="email" matInput placeholder="Email" />
       </mat-form-field>
-   
 
-
-      <mat-form-field class="w-full"  [appearance]="!!isCreatingGuardian ? 'outline': 'standard' ">
+      <mat-form-field
+        class="w-full"
+        [appearance]="!!isCreatingGuardian ? 'outline' : 'standard'"
+      >
         <mat-label>Relation</mat-label>
         <input formControlName="relation" matInput placeholder="Relation" />
       </mat-form-field>
 
       <!-- {{this.isCreatingGuardian}}
       {{this.data.editingRelation}} -->
-      <p *ngIf="!this.data.editingRelation && this.isCreatingGuardian && !authService.isUserInRole('tutor') "><mat-checkbox formControlName="HasAnAccount">Will have an account </mat-checkbox></p>
-      <p ><mat-checkbox formControlName="emergencyContact">Contact for emergency</mat-checkbox></p>
-      <p><mat-checkbox formControlName="authorizePickup">Authorized to pick up the child</mat-checkbox></p> 
+      <p
+        *ngIf="
+          !this.data.editingRelation &&
+          this.isCreatingGuardian &&
+          !authService.isUserInRole('tutor')
+        "
+      >
+        <mat-checkbox formControlName="HasAnAccount"
+          >Will have an account
+        </mat-checkbox>
+      </p>
+      <p>
+        <mat-checkbox formControlName="emergencyContact"
+          >Contact for emergency</mat-checkbox
+        >
+      </p>
+      <p>
+        <mat-checkbox formControlName="authorizePickup"
+          >Authorized to pick up the child</mat-checkbox
+        >
+      </p>
     </div>
   </form>
 </mat-dialog-content>
@@ -87,6 +110,6 @@
     form="ngForm"
     *ngIf="showForm"
   >
-   {{isCreatingGuardian ?'Create':'Assign'}}
+    {{ isCreatingGuardian ? "Create" : "Assign" }}
   </button>
 </mat-dialog-actions>

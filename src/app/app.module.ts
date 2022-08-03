@@ -6,10 +6,10 @@ import { FormsModule } from '@angular/forms';
 import { JwtModule } from '@auth0/angular-jwt';
 import { MAT_COLOR_FORMATS, NgxMatColorPickerModule, NGX_MAT_COLOR_FORMATS } from '@angular-material-components/color-picker';
 import { AppComponent } from './app.component';
-import { RegisterComponent } from './Components/Authentification/Register/Register.component';
-import { LoginComponent } from './Components/Authentification/Login/Login.component';
-import { LayoutComponent } from './Components/Layout/Layout.component';
-import { SidebarComponent } from './Components/Sidebar/Sidebar.component';
+import { RegisterComponent } from './Components/Authentification/Register/register.component';
+import { LoginComponent } from './Components/Authentification/Login/login.component';
+import { LayoutComponent } from './Components/Layout/layout.component';
+import { SidebarComponent } from './Components/Sidebar/sidebar.component';
 import { ChildrenComponent } from './Components/childrens/children/children.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -44,7 +44,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { GroupsComponent } from './Components/groups/groups.component';
 import { ModalGroupCreateComponent } from './Components/modals/modal-group-create/modal-group-create.component';
 import { ModalStaffCreateComponent } from './Components/modals/modal-staff-create/modal-staff-create.component';
-import { StaffComponent } from './Components/Staff/Staff.component';
+import { StaffComponent } from './Components/Staff/staff.component';
 import {MatCardModule} from '@angular/material/card';
 import { ModalActionComponent } from './Components/modals/modal-action/modal-action.component';
 

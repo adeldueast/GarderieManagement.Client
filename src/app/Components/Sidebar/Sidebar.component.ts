@@ -7,9 +7,9 @@ import { NotificationService } from 'src/app/shared/services/http/notification.s
 import { ModalNotificationsComponent } from '../modals/modal-notifications/modal-notifications.component';
 
 @Component({
-  selector: 'app-Sidebar',
-  templateUrl: './Sidebar.component.html',
-  styleUrls: ['./Sidebar.component.css'],
+  selector: 'app-sidebar',
+  templateUrl: './sidebar.component.html',
+  styleUrls: ['./sidebar.component.css'],
 })
 export class SidebarComponent implements OnInit, OnDestroy {
   constructor(
