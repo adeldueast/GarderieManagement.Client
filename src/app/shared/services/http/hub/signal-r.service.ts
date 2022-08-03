@@ -40,7 +40,7 @@ export class SignalRService {
 
   subcribeToAuthChanges() {
     this.subscribtion = this.authService.authChanged.subscribe(
-      async (result) => {
+      async (result:any) => {
         console.log('auth state changed =>', result);
 
         // this will be triggered...

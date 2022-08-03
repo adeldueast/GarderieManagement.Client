@@ -28,10 +28,10 @@ export class LoginComponent implements OnInit {
 
   Login() {
     this.authService.loginUser('Account/Login', this.login_request).subscribe({
-      next: (res) => {
+      next: (res:any) => {
         this.onSuccessLogin(res);
       },
-      error: (err) => [
+      error: (err:any) => [
         console.error(err.error.errors),
         alert(err.error.errors),
       ],

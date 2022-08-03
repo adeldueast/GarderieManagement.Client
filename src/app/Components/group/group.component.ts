@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EnvironmentUrlService } from 'src/app/shared/services/EnvironmentUrl.service';
 import { AuthService } from 'src/app/shared/services/http/auth.service';
 import { GroupService } from 'src/app/shared/services/http/group.service';
-import { SignalRService } from 'src/app/shared/services/http/hub/SignalR.service';
+import { SignalRService } from 'src/app/shared/services/http/hub/signal-r.service';
 import { ModalActionComponent } from '../modals/modal-action/modal-action.component';
 import { ModalDeleteComponent } from '../modals/modal-delete/modal-delete.component';
 

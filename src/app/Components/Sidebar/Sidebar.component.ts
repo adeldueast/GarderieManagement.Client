@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/http/auth.service';
-import { SignalRService } from 'src/app/shared/services/http/hub/SignalR.service';
+import { SignalRService } from 'src/app/shared/services/http/hub/signal-r.service';
 import { NotificationService } from 'src/app/shared/services/http/notification.service';
 import { ModalNotificationsComponent } from '../modals/modal-notifications/modal-notifications.component';
 

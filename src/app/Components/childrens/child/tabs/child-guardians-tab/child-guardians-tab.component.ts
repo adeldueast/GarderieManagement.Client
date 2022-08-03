@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ModalGuardianCreateComponent } from 'src/app/Components/modals/modal-guardian-create/modal-guardian-create.component';
 import { UsersService } from 'src/app/shared/services/http/users.service';
 import { AuthService } from 'src/app/shared/services/http/auth.service';
-import { SignalRService } from './../../../../../shared/services/http/hub/SignalR.service';
+import { SignalRService } from '../../../../../shared/services/http/hub/signal-r.service';
 
 @Component({
   selector: 'app-child-guardians-tab',

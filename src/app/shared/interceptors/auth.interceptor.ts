@@ -6,7 +6,7 @@ import {
   HttpInterceptor,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { SignalRService } from '../services/http/hub/SignalR.service';
+import { SignalRService } from '../services/http/hub/signal-r.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {

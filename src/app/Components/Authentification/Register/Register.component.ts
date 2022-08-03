@@ -29,10 +29,10 @@ export class RegisterComponent implements OnInit {
       'Account/Register',
       this.register_request
     ).subscribe({
-      next: (res) => {
+      next: (res:any) => {
         //console.log('res', res), console.log('res', res);
       },
-      error: (err) => [
+      error: (err:any) => [
         console.error(err.error.errors),
         alert(err.error.errors),
       ],

@@ -5,7 +5,7 @@ import { FormGroup } from '@angular/forms';
 import { ChildrenService } from 'src/app/shared/services/http/children.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { ModalActionComponent } from '../../modals/modal-action/modal-action.component';
-import { SignalRService } from 'src/app/shared/services/http/hub/SignalR.service';
+import { SignalRService } from 'src/app/shared/services/http/hub/signal-r.service';
 import { AuthService } from 'src/app/shared/services/http/auth.service';
 import { Observable } from 'rxjs';
 import { EnvironmentUrlService } from 'src/app/shared/services/EnvironmentUrl.service';

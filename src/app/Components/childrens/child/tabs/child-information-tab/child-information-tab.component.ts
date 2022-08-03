@@ -3,7 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ChildrenService } from 'src/app/shared/services/http/children.service';
 import { GroupService } from 'src/app/shared/services/http/group.service';
 import { AuthService } from 'src/app/shared/services/http/auth.service';
-import { SignalRService } from 'src/app/shared/services/http/hub/SignalR.service';
+import { SignalRService } from 'src/app/shared/services/http/hub/signal-r.service';
 
 @Component({
   selector: 'app-child-information-tab',

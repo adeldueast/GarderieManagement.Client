@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ModalImagePreviewComponent } from 'src/app/Components/modals/modal-image-preview/modal-image-preview.component';
 import { ModalPreviewPictureComponent } from 'src/app/Components/modals/modal-preview-picture/modal-preview-picture.component';
 import { AuthService } from 'src/app/shared/services/http/auth.service';
-import { SignalRService } from 'src/app/shared/services/http/hub/SignalR.service';
+import { SignalRService } from 'src/app/shared/services/http/hub/signal-r.service';
 import { EnvironmentUrlService } from 'src/app/shared/services/EnvironmentUrl.service';
 
 @Component({

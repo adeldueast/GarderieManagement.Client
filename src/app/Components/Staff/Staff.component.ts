@@ -3,7 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { AuthService } from 'src/app/shared/services/http/auth.service';
-import { SignalRService } from 'src/app/shared/services/http/hub/SignalR.service';
+import { SignalRService } from 'src/app/shared/services/http/hub/signal-r.service';
 import { UsersService } from 'src/app/shared/services/http/users.service';
 import { ModalStaffCreateComponent } from '../modals/modal-staff-create/modal-staff-create.component';
 

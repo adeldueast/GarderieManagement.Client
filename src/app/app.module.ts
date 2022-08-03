@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './Components/Authentification/Register/register.component';
 import { LoginComponent } from './Components/Authentification/Login/login.component';
 import { LayoutComponent } from './Components/Layout/layout.component';
-import { SidebarComponent } from './Components/Sidebar/sidebar.component';
+
 import { ChildrenComponent } from './Components/childrens/children/children.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -69,6 +69,8 @@ import { ModalPreviewPictureComponent } from './Components/modals/modal-preview-
 import { ChildPhotosTabComponent } from './Components/childrens/child/tabs/child-photos-tab/child-photos-tab.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';import {MatBadgeModule} from '@angular/material/badge';
 import { CreateGarderieComponent } from './Components/create-garderie/create-garderie.component';
+import { SidebarComponent } from './Components/Sidebar/sidebar.component';
+
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
   interactionPlugin,

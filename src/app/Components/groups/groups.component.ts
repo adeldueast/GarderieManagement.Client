@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { EnvironmentUrlService } from 'src/app/shared/services/EnvironmentUrl.service';
 import { AuthService } from 'src/app/shared/services/http/auth.service';
 import { GroupService } from 'src/app/shared/services/http/group.service';
-import { SignalRService } from 'src/app/shared/services/http/hub/SignalR.service';
+import { SignalRService } from 'src/app/shared/services/http/hub/signal-r.service';
 import { ModalGroupCreateComponent } from '../modals/modal-group-create/modal-group-create.component';
 
 @Component({

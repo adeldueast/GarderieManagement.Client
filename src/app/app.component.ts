@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { SignalRService } from './shared/services/http/hub/SignalR.service';
+import { SignalRService } from './shared/services/http/hub/signal-r.service';
 
 import { environment } from 'src/environments/environment';
 

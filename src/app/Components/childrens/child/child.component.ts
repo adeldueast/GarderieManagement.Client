@@ -12,7 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { lastValueFrom, map, Observable } from 'rxjs';
 import { EnvironmentUrlService } from 'src/app/shared/services/EnvironmentUrl.service';
 import { ChildrenService } from 'src/app/shared/services/http/children.service';
-import { SignalRService } from 'src/app/shared/services/http/hub/SignalR.service';
+import { SignalRService } from 'src/app/shared/services/http/hub/signal-r.service';
 import { ModalImagePreviewComponent } from '../../modals/modal-image-preview/modal-image-preview.component';
 
 @Component({

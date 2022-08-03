@@ -7,7 +7,7 @@ import {
 import { lastValueFrom } from 'rxjs';
 import { AttendanceService } from 'src/app/shared/services/http/attendance.service';
 import { ChildrenService } from 'src/app/shared/services/http/children.service';
-import { SignalRService } from 'src/app/shared/services/http/hub/SignalR.service';
+import { SignalRService } from 'src/app/shared/services/http/hub/signal-r.service';
 
 @Component({
   selector: 'app-child-calendar-tab',
