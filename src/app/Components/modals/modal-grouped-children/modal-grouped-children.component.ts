@@ -83,7 +83,7 @@ export class ModalGroupedChildrenComponent implements OnInit {
       const selected = event.source.selected;
 
       if (selected) {
-        console.log('XOOXOX', selectedChild);
+       // console.log('XOOXOX', selectedChild);
 
         if (!ratings.some((c: any) => c.id === selectedChild.id)) {
           ratings.push({
@@ -125,7 +125,7 @@ export class ModalGroupedChildrenComponent implements OnInit {
       group.value.forEach((child: any) => {
         if (!selectedChildrens.some((c: any) => c.id === child.id)) {
           selectedChildrens.push(child);
-          console.log(child);
+         // console.log(child);
           
           ratings.push({
             id: child.id,

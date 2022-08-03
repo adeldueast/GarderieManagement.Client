@@ -51,7 +51,7 @@ export class ModalImagePreviewComponent implements OnInit {
     let formData = new FormData();
     const selectedFiles = this.data.selectedFiles;
     for (const file of selectedFiles) {
-      console.log(file);
+      //console.log(file);
       formData.append('files', file);
     }
 
@@ -65,7 +65,7 @@ export class ModalImagePreviewComponent implements OnInit {
     formData.append('files',selectedFiles[0],selectedFiles[0].name)
 
 
-    console.log(formData.getAll('files'));
+   // console.log(formData.getAll('files'));
 
    
     this.photoService
@@ -76,7 +76,7 @@ export class ModalImagePreviewComponent implements OnInit {
       )
       .subscribe(
         (res:any) => {
-          console.log(res);
+         // console.log(res);
           
           if (res != undefined) {
             if (
@@ -109,7 +109,7 @@ export class ModalImagePreviewComponent implements OnInit {
     });
     dialogRef.beforeClosed().subscribe(result=>{
       if(result){
-        console.log(result);
+        //console.log(result);
         this.dialog.closeAll()
         
       }

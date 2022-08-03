@@ -34,7 +34,7 @@ export class ModalSelectChildrenComponent implements OnInit {
     console.clear();
     this.getChildren();
 
-    console.log(this.data.formData.getAll('image'));
+    //console.log(this.data.formData.getAll('image'));
   }
 
   getChildren() {
@@ -61,7 +61,7 @@ export class ModalSelectChildrenComponent implements OnInit {
           if(this.data.child_info){
             value.forEach((child: any) => {
               if (child.id == this.data.child_info.id) {
-                console.warn('found it', child);
+                //console.warn('found it', child);
                 this.firstFormGroup
                   .get('selectedChildrenControl')
                   ?.setValue([child]);
@@ -86,7 +86,7 @@ export class ModalSelectChildrenComponent implements OnInit {
   }
 
   expandDocumentTypes(groupKey: any) {
-    console.warn('collapse');
+   // console.warn('collapse');
 
     this.isExpandCategory.set(groupKey, !this.isExpandCategory.get(groupKey));
     // expand only selected parent dropdown category with that childs
@@ -145,12 +145,12 @@ export class ModalSelectChildrenComponent implements OnInit {
     formData.set('enfants', childrenIds);
     formData.set('description', photosDescription);
 
-    console.warn(formData.getAll('files'));
-    console.warn(formData.getAll('enfants'));
+    //console.warn(formData.getAll('files'));
+    //console.warn(formData.getAll('enfants'));
     this.photoService
       .postGallerieEnfant(`Photos/Gallerie/Enfant`, formData)
       .subscribe(
-        (res) => console.log(res),
+        (res) => undefined,
         (err) => console.log(err)
       );
 

@@ -50,7 +50,7 @@ export class CreateGarderieComponent implements OnInit {
     if (this.form.valid) {
       this.createGarderie('Garderie/Create', this.form.value).subscribe(
         (res) => {
-          console.log(res),
+         // console.log(res),
             (this.authService.user_info.garderieId = res.data.id);
         },
         (err) => console.log(err),

@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { EnvironmentUrlService } from 'src/app/shared/services/EnvironmentUrl.service';
 import { PhotoService } from 'src/app/shared/services/http/photo.service';
 
 @Component({
@@ -15,21 +16,23 @@ export class ModalPreviewPictureComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<ModalPreviewPictureComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public photoService: PhotoService
+    public photoService: PhotoService,
+    public envUrls: EnvironmentUrlService
+
   ) {
     this.index = this.data.index;
   }
 
   ngOnInit() {
-    console.log(this.data);
+   // console.log(this.data);
     if (this.data.fromNotif) {
-      console.warn('from notif');
+      //console.warn('from notif');
 
       this.photoService
         .getPhotoInformation(`Photos/Get/${this.data.images[this.index].id}`)
         .subscribe(
           (res) => {
-            console.log(res);
+           // console.log(res);
             this.data.images[this.index].description  = res.description; 
           },
           (err) => console.log(err),

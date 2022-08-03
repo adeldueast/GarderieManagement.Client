@@ -100,13 +100,13 @@ export class ChildrenComponent implements OnInit, OnDestroy {
     //this.children[index].hasArrived = data.present;
   }
   getChildren(isTutor: boolean) {
-  console.log('FETCHING KIDS');
+  //console.log('FETCHING KIDS');
   
     this.children = [];
     if (!isTutor) {
       this.childrenService.getChildren('Enfant/GetAll').subscribe({
         next: (res) => {
-          console.log(res);
+        // /  console.log(res);
 
           // this.children = res.data;
           res.data.forEach((c: any) => {
@@ -136,7 +136,7 @@ export class ChildrenComponent implements OnInit, OnDestroy {
 
     this.childrenService.getChildren('Enfant/GetAllTutorsChilds').subscribe({
       next: (res) => {
-        console.log(res);
+        //console.log(res);
 
         // this.children = res.data;
         res.data.forEach((c: any) => {

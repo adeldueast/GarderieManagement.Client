@@ -26,7 +26,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   notifications?: any;
   newNotifications: number = 0;
   ngOnInit() { 
-    console.log(this.authService.user_info);
+   // console.log(this.authService.user_info);
 
     // console.clear()
     this.getNotifications();

@@ -27,7 +27,7 @@ export class ChildInformationTabComponent implements OnInit {
 
   ngOnInit() {
     console.clear();
-    console.warn(this.child_info);
+    //console.warn(this.child_info);
 
     this.updateForm = new FormGroup({
       id: new FormControl(this.child_info.id),
@@ -84,7 +84,7 @@ export class ChildInformationTabComponent implements OnInit {
   updateChild = () => {
     this.childrenService
       .updateChild('Enfant/Update', this.updateForm.value)
-      .subscribe((res) => console.log(res));
+      .subscribe();
 
     this.updateForm.disable();
   };

@@ -65,7 +65,7 @@ export class SignalRService {
   startConnection = async () => {
     const url = `${this.envUrl.urlAddress}/Children`;
     
-  console.warn('start connection hub',url);
+  //console.warn('start connection hub',url);
   
     this.hubConnection = new signalR.HubConnectionBuilder()
 
@@ -96,7 +96,7 @@ export class SignalRService {
   addChildChangesListener = (fn: () => void) => {
     this.hubConnection.on('childUpdate', (data) => {
       // console.log(data);
-      console.warn('notifying other users of childInfoChanges');
+      //console.warn('notifying other users of childInfoChanges');
 
       fn();
     });
@@ -109,7 +109,7 @@ export class SignalRService {
   addNotifyUserStatusChangesListener = (fn: () => void) => {
     this.hubConnection.on('notifyUserStatusChanges', (data) => {
       //console.log(data);
-      console.warn('notifying other users of userStatusChanges');
+      //console.warn('notifying other users of userStatusChanges');
 
       fn();
     });
@@ -121,8 +121,8 @@ export class SignalRService {
 
   addChildAttendanceChangesListener = (fn: (data?: any) => any) => {
     this.hubConnection.on('childAttendanceUpdate', (data) => {
-      console.log(data);
-      console.warn('notifying other users of childAttendanceChanges');
+      //console.log(data);
+      //console.warn('notifying other users of childAttendanceChanges');
       fn(data);
     });
   };
@@ -134,7 +134,7 @@ export class SignalRService {
   addNewNotificationListener = (fn: (data?: any) => any) => {
     this.hubConnection.on('newNotification', (data) => {
       // console.log(data);
-      console.warn('notifying other users of newNotification avaible');
+     // console.warn('notifying other users of newNotification avaible');
       fn(data);
     });
   };
@@ -144,8 +144,8 @@ export class SignalRService {
 
   addGroupsChangesListener = (fn: (data?: any) => any) => {
     this.hubConnection.on('groupsChanges', (data) => {
-      console.log(data);
-      console.warn('notifying other users of groupsChanges');
+    // console.log(data);
+     // console.warn('notifying other users of groupsChanges');
       fn(data);
     });
   };

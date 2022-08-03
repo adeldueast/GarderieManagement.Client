@@ -27,7 +27,7 @@ export class StaffComponent implements OnInit, OnDestroy {
     this.signalRService.removeNotifyUserStatusChangesListener();
   }
 
-  ngOnInit() { console.clear()
+  ngOnInit() { 
     this.getAllStaff();
     this.dataSource = new MatTableDataSource(this.staff);
     this.signalRService.addNotifyUserStatusChangesListener(
@@ -43,7 +43,7 @@ export class StaffComponent implements OnInit, OnDestroy {
   getAllStaff() {
     this.userService.getAllStaff('User/employees').subscribe({
       next: (res) => {
-        console.log(res);
+      //  console.log(res);
 
         this.staff = res.data;
         //console.log(this.staff);
