@@ -161,7 +161,7 @@ const Material_Modules = [
     }),
     // FullCalendarModule,
     CommonModule,
-    //dsaasd
+    //all material modules needed
     MatIconModule,
     MatDividerModule,
     MatButtonModule,
@@ -179,7 +179,6 @@ const Material_Modules = [
     MatStepperModule,
     MatProgressSpinnerModule,
     MatBadgeModule
-    
   ],
   providers: [
     { provide: MAT_COLOR_FORMATS, useValue: NGX_MAT_COLOR_FORMATS },
