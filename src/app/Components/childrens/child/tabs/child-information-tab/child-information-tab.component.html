@@ -1,65 +1,84 @@
+<!-- INFORMATION FORM -->
+<form
+  [formGroup]="updateForm"
+  (ngSubmit)="onSubmit()"
+  class="example-form w-[70%] mx-auto mt-4 p-8"
+>
+  <!-- bg-red-400 -->
+  <div
+    *ngIf="updateForm.disabled"
+    class="example-button-container flex justify-between w-full"
+  >
+    <h1>Information</h1>
+    <button
+      *ngIf="
+        this.authService.isUserInRole('owner') ||
+        this.authService.isUserInRole('admin')
+      "
+      (click)="toggleEdit()"
+      mat-fab
+      color="primary"
+      aria-label="Example icon button with a delete icon"
+    >
+      <mat-icon>edit</mat-icon>
+    </button>
+  </div>
 
-  <!-- INFORMATION FORM -->
-  <form [formGroup]="updateForm" (ngSubmit)="onSubmit()" class=" example-form w-[70%] mx-auto mt-4 p-8 ">  <!-- bg-red-400 -->
-    <div *ngIf="updateForm.disabled" class="example-button-container flex  justify-between w-full">
-      <h1>Information</h1>
-      <button *ngIf="this.authService.isUserInRole('owner') || this.authService.isUserInRole('admin')" (click)="toggleEdit()" mat-fab color="primary" aria-label="Example icon button with a delete icon">
-        <mat-icon>edit</mat-icon>
-      </button>
-    </div>
+  <!-- Name -->
+  <mat-form-field class="w-100" appearance="standard">
+    <mat-label>Nom</mat-label>
+    <input
+      formControlName="nom"
+      type="email"
+      matInput
+      placeholder="Ex. pat@example.com"
+    />
+  </mat-form-field>
 
- 
-    <!-- Name -->
-    <mat-form-field class="w-100" appearance="standard">
-      <mat-label>Nom</mat-label>
-      <input
-        formControlName="nom"
-        type="email"
-        matInput
-        placeholder="Ex. pat@example.com"
-      />
-    </mat-form-field>
+  <!-- BirthDate -->
+  <mat-form-field class="w-full mb-1" appearance="standard">
+    <mat-label>Date of birth</mat-label>
+    <input formControlName="dateNaissance" matInput [matDatepicker]="picker" />
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
 
-    
-    <!-- BirthDate -->
-    <mat-form-field class="w-full mb-1" appearance="standard">
-      <mat-label>Date of birth</mat-label>
-      <input
-        formControlName="dateNaissance"
-        matInput
-        [matDatepicker]="picker"
-      />
-      <mat-hint>MM/DD/YYYY</mat-hint>
-      <mat-datepicker-toggle
-        matSuffix
-        [for]="picker"
-      ></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-
-    <!-- Group -->
-    <!-- <mat-form-field class="w-100" appearance="standard">
+  <!-- Group -->
+  <!-- <mat-form-field class="w-100" appearance="standard">
       <mat-label>Group</mat-label>
       <input formControlName="group" type="email" matInput />
     </mat-form-field> -->
 
+  <!-- Group -->
+  <mat-form-field class="w-full" appearance="standard">
+    <mat-label>Group</mat-label>
+    <mat-select
+      formControlName="groupId"
+      (selectionChange)="onChangeGroup($event.value)"
+    >
+      <mat-option *ngFor="let group of groups" [value]="group.id">
+        {{ group.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-    <!-- Group -->
-<mat-form-field class="w-full" appearance="standard">
-  <mat-label>Group</mat-label>
-  <mat-select   formControlName="groupId"  (selectionChange)="onChangeGroup($event.value)">
-    <mat-option *ngFor="let group of groups" [value]="group.id">
-      {{group.name}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
-
- 
-   <div class="flex gap-2">
-    <button  *ngIf="updateForm.enabled" mat-raised-button color="primary"  type="submit" >Update</button>
-    <button (click)="toggleEdit()"  *ngIf="updateForm.enabled" mat-raised-button  color="accent" >Cancel</button>
-   </div>
-
-   
- 
-  </form>
+  <div class="flex gap-2">
+    <button
+      *ngIf="updateForm.enabled"
+      mat-raised-button
+      color="primary"
+      type="submit"
+    >
+      Update
+    </button>
+    <button
+      (click)="toggleEdit()"
+      *ngIf="updateForm.enabled"
+      mat-raised-button
+      color="accent"
+    >
+      Cancel
+    </button>
+  </div>
+</form>

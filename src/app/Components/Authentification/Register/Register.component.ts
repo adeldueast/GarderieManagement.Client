@@ -3,9 +3,9 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/http/auth.service';
 
 @Component({
-  selector: 'app-Register',
-  templateUrl: './Register.component.html',
-  styleUrls: ['./Register.component.css'],
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
   register_request = {
@@ -15,9 +15,9 @@ export class RegisterComponent implements OnInit {
     password: undefined,
   };
 
-  constructor(private AuthService: AuthService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router) {
     // redirect to home if already logged in
-    if (this.AuthService.isUserAuthenticated()) {
+    if (this.authService.isUserAuthenticated()) {
       this.router.navigate(['/']);
     }
   }
@@ -25,7 +25,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit() { console.clear()}
 
   Register() {
-    this.AuthService.registerUser(
+    this.authService.registerUser(
       'Account/Register',
       this.register_request
     ).subscribe({

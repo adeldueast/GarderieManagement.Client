@@ -17,18 +17,18 @@ export class ChildInformationTabComponent implements OnInit {
   groups: any[] = [{ id: 0, name: 'No Group' }];
 
   constructor(
-    private signalRService:SignalRService,
+    private signalRService: SignalRService,
     private childrenService: ChildrenService,
     private groupService: GroupService,
-    public authService:AuthService
+    public authService: AuthService
   ) {
     //console.log('information tab constructor');
-
   }
 
-  ngOnInit() { console.clear()
+  ngOnInit() {
+    console.clear();
     console.warn(this.child_info);
-    
+
     this.updateForm = new FormGroup({
       id: new FormControl(this.child_info.id),
       nom: new FormControl(this.child_info.nom),
@@ -40,7 +40,7 @@ export class ChildInformationTabComponent implements OnInit {
 
     this.updateForm.disable();
     this.getAllGroups();
-    
+
     // this.signalRService.addChildChangesListener(this.getChild.bind(this));
   }
 
@@ -84,11 +84,9 @@ export class ChildInformationTabComponent implements OnInit {
   updateChild = () => {
     this.childrenService
       .updateChild('Enfant/Update', this.updateForm.value)
-      .subscribe(
-        (res) => console.log(res)
-        );
-    
-        this.updateForm.disable()
+      .subscribe((res) => console.log(res));
+
+    this.updateForm.disable();
   };
 
   onChangeGroup(value: any) {

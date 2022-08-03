@@ -8,9 +8,9 @@ import { UsersService } from 'src/app/shared/services/http/users.service';
 import { ModalStaffCreateComponent } from '../modals/modal-staff-create/modal-staff-create.component';
 
 @Component({
-  selector: 'app-Staff',
-  templateUrl: './Staff.component.html',
-  styleUrls: ['./Staff.component.css'],
+  selector: 'app-staff',
+  templateUrl: './staff.component.html',
+  styleUrls: ['./staff.component.css'],
 })
 export class StaffComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['nom'];

@@ -31,9 +31,7 @@
         class="w-20 h-20 object-cover rounded-full"
         [src]="
           child.image
-            ? (envUrls.urlAdressPhoto+child?.image
-              | picture
-              | async)
+            ? (envUrls.urlAdressPhoto + child?.image | picture | async)
             : 'https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg'
         "
         alt="image"
