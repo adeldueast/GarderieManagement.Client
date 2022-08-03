@@ -6,9 +6,15 @@ import { FormsModule } from '@angular/forms';
 import { JwtModule } from '@auth0/angular-jwt';
 import { MAT_COLOR_FORMATS, NgxMatColorPickerModule, NGX_MAT_COLOR_FORMATS } from '@angular-material-components/color-picker';
 import { AppComponent } from './app.component';
+
+
 import { RegisterComponent } from './Components/Authentification/register/register.component';
 import { LoginComponent } from './Components/Authentification/login/login.component';
 import { LayoutComponent } from './Components/layout/layout.component';
+import { SidebarComponent } from './Components/sidebar/sidebar.component';
+import { StaffComponent } from './Components/staff/staff.component';
+import { PageNotFoundComponent } from './Components/pagenotfound/page-not-found.component';
+
 
 import { ChildrenComponent } from './Components/childrens/children/children.component';
 
@@ -44,7 +50,6 @@ import {MatSelectModule} from '@angular/material/select';
 import { GroupsComponent } from './Components/groups/groups.component';
 import { ModalGroupCreateComponent } from './Components/modals/modal-group-create/modal-group-create.component';
 import { ModalStaffCreateComponent } from './Components/modals/modal-staff-create/modal-staff-create.component';
-import { StaffComponent } from './Components/staff/staff.component';
 import {MatCardModule} from '@angular/material/card';
 import { ModalActionComponent } from './Components/modals/modal-action/modal-action.component';
 
@@ -69,7 +74,7 @@ import { ModalPreviewPictureComponent } from './Components/modals/modal-preview-
 import { ChildPhotosTabComponent } from './Components/childrens/child/tabs/child-photos-tab/child-photos-tab.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';import {MatBadgeModule} from '@angular/material/badge';
 import { CreateGarderieComponent } from './Components/create-garderie/create-garderie.component';
-import { SidebarComponent } from './Components/sidebar/sidebar.component';
+
 
 
 // FullCalendarModule.registerPlugins([ // register FullCalendar plugins
@@ -106,6 +111,7 @@ const Material_Modules = [
   declarations: [
     AppComponent,
     RegisterComponent,
+    PageNotFoundComponent,
     LoginComponent,
     SidebarComponent,
     LayoutComponent,
