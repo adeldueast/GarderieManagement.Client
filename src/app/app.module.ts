@@ -152,7 +152,6 @@ const Material_Modules = [
     HttpClientModule,
     BrowserAnimationsModule,
     NgxMatColorPickerModule,
-    [Material_Modules],
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
@@ -161,7 +160,25 @@ const Material_Modules = [
       },
     }),
     // FullCalendarModule,
-    CommonModule
+    CommonModule,
+    //dsaasd
+    MatIconModule,
+    MatDividerModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatTableModule,
+    MatTabsModule,
+    MatAutocompleteModule,
+    MatListModule,
+    MatTooltipModule,
+    MatCheckboxModule ,MatSelectModule,MatCardModule,
+    MatStepperModule,
+    MatProgressSpinnerModule,
+    MatBadgeModule
     
   ],
   providers: [
