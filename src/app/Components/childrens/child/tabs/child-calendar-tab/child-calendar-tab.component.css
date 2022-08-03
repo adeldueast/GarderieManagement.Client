@@ -2,7 +2,7 @@
    
 }
 .content-container{
-    height: calc(100vh - (396px));
+    height: calc(100vh - (365px));
     overflow-y: auto;
   }
   

@@ -42,7 +42,7 @@ import { ChildComponent } from './Components/childrens/child/child.component';
 import { ModalGuardianCreateComponent } from './Components/modals/modal-guardian-create/modal-guardian-create.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ChildInformationTabComponent } from './Components/childrens/child/tabs/child-information-tab/child-information-tab.component';
-// import { ChildCalendarTabComponent } from './Components/childrens/child/tabs/child-calendar-tab/child-calendar-tab.component';
+import { ChildCalendarTabComponent } from './Components/childrens/child/tabs/child-calendar-tab/child-calendar-tab.component';
 import { ChildGuardiansTabComponent } from './Components/childrens/child/tabs/child-guardians-tab/child-guardians-tab.component';
 import {MatListModule} from '@angular/material/list';
 import {MatCheckboxModule} from '@angular/material/checkbox';
@@ -53,10 +53,10 @@ import { ModalStaffCreateComponent } from './Components/modals/modal-staff-creat
 import {MatCardModule} from '@angular/material/card';
 import { ModalActionComponent } from './Components/modals/modal-action/modal-action.component';
 
-// import { FullCalendarModule } from '@fullcalendar/angular'; // must go before plugins
-// import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
-// import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
-// import rrulePlugin from '@fullcalendar/rrule'
+import { FullCalendarModule } from '@fullcalendar/angular'; // must go before plugins
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
+import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
+import rrulePlugin from '@fullcalendar/rrule'
 import { ModalJournalComponent } from './Components/modals/modal-journal/modal-journal.component';
 import { StarRatingComponent } from './Components/modals/star-rating/star-rating.component';
 import {MatStepperModule} from '@angular/material/stepper';
@@ -77,11 +77,11 @@ import { CreateGarderieComponent } from './Components/create-garderie/create-gar
 
 
 
-// FullCalendarModule.registerPlugins([ // register FullCalendar plugins
-//   dayGridPlugin,
-//   interactionPlugin,
-//   rrulePlugin
-// ]);
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin,
+  interactionPlugin,
+  rrulePlugin
+]);
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -120,7 +120,7 @@ const Material_Modules = [
     ModalChildCreateComponent,
     ModalGuardianCreateComponent,
     ChildInformationTabComponent,
-    // ChildCalendarTabComponent,
+    ChildCalendarTabComponent,
     ChildGuardiansTabComponent,
     GroupsComponent,
     ModalGroupCreateComponent,
@@ -159,7 +159,7 @@ const Material_Modules = [
         disallowedRoutes: [],
       },
     }),
-    // FullCalendarModule,
+    FullCalendarModule,
     CommonModule,
     //all material modules needed
     MatIconModule,
