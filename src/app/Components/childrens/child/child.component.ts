@@ -73,7 +73,7 @@ export class ChildComponent implements OnInit, OnDestroy {
       this.childrenService.deleteChild(`Enfant/Delete/${this.child_info.id}`)
     )
       .then((res) => {
-       // console.log(res);
+       //  ;
         this.router.navigate(['children']);
        // console.log(`delete child ${this.child_info.id} completed`);
       })
@@ -88,7 +88,7 @@ export class ChildComponent implements OnInit, OnDestroy {
       .getChild(`Enfant/Get/${this.child_info.id}`)
       .subscribe({
         next: (res) => {
-        //  console.log(res);
+        //   ;
           this.child_info.image = res.data.image;
           this.child_info.nom = res.data.nom;
           this.child_info.birthdate = res.data.dateNaissance;

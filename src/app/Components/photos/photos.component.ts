@@ -43,7 +43,7 @@ export class PhotosComponent implements OnInit,OnDestroy {
   getAllPhotosIds() {
     this.photoService.getAllPhotosIds('Photos/Gallerie/Get').subscribe(
       (res) =>{
-        console.log(res)
+         
         this.images=[]
 
         res.forEach((image:any) => {
@@ -61,7 +61,7 @@ export class PhotosComponent implements OnInit,OnDestroy {
   
     this.photoService.getAllPhotosIds('Photos/Gallerie/Get/Tutor').subscribe(
       (res) =>{
-        console.log(res)
+         
         this.images=[]
         res.forEach((image:any) => {
           this.images.push(image)

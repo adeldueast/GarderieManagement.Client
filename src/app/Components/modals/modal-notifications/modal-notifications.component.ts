@@ -96,7 +96,7 @@ export class ModalNotificationsComponent implements OnInit {
       .markNotificationSeen(`Notification/MarkSeen/${notificationId}`)
       .subscribe(
         (res) => {
-         // console.log(res);
+         //  ;
 
           this.dialogRef.close(`${index}`);
         },
@@ -109,7 +109,7 @@ export class ModalNotificationsComponent implements OnInit {
       .markAllNotificationSeen(`Notification/MarkSeen`)
       .subscribe(
         (res) => {
-          //console.log(res)
+          // 
         },
         (err) => console.log(err)
       );

@@ -26,7 +26,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   notifications?: any;
   newNotifications: number = 0;
   ngOnInit() { 
-    console.log(this.authService.user_info);
+    //console.log(this.authService.user_info);
 
     // console.clear()
     this.getNotifications();
@@ -40,7 +40,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     
     this.notificationService.getAllNotification('Notification/Get').subscribe(
       (res) => {
-        //console.log(res);
+        // ;
         this.newNotifications = 0;
         this.notifications = res;
         this.notifications.forEach((n: any) => {

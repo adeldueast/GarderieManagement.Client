@@ -85,7 +85,7 @@ export class GroupComponent implements OnInit, OnDestroy {
     this.groupService
       .deleteGroup(`Group/Delete/${this.group.id}`)
       .subscribe((res) => {
-        //console.log(res);
+        // ;
         this.router.navigate(['/groups'])
       },(err) => console.log(err));
   }

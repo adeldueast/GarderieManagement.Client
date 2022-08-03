@@ -38,7 +38,7 @@ export class ChildPhotosTabComponent implements OnInit,OnDestroy {
   getPhotoIdsOfChild() {
     this.photoService.getPhotoIdsOfChild(`Photos/Gallerie/Get/${this.child_info.id}`).subscribe(
       (res) => {
-       // console.log(res);
+       //  ;
         this.images=[]
         res.forEach((image: any) => {
           image.isLoading = true;

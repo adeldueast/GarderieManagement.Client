@@ -84,7 +84,7 @@ export class ModalJournalComponent implements OnInit {
     this.journalService
       .getChildsTodayJournal(`Journal/Get/${this.data.id}`)
       .subscribe((res) => {
-        console.log(res);
+         ;
         
         if (res.data != null) {
           this.isCreate = false;
@@ -122,7 +122,7 @@ export class ModalJournalComponent implements OnInit {
       this.journalService
         .createChildJournal(`Journal/Create/${this.data.id}`, this.form.value)
         .subscribe((res) => {
-          //console.log(res)
+          // 
         });
       return;
     }
@@ -133,7 +133,7 @@ export class ModalJournalComponent implements OnInit {
     this.journalService
       .updateChildJournal(`Journal/Update/${this.data.id}`, this.form.value)
       .subscribe((res) =>{
-        //console.log(res)
+        // 
       });
   }
 

@@ -33,7 +33,7 @@ export class ChildGuardiansTabComponent implements OnInit,OnDestroy {
   }
 
   ngOnInit() { console.clear()
-    console.warn(this.child_info);
+    //console.warn(this.child_info);
     
     this.getAllGuardians();
     this.getAllChildsGuardians();
@@ -63,14 +63,14 @@ export class ChildGuardiansTabComponent implements OnInit,OnDestroy {
   };
 
   private getAllChildsGuardians = () => {
-    console.warn(this.child_info);
+   // console.warn(this.child_info);
     
     this.usersService
       .getAllChildsGuardians(`User/ChildsTutors?enfantId=${this.child_info.id}`)
       .subscribe({
         next: (res) => {
           this.childsGuardians = [];
-          //console.log(res);
+          // ;
 
           res.data.forEach((g: any) => {
             let guardian = {

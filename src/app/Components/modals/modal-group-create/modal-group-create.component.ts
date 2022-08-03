@@ -39,7 +39,7 @@ export class ModalGroupCreateComponent implements OnInit {
   getAllStaffNoGroup = () => {
     this.userService.getAllStaffNoGroup('User/employeesNoGroup').subscribe({
       next: (res) => {
-        //console.log(res),
+        // ,
           res.data.forEach((e: any) => {
             let staff = {
               id: e.id,
@@ -78,7 +78,7 @@ export class ModalGroupCreateComponent implements OnInit {
     this.groupService
       .createGroup('Group/Create', createGroup_request)
       .subscribe((res) =>{
-        // console.log(res)
+        //  
       });
   };
 }

@@ -31,7 +31,7 @@ export class ModalChildCreateComponent implements OnInit {
   getAllGroups() {
     this.groupService.getAllGroups('Group/Get').subscribe({
       next: (res) => {
-        // console.log(res)
+        //  
         res.data.forEach((g: any) => {
           let group = {
             id: g.id,

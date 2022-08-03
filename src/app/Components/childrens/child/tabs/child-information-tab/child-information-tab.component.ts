@@ -27,7 +27,7 @@ export class ChildInformationTabComponent implements OnInit {
 
   ngOnInit() {
     console.clear();
-    console.warn(this.child_info);
+  //  console.warn(this.child_info);
 
     this.updateForm = new FormGroup({
       id: new FormControl(this.child_info.id),
@@ -47,7 +47,7 @@ export class ChildInformationTabComponent implements OnInit {
   getAllGroups = () => {
     this.groupService.getAllGroups(`Group/Get`).subscribe({
       next: (res) => {
-        // console.log(res);
+        //  ;
         res.data.forEach((g: any) => {
           let group = {
             id: g.id,
@@ -85,7 +85,7 @@ export class ChildInformationTabComponent implements OnInit {
     this.childrenService
       .updateChild('Enfant/Update', this.updateForm.value)
       .subscribe((res) =>{
-        //console.log(res)
+        // 
       });
 
     this.updateForm.disable();

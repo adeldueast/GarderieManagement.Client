@@ -26,7 +26,7 @@ export class ModalStaffCreateComponent implements OnInit {
     this.userService
       .inviteStaff('Account/InviteStaff', this.form.value)
       .subscribe((res) => {
-       // console.log(res)
+       //  
       },err=>console.log(err)
       );
   }

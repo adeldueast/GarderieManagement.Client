@@ -67,7 +67,7 @@ export class ModalGroupedChildrenComponent implements OnInit {
       .createGroupedJournals('Journal/Create', this.secondFormGroup.value)
       .subscribe(
         (res) => {
-          //console.log(res)
+          // 
         },
         (err) => console.log(err)
       );

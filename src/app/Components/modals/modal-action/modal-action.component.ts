@@ -29,7 +29,7 @@ export class ModalActionComponent implements OnInit {
       .arrivedAt(`Attendancies/Arrived/${this.data.id}`)
       .subscribe({
         next: (res) => {
-          // console.log(res),
+          //  ,
           this.data.hasArrived = true;
         },
         error: (err) => console.log(err),
@@ -43,7 +43,7 @@ export class ModalActionComponent implements OnInit {
       .leftAt(`Attendancies/Left/${this.data.id}`)
       .subscribe({
         next: (res) => {
-          //   console.log(res),
+          //    ,
           this.data.hasArrived = false;
         },
         error: (err) => console.log(err),
@@ -65,7 +65,7 @@ export class ModalActionComponent implements OnInit {
       )
       .subscribe({
         next: (res) => {
-          // console.log(res),
+          //  ,
           this.data.hasArrived = false;
         },
         error: (err) => console.log(err),

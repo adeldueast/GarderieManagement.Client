@@ -25,13 +25,13 @@ export class ModalPreviewPictureComponent implements OnInit {
   ngOnInit() {
     console.log(this.data);
     if (this.data.fromNotif) {
-      console.warn('from notif');
+      //console.warn('from notif');
 
       this.photoService
         .getPhotoInformation(`Photos/Get/${this.data.images[this.index].id}`)
         .subscribe(
           (res) => {
-            console.log(res);
+             ;
             this.data.images[this.index].description  = res.description; 
           },
           (err) => console.log(err),

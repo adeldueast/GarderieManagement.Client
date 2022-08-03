@@ -96,7 +96,7 @@ export class ChildCalendarTabComponent implements OnInit, OnDestroy {
       )
     )
       .then((res) => {
-     //   console.log(res);
+     //    ;
         
         res.forEach((e: any) => {
           const event = {
