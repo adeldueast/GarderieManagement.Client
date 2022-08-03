@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { EnvironmentUrlService } from 'src/app/shared/services/EnvironmentUrl.service';
 import { PhotoService } from 'src/app/shared/services/http/photo.service';
 
 @Component({
@@ -15,7 +16,8 @@ export class ModalPreviewPictureComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<ModalPreviewPictureComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public photoService: PhotoService
+    public photoService: PhotoService,
+    public envUrls: EnvironmentUrlService
   ) {
     this.index = this.data.index;
   }

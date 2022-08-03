@@ -7,13 +7,9 @@
   [hidden]="loading"
   (load)="onLoad()"
   alt="image"
-  [src]="
-  
-    'https://localhost:44356/api/v1/Photos/md/' + this.data.images[this.index]?.id
-      | picture
-      | async
-  "
- 
+  [src]="envUrls.urlAdressPhoto + this.data.images[this.index]?.id   | picture
+  | async"
+
  
   class="max-h-full max-w-full mx-auto "
   

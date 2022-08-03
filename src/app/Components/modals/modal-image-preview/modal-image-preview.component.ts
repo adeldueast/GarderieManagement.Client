@@ -5,6 +5,7 @@ import {
   MatDialogRef,
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
+import { EnvironmentUrlService } from 'src/app/shared/services/EnvironmentUrl.service';
 import { PhotoService } from 'src/app/shared/services/http/photo.service';
 import { ModalSelectChildrenComponent } from '../modal-select-children/modal-select-children.component';
 
@@ -24,6 +25,7 @@ export class ModalImagePreviewComponent implements OnInit {
     public dialogRef: MatDialogRef<ModalImagePreviewComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialog: MatDialog
+
   ) {}
 
   ngOnInit() {
