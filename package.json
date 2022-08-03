@@ -2,7 +2,8 @@
   "name": "garderie.client",
   "version": "0.0.0",
   "engines": {
-    "node": "16.15.0"
+    "node": "16.15.0",
+    "npm":"8.14.0"
   },
   "scripts": {
     "ng": "ng",
