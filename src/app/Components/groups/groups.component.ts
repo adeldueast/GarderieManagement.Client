@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { EnvironmentUrlService } from 'src/app/shared/services/EnvironmentUrl.service';
 import { AuthService } from 'src/app/shared/services/http/auth.service';
@@ -76,7 +76,7 @@ export class GroupsComponent implements OnInit,OnDestroy {
     const dialogRef = this.dialog.open(ModalGroupCreateComponent);
 
     //get the value of the modal's form before it closes
-    dialogRef.afterClosed().subscribe((result: FormGroup) => {
+    dialogRef.afterClosed().subscribe((result: UntypedFormGroup) => {
       if (result) {
         const group = result.value;
         location.reload();

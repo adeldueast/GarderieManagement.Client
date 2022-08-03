@@ -6,7 +6,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { lastValueFrom, map, Observable } from 'rxjs';
@@ -27,9 +27,9 @@ export class ChildComponent implements OnInit, OnDestroy {
   @ViewChild('fileuploadprogress', { static: false })
   fileuploadprogress?: ElementRef;
 
-  uploadForm: FormGroup;
+  uploadForm: UntypedFormGroup;
   constructor(
-    public fb: FormBuilder,
+    public fb: UntypedFormBuilder,
     private router: Router,
     private signalRService: SignalRService,
     private childrenService: ChildrenService,

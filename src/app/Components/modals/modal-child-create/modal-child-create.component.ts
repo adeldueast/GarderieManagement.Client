@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { GroupService } from 'src/app/shared/services/http/group.service';
 interface Group {
   id: number | null;
@@ -13,11 +13,11 @@ interface Group {
 export class ModalChildCreateComponent implements OnInit {
   groups: Group[] = [{ id: 0, name: 'No group' }];
   
-  public form: FormGroup = new FormGroup({
-    firstname: new FormControl(''),
-    lastname: new FormControl(''),
-    dateOfBirth: new FormControl(''),
-    groupId: new FormControl(this.groups[0].id),
+  public form: UntypedFormGroup = new UntypedFormGroup({
+    firstname: new UntypedFormControl(''),
+    lastname: new UntypedFormControl(''),
+    dateOfBirth: new UntypedFormControl(''),
+    groupId: new UntypedFormControl(this.groups[0].id),
   });
 
 

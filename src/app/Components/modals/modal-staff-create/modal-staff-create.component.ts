@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { UsersService } from 'src/app/shared/services/http/users.service';
 
 @Component({
@@ -9,12 +9,12 @@ import { UsersService } from 'src/app/shared/services/http/users.service';
 })
 export class ModalStaffCreateComponent implements OnInit {
   rolesEnum = ['admin', 'employee'];
-  form = new FormGroup({
-    firstname: new FormControl(),
-    lastname: new FormControl(),
-    email: new FormControl(),
-    phone: new FormControl(),
-    isAdmin: new FormControl(false),
+  form = new UntypedFormGroup({
+    firstname: new UntypedFormControl(),
+    lastname: new UntypedFormControl(),
+    email: new UntypedFormControl(),
+    phone: new UntypedFormControl(),
+    isAdmin: new UntypedFormControl(false),
   });
 
   constructor(private userService: UsersService) {}

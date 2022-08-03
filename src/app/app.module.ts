@@ -48,10 +48,10 @@ import { StaffComponent } from './Components/Staff/staff.component';
 import {MatCardModule} from '@angular/material/card';
 import { ModalActionComponent } from './Components/modals/modal-action/modal-action.component';
 
-import { FullCalendarModule } from '@fullcalendar/angular'; // must go before plugins
-import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
-import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
-import rrulePlugin from '@fullcalendar/rrule'
+// import { FullCalendarModule } from '@fullcalendar/angular'; // must go before plugins
+// import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
+// import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
+// import rrulePlugin from '@fullcalendar/rrule'
 import { ModalJournalComponent } from './Components/modals/modal-journal/modal-journal.component';
 import { StarRatingComponent } from './Components/modals/star-rating/star-rating.component';
 import {MatStepperModule} from '@angular/material/stepper';
@@ -72,11 +72,11 @@ import { CreateGarderieComponent } from './Components/create-garderie/create-gar
 import { SidebarComponent } from './Components/Sidebar/sidebar.component';
 
 
-FullCalendarModule.registerPlugins([ // register FullCalendar plugins
-  dayGridPlugin,
-  interactionPlugin,
-  rrulePlugin
-]);
+// FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+//   dayGridPlugin,
+//   interactionPlugin,
+//   rrulePlugin
+// ]);
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -154,7 +154,7 @@ const Material_Modules = [
         disallowedRoutes: [],
       },
     }),
-    FullCalendarModule,
+    // FullCalendarModule,
     CommonModule
     
   ],

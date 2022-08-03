@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalChildCreateComponent } from '../../modals/modal-child-create/modal-child-create.component';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { ChildrenService } from 'src/app/shared/services/http/children.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { ModalActionComponent } from '../../modals/modal-action/modal-action.component';
@@ -69,7 +69,7 @@ export class ChildrenComponent implements OnInit, OnDestroy {
   openDialog() {
     const dialogRef = this.dialog.open(ModalChildCreateComponent);
 
-    dialogRef.afterClosed().subscribe((result: FormGroup) => {
+    dialogRef.afterClosed().subscribe((result: UntypedFormGroup) => {
       if (result) {
         const newChild = result.value;
 

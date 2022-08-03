@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { Observable, startWith, map } from 'rxjs';
 
 import { UsersService } from 'src/app/shared/services/http/users.service';
@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/shared/services/http/auth.service';
   styleUrls: ['./modal-guardian-create.component.css'],
 })
 export class ModalGuardianCreateComponent implements OnInit {
-  form!: FormGroup;
+  form!: UntypedFormGroup;
   showForm: boolean = this.data.showForm;
   isCreatingGuardian: boolean = false;
   selectedUser?: any;
@@ -20,7 +20,7 @@ export class ModalGuardianCreateComponent implements OnInit {
   guardians: any[] = [];
 
   //SearchControl where we filter guardian by Name
-  myControl = new FormControl('');
+  myControl = new UntypedFormControl('');
 
   //A subscription to filter changes of the above control
   filteredGuardians?: Observable<any[]>;
@@ -34,18 +34,18 @@ export class ModalGuardianCreateComponent implements OnInit {
     //console.log(this.data);
 
     //Instanciate the form and set enfantId to data.EnfantId
-    this.form = new FormGroup({
-      firstName: new FormControl(''),
-      lastName: new FormControl(''),
-      email: new FormControl(authService.isUserInRole('tutor')?null:''),
+    this.form = new UntypedFormGroup({
+      firstName: new UntypedFormControl(''),
+      lastName: new UntypedFormControl(''),
+      email: new UntypedFormControl(authService.isUserInRole('tutor')?null:''),
 
       //new props
-      HasAnAccount: new FormControl(authService.isUserInRole('tutor')?false:true),
-      emergencyContact: new FormControl(true),
-      authorizePickup: new FormControl(true),
+      HasAnAccount: new UntypedFormControl(authService.isUserInRole('tutor')?false:true),
+      emergencyContact: new UntypedFormControl(true),
+      authorizePickup: new UntypedFormControl(true),
 
-      relation: new FormControl(''),
-      enfantId: new FormControl(this.data.enfantId),
+      relation: new UntypedFormControl(''),
+      enfantId: new UntypedFormControl(this.data.enfantId),
 
     });
   }
