@@ -30,6 +30,8 @@ export class AuthGuard implements CanActivate {
 
     const isUserAuthenticated = this.authService.isUserAuthenticated();
     if (isUserAuthenticated) {
+     
+
       if (state.url == '/garderie') {
         if (!this.authService.userHasGarderie()) {
           return true;
@@ -38,6 +40,10 @@ export class AuthGuard implements CanActivate {
         return false;
       } else {
         if (this.authService.userHasGarderie()) {
+          if (state.url == '/') {
+
+            this.router.navigate(['/children'])
+          }
           return true;
         }
 
