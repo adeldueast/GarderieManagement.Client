@@ -21,7 +21,7 @@ export class GroupsComponent implements OnInit,OnDestroy {
   ) {}
   groups: any = [];
   ngOnInit() {
-    console.clear();
+     ;
     this.getAllGroups();
 
     this.signalRService.addChildAttendanceChangesListener(
@@ -79,7 +79,7 @@ export class GroupsComponent implements OnInit,OnDestroy {
     dialogRef.afterClosed().subscribe((result: FormGroup) => {
       if (result) {
         const group = result.value;
-        location.reload();
+       
       }
     });
   }

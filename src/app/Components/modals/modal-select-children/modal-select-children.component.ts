@@ -31,7 +31,7 @@ export class ModalSelectChildrenComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.clear();
+     ;
     this.getChildren();
 
     console.log(this.data.formData.getAll('image'));

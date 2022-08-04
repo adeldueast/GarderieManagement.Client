@@ -32,7 +32,7 @@ export class ChildGuardiansTabComponent implements OnInit,OnDestroy {
 
   }
 
-  ngOnInit() { console.clear()
+  ngOnInit() {  
     //console.warn(this.child_info);
     
     this.getAllGuardians();

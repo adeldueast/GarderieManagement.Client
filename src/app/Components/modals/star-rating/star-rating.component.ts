@@ -20,7 +20,7 @@ export class StarRatingComponent implements OnInit {
   @Input() isAllowedEdit?:boolean;
   constructor() { }
 
-  ngOnInit() { console.clear()
+  ngOnInit() {  
    // console.log("a "+this.starCount)
     for (let index = 0; index < this.starCount; index++) {
       this.ratingArr.push(index);

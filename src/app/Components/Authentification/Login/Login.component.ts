@@ -28,10 +28,10 @@ export class LoginComponent implements OnInit {
 
   Login() {
     this.authService.loginUser('Account/Login', this.login_request).subscribe({
-      next: (res:any) => {
+      next: (res: any) => {
         this.onSuccessLogin(res);
       },
-      error: (err:any) => [
+      error: (err: any) => [
         console.error(err.error.errors),
         alert(err.error.errors),
       ],
@@ -46,7 +46,6 @@ export class LoginComponent implements OnInit {
     this.authService.sendAuthStateChangeNotification(true);
     // this.authService.UpdateCurrentUserInfo(token);
     //Check if user (owner) created a garderie
-    
 
     const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     this.router.navigate([returnUrl]);

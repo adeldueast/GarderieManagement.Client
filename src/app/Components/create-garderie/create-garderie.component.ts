@@ -48,22 +48,27 @@ export class CreateGarderieComponent implements OnInit {
 
   onSubmit() {
     if (this.form.valid) {
-      this.createGarderie('Garderie/Create', this.form.value).subscribe(
+      this.createGarderie('Garderie/Create', this.form.value)
+      .subscribe(
         (res) => {
-         
-            (this.authService.user_info.garderieId = res.data.id);
+          console.log(res);
+          const newAccessToken = res.data.accessToken;
+          console.log(newAccessToken);
+
+          localStorage.setItem('token',newAccessToken);
+          
+         // this.authService.user_info.garderieId = res.data.id;
         },
         (err) => console.log(err),
         () => {
           console.log('create garderie completed');
-
-       this.logout()
+          this.router.navigate(['/'])
         }
       );
     }
   }
 
-  logout(){
+  logout() {
     localStorage.removeItem('token');
     this.router.navigate(['/login']);
   }

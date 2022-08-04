@@ -26,7 +26,7 @@ export class ChildInformationTabComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.clear();
+     ;
   //  console.warn(this.child_info);
 
     this.updateForm = new FormGroup({

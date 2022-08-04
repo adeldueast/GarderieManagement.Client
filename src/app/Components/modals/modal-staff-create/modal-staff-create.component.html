@@ -3,7 +3,7 @@
 
 <!-- BODY -->
 <mat-dialog-content class="mat-typography">
-  <form [formGroup]="form" (submit)="onSubmit()" id="ngForm">
+  <form [formGroup]="ngForm" (submit)="onSubmit()" id="ngForm">
 
     <!-- Staff firstName && lastName -->
     <div class="grid grid-cols-2 gap-x-2">
@@ -51,7 +51,7 @@
     type="submit"
     mat-button
     class="btn-primary"
-    [mat-dialog-close]="form"
+    [mat-dialog-close]="this.success"
   >
     Create
   </button>

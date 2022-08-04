@@ -49,9 +49,10 @@
   <button mat-button mat-dialog-close>Cancel</button>
   <button
   type="button"
-  mat-button
+  mat-raised-button
   class="btn-primary"
   [mat-dialog-close]="form"
+  [disabled]="!form.valid"
   cdkFocusInitial
 >
   Create

@@ -44,7 +44,7 @@ export class ChildComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    console.clear();
+     ;
     this.route.params.subscribe((params) => {
     //  console.log(params);
       const id = params['id'].includes('?')

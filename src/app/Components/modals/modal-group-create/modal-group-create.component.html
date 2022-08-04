@@ -7,22 +7,26 @@
     
     <div class="grid grid-cols-3 gap-x-2 w-96">
     <!-- GROUP NAME -->
+    <!-- {{staff.length}} -->
     <mat-form-field class="col-span-2">
       <mat-label>Group name</mat-label>
-      <input formControlName="name" matInput placeholder="Group name" />
+      <input  formControlName="name" matInput placeholder="Group name" />
     </mat-form-field>
 
       <!-- COLOR PICKER -->
       <mat-form-field >
-        <input matInput [ngxMatColorPicker]="picker" formControlName="colorCtr" >
+        <input  matInput [ngxMatColorPicker]="picker" formControlName="colorCtr" >
         <ngx-mat-color-toggle matSuffix [for]="picker"></ngx-mat-color-toggle>
         <ngx-mat-color-picker #picker [touchUi]="true" [color]="color"></ngx-mat-color-picker>
     </mat-form-field>
     </div>
+
+    
     <!-- GROUP EDUCATOR -->
     <mat-form-field class="w-full">
       <mat-label>Educator</mat-label>
       <mat-select
+   
         formControlName="educatriceId"
       >
         <mat-option *ngFor="let staff of staff" [value]="staff.id">
@@ -32,9 +36,10 @@
     </mat-form-field>
 
 
-  
 
+    <button mat-raised-button class="w-full mb-2" mat-dialog-close *ngIf="this.form.disabled" (click)="openCreateStaffModal()" type="button" >Create en educator first</button>
   </form>
+  
 </mat-dialog-content>
 
 <!-- FOOTER -->
@@ -43,9 +48,10 @@
   <button
     form="ngForm"
     type="submit"
-    mat-button
+    mat-raised-button
     class="btn-primary"
-    [mat-dialog-close]="form"
+    mat-dialog-close
+    [disabled]="!form.valid"
   >
     Create
   </button>

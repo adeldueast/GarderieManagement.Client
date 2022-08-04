@@ -30,7 +30,7 @@ export class GroupComponent implements OnInit, OnDestroy {
 
   }
 
-  ngOnInit() { console.clear()
+  ngOnInit() {  
     let groupId ;
     this.route.params.subscribe((params) => {
       groupId = (params['id']);

@@ -8,8 +8,9 @@ import { UsersService } from 'src/app/shared/services/http/users.service';
   styleUrls: ['./modal-staff-create.component.css'],
 })
 export class ModalStaffCreateComponent implements OnInit {
+  success =false;
   rolesEnum = ['admin', 'employee'];
-  form = new FormGroup({
+  ngForm = new FormGroup({
     firstname: new FormControl(),
     lastname: new FormControl(),
     email: new FormControl(),
@@ -19,15 +20,16 @@ export class ModalStaffCreateComponent implements OnInit {
 
   constructor(private userService: UsersService) {}
 
-  ngOnInit() { console.clear()}
+  ngOnInit() {}
 
   onSubmit() {
     //console.log(this.form.value);
     this.userService
-      .inviteStaff('Account/InviteStaff', this.form.value)
-      .subscribe((res) => {
-       //  
-      },err=>console.log(err)
+      .inviteStaff('Account/InviteStaff', this.ngForm.value)
+      .subscribe(
+        (res) => {console.log(res),this.success=true},
+        (err) => console.log(err),
+        ()=>console.log('create staff completed')
       );
   }
 }
