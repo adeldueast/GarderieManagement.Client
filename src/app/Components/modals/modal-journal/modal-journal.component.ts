@@ -109,7 +109,7 @@ export class ModalJournalComponent implements OnInit {
   }
   onSubmit() {
 
-    console.log(this.form.value);
+   // console.log(this.form.value);
 
     if (!(this.data.dataId === undefined)) {
       return;
@@ -128,7 +128,7 @@ export class ModalJournalComponent implements OnInit {
     }
 
    //
-    console.log('updating journal');
+   // console.log('updating journal');
 
     this.journalService
       .updateChildJournal(`Journal/Update/${this.data.id}`, this.form.value)

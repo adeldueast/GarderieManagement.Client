@@ -23,7 +23,7 @@ export class ModalPreviewPictureComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.data);
+    //console.log(this.data);
     if (this.data.fromNotif) {
       //console.warn('from notif');
 

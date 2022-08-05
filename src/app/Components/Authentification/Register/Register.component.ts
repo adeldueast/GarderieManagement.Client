@@ -42,7 +42,7 @@ export class RegisterComponent implements OnInit {
       .subscribe({
         next: (res: any) => {
           //console.log('res', res), console.log('res', res);
-          console.log(res);
+         // console.log(res);
           this.onSuccessRegister(res);
         },
         error: (err: any) => [

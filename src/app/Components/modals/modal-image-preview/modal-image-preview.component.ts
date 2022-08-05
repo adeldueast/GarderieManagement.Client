@@ -111,7 +111,7 @@ export class ModalImagePreviewComponent implements OnInit {
     });
     dialogRef.beforeClosed().subscribe(result=>{
       if(result){
-        console.log(result);
+      //  console.log(result);
         this.dialog.closeAll()
         
       }

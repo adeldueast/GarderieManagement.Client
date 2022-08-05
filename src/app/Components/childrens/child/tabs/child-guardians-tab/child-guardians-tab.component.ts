@@ -1,4 +1,10 @@
-import { Component, Input, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  ViewEncapsulation,
+  OnDestroy,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalGuardianCreateComponent } from 'src/app/Components/modals/modal-guardian-create/modal-guardian-create.component';
 import { UsersService } from 'src/app/shared/services/http/users.service';
@@ -11,7 +17,7 @@ import { SignalRService } from '../../../../../shared/services/http/hub/signal-r
   styleUrls: ['./child-guardians-tab.component.css'],
   encapsulation: ViewEncapsulation.None,
 })
-export class ChildGuardiansTabComponent implements OnInit,OnDestroy {
+export class ChildGuardiansTabComponent implements OnInit, OnDestroy {
   //List of all guardians *needs to be fetched*
   guardians: any[] = [];
 
@@ -20,7 +26,7 @@ export class ChildGuardiansTabComponent implements OnInit,OnDestroy {
 
   @Input() child_info!: any;
   constructor(
-    private signalRService:SignalRService,
+    private signalRService: SignalRService,
     public dialog: MatDialog,
     private usersService: UsersService,
     public authService: AuthService
@@ -29,16 +35,17 @@ export class ChildGuardiansTabComponent implements OnInit,OnDestroy {
   }
   ngOnDestroy(): void {
     //this.signalRService.removeChildChangesListener();
-
   }
 
-  ngOnInit() {  
+  ngOnInit() {
     //console.warn(this.child_info);
-    
+
     this.getAllGuardians();
     this.getAllChildsGuardians();
-    
-    this.signalRService.addChildChangesListener(this.getAllChildsGuardians.bind(this));
+
+    this.signalRService.addChildChangesListener(
+      this.getAllChildsGuardians.bind(this)
+    );
   }
 
   private getAllGuardians = () => {
@@ -54,7 +61,7 @@ export class ChildGuardiansTabComponent implements OnInit,OnDestroy {
         });
       },
       error: (err) => [
-        console.error('getAllGuardians',err),
+        console.error('getAllGuardians', err),
         //console.error(err.error.errors),
         alert(JSON.stringify(err.error.errors)),
       ],
@@ -63,8 +70,8 @@ export class ChildGuardiansTabComponent implements OnInit,OnDestroy {
   };
 
   private getAllChildsGuardians = () => {
-   // console.warn(this.child_info);
-    
+    // console.warn(this.child_info);
+
     this.usersService
       .getAllChildsGuardians(`User/ChildsTutors?enfantId=${this.child_info.id}`)
       .subscribe({
@@ -87,9 +94,8 @@ export class ChildGuardiansTabComponent implements OnInit,OnDestroy {
           // console.log(this.childsGuardians);
         },
         error: (err) => [
-         
           //console.error(err.error.errors),
-        console.error('getAllChildsGuardians',err),
+          console.error('getAllChildsGuardians', err),
 
           alert(JSON.stringify(err.error.errors)),
         ],
@@ -97,15 +103,14 @@ export class ChildGuardiansTabComponent implements OnInit,OnDestroy {
       });
   };
 
-
-
-
-  
   editChildTutorRelation = (guardian: any) => {
     this.openDialog(true, guardian);
   };
-  
+
   openDialog(editingRelation?: boolean, selectedGuardian?: any) {
+    // console.log('all guardiands',this.guardians);
+    // console.log('childs guardians',this.childsGuardians)
+
     const dialogRef = this.dialog.open(ModalGuardianCreateComponent, {
       data: {
         enfantId: this.child_info.id,
@@ -117,7 +122,7 @@ export class ChildGuardiansTabComponent implements OnInit,OnDestroy {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      this.getAllChildsGuardians()
+      this.getAllChildsGuardians();
       return;
       if (result) {
         //console.log(result.value);
@@ -133,13 +138,9 @@ export class ChildGuardiansTabComponent implements OnInit,OnDestroy {
           this.childsGuardians[index].authorizePickup = authorizePickup;
           this.childsGuardians[index].emergencyContact = emergencyContact;
           this.childsGuardians[index].relation = relation;
-
-        }else{
-
-          this.getAllChildsGuardians()
-
+        } else {
+          this.getAllChildsGuardians();
         }
-        
       }
     });
   }

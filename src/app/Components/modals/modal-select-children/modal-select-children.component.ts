@@ -34,7 +34,7 @@ export class ModalSelectChildrenComponent implements OnInit {
      ;
     this.getChildren();
 
-    console.log(this.data.formData.getAll('image'));
+   // console.log(this.data.formData.getAll('image'));
   }
 
   getChildren() {

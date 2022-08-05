@@ -51,12 +51,12 @@ export class CreateGarderieComponent implements OnInit {
       this.createGarderie('Garderie/Create', this.form.value)
       .subscribe(
         (res) => {
-          console.log(res);
+         //;
           const newAccessToken = res.data.accessToken;
-          console.log(newAccessToken);
+         // console.log(newAccessToken);
 
           localStorage.setItem('token',newAccessToken);
-          
+          this.authService.sendAuthStateChangeNotification(true);
          // this.authService.user_info.garderieId = res.data.id;
         },
         (err) => console.log(err),

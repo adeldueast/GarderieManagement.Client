@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { UsersService } from 'src/app/shared/services/http/users.service';
 
 @Component({
@@ -8,28 +9,33 @@ import { UsersService } from 'src/app/shared/services/http/users.service';
   styleUrls: ['./modal-staff-create.component.css'],
 })
 export class ModalStaffCreateComponent implements OnInit {
-  success =false;
+  success = false;
   rolesEnum = ['admin', 'employee'];
   ngForm = new FormGroup({
-    firstname: new FormControl(),
-    lastname: new FormControl(),
-    email: new FormControl(),
-    phone: new FormControl(),
+    firstname: new FormControl('',Validators.required),
+    lastname: new FormControl('',Validators.required),
+    email: new FormControl('',Validators.required),
+    phone: new FormControl('',Validators.required),
     isAdmin: new FormControl(false),
   });
 
-  constructor(private userService: UsersService) {}
+  constructor(private userService: UsersService,    public dialogRef: MatDialogRef<ModalStaffCreateComponent>,) {}
 
   ngOnInit() {}
 
   onSubmit() {
     //console.log(this.form.value);
-    this.userService
-      .inviteStaff('Account/InviteStaff', this.ngForm.value)
-      .subscribe(
-        (res) => {console.log(res),this.success=true},
-        (err) => console.log(err),
-        ()=>console.log('create staff completed')
-      );
+    if (this.ngForm.valid) {
+      this.userService
+        .inviteStaff('Account/InviteStaff', this.ngForm.value)
+        .subscribe(
+          (res) => {
+           // console.log(res), 
+            this.dialogRef.close(true);
+          },
+          (err) => console.log(err),
+          () => console.log('create staff completed')
+        );
+    }
   }
 }

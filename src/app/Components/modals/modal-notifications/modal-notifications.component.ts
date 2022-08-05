@@ -44,7 +44,7 @@ export class ModalNotificationsComponent implements OnInit {
   }
 
   onNotifClick(notification: any, index: number) {
-   console.log('notif click', index,notification);
+  // console.log('notif click', index,notification);
 
     //1) mark the notif as seen
     if (!notification.seen) {

@@ -45,7 +45,7 @@
   <!-- <p>Form value: {{ form.value |json}}</p>
   <p>Form status: {{ form.status |json}}</p> -->
   <div class="flex justify-between items-center">
-    <button mat-raised-button type="submit" valid>Create</button>
+  
     <button mat-raised-button (click)="logout()">
       <mat-icon
         class="w-3 h-3 mr-3"
@@ -55,5 +55,6 @@
       >
       Logout
     </button>
+    <button mat-raised-button type="submit" valid>Create</button>
   </div>
 </form>

@@ -72,8 +72,9 @@ export class StaffComponent implements OnInit, OnDestroy {
     //get the value of the modal's form before it closes
     dialogRef.afterClosed().subscribe((result: FormGroup) => {
       if (result) {
-        const group = result.value;
-        location.reload();
+        // const group = result.value;
+        // location.reload();
+        this.getAllStaff();
       }
     });
   }

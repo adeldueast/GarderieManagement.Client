@@ -10,7 +10,7 @@
         <mat-label>Guardian's name</mat-label>
         <input
           type="text"
-          placeholder="Start enderting guardian's name"
+          placeholder="Start typing a guardian's name"
           aria-label="Number"
           matInput
           [formControl]="myControl"
@@ -105,10 +105,10 @@
     type="submit"
     mat-button
     class="btn-primary"
-    [mat-dialog-close]="form"
     cdkFocusInitial
     form="ngForm"
     *ngIf="showForm"
+    valid
   >
     {{ isCreatingGuardian ? "Create" : "Assign" }}
   </button>

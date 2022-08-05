@@ -37,7 +37,7 @@ export class ModalGroupCreateComponent implements OnInit {
 
   async ngOnInit() {
     await this.getAllStaffNoGroup();
-    console.log(2);
+   // console.log(2);
 
     this.staff.length > 0 ? this.form.enable() : this.form.disable();
   }
@@ -57,7 +57,7 @@ export class ModalGroupCreateComponent implements OnInit {
           this.staff.push(staff);
         });
         //console.log(this.staff);
-        console.log(1);
+       // console.log(1);
       })
       .catch((err) => console.log(err));
 
@@ -80,6 +80,7 @@ export class ModalGroupCreateComponent implements OnInit {
 
   onSubmit() {
     //(this.form.value);
+    if (this.form.valid) {
     let createGroup_request = {
       name: this.form.get('name')?.value,
       educatriceId: this.form.get('educatriceId')?.value,
@@ -87,6 +88,7 @@ export class ModalGroupCreateComponent implements OnInit {
     };
     //console.log(createGroup_request);
     this.createGroup(createGroup_request);
+  }
   }
 
   createGroup = (createGroup_request: any) => {

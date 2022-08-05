@@ -125,7 +125,7 @@ export class ModalGroupedChildrenComponent implements OnInit {
       group.value.forEach((child: any) => {
         if (!selectedChildrens.some((c: any) => c.id === child.id)) {
           selectedChildrens.push(child);
-          console.log(child);
+        //  console.log(child);
           
           ratings.push({
             id: child.id,
