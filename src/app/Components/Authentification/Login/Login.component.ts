@@ -7,7 +7,7 @@ import { AuthService } from 'src/app/shared/services/http/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent implements OnInit,AfterViewInit{
+export class LoginComponent implements OnInit{
   login_request = {
     email: undefined,
     password: undefined,
@@ -23,13 +23,8 @@ export class LoginComponent implements OnInit,AfterViewInit{
       this.router.navigate(['/']);
     }
   }
-  ngAfterViewInit(): void {
-    window.alert('When inviting users, their password will be  "password"')
-   
-  }
-  ngAfterContentInit(): void {
-
-  }
+ 
+  
 
   ngOnInit() {
     
