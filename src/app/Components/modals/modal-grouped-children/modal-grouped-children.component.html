@@ -114,12 +114,12 @@
     </div>
   </mat-step>
 
-  <!-- RATING -->
+  <!-- manger RATING -->
   <mat-step>
     <ng-template matStepLabel
-      >Manger ratings <mat-icon>baby_changing_station</mat-icon></ng-template
+      >Eat ratings <mat-icon>restaurant_menu</mat-icon></ng-template
     >
-
+    
     <div
       *ngFor="
         let enfant_rating of this.secondFormGroup.get('ratings')?.value;
@@ -159,7 +159,7 @@
   <!-- RATING -->
   <mat-step>
     <ng-template matStepLabel
-      >Participation ratings <mat-icon>direction_run</mat-icon></ng-template
+      >Participation ratings <mat-icon>directions_run</mat-icon></ng-template
     >
 
     <div
@@ -201,7 +201,7 @@
   <!-- RATING -->
   <mat-step>
     <ng-template matStepLabel
-      >Manger ratings <mat-icon>restaurant_menu</mat-icon></ng-template
+      >Toilet ratings <mat-icon>baby_changing_station</mat-icon></ng-template
     >
 
     <div
@@ -244,7 +244,7 @@
   <form [formGroup]="secondFormGroup">
     <mat-step [stepControl]="activiteFormGroup">
       <ng-template matStepLabel
-        >Activité message<mat-icon></mat-icon
+        >Activity message<mat-icon></mat-icon
       ></ng-template>
 
       <mat-form-field appearance="fill" class="w-full">
@@ -267,7 +267,7 @@
     <!-- MANGER MESSAGE -->
     <mat-step [stepControl]="mangerFormGroup">
       <ng-template matStepLabel
-        >Manger message<mat-icon></mat-icon
+        >Eat message<mat-icon></mat-icon
       ></ng-template>
 
       <mat-form-field appearance="fill" class="w-full">
@@ -293,7 +293,7 @@
       <p>You are now done.</p>
       <div>
         <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="stepper.reset()">Reset</button>
+        <!-- <button mat-button (click)="stepper.reset()">Reset</button> -->
         <button mat-dialog-close type="button" (click)="onSubmit()">
           SUBMIT
         </button>
